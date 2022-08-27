@@ -1,0 +1,194 @@
+
+.profileContainer {
+    max-width: 1280px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+.mainProfile {
+    /*height: 720px;*/
+    /*background: linear-gradient(180deg, #E6D4DE 0%, #9890C7 100%);*/
+    padding-top: 24px;
+}
+
+.profileHeader {
+    background-color: #EBE0E9;;
+}
+
+.profileWithTable {
+    width: 1008px;
+    min-height: 636px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #ECECF9;
+    border-radius: 8px;
+    display: flex;
+    overflow: hidden;
+}
+
+.profile {
+    width: 243px;
+    background-color: #ECECF9;
+    height: 100%;
+}
+
+.profileInfo {
+    width: 100%;
+    min-height: 100%;
+    background-color: #D9D9F1;
+    overflow: hidden;
+    border-radius: 0 0 8px 8px;;
+}
+
+
+.table {
+    background-color:#FEFEFF;
+    width: 100%;
+    padding-top: 10px;
+}
+
+.imagForProfile {
+    width: 96px;
+    height: 96px;
+    border-radius: 30px;
+    margin-top: 24px;
+}
+
+.nameOfProfile {
+    font-family: Poppins;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 27px;
+    letter-spacing: 0em;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.description {
+    opacity: 50%;
+    font-family: SF UI Display;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-top: 0px;
+}
+
+.nameOfDescription {
+    margin-top: 17px;
+    font-family: SF UI Display;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+    letter-spacing: 0em;
+    margin-bottom: 24px;
+}
+
+.slider {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.changeInput {
+    height: 25px;
+    margin-top: 14px;
+}
+
+.error {
+    color: red
+}
+
+.errorInput {
+    border: solid 1px red;
+}
+
+.numberOfCards {
+    height: 100%;
+    background-color: #ECECF9;
+}
+
+button {
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    line-height: 20px;
+}
+
+[data-tooltip] {
+    position: relative; /* Относительное позиционирование */
+}
+
+[data-tooltip]::after {
+    content: attr(data-tooltip);
+    opacity: 0;
+    transition: 1s;
+    position: absolute;
+    width: 100px; /* Ширина подсказки */
+    left: 35%;
+    top: 70%;
+    background-color: cadetblue;
+    color: #fff; /* Цвет текста */
+    padding: 0.1em; /* Поля вокруг текста */
+    pointer-events: none; /* Подсказка */
+    font-size: 14px;
+    line-height: 14px;
+    margin-top: 10px;
+}
+
+[data-tooltip]:hover::after {
+    opacity: 1;
+    top: 2.5em;
+}
+
+.profileHeader {
+    display: flex;
+}
+
+.buttonsForNavigate {
+    display: flex;
+}
+
+.PacksList, .ProfileList {
+    display: flex;
+    width: 173px;
+    padding-left: 51px;
+    padding-top: 17px;
+}
+
+.headerProfileHeader {
+    width: 163px;
+    font-family: Poppins;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 39px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin: 10px 168px 11px 136px
+}
+.buttonsForPack {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px
+}
+.buttonPacks {
+    width: 196px;
+    height: 36px;
+    background: #9A91C8;
+    border-radius: 2px;
+    border: white;
+}
+.active {
+    opacity: 0.5;
+    width: 196px;
+    height: 36px;
+    background: #D7D8EF;
+    border-radius: 2px;
+    border: white;
+}
+
+

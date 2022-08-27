@@ -1,0 +1,47 @@
+.container {
+    height: 720px;
+    background: linear-gradient(180deg, #E6D4DE 0%, #9890C7 100%);
+    padding-top: 60px;
+}
+.group {
+    width: 413px;
+    height: 600px;
+    margin-right: auto;
+    margin-left: auto;
+    background: #F9F9FE;
+    border-radius: 8px;
+}
+.confirmPass {
+    margin-top: 20px;
+    border: 1px solid black;
+}
+.passInput {
+    width: 347px;
+    height: 48px;
+}
+.eay {
+    width: 24px;
+    height: 24px;
+}
+.share {
+    background: #2D2E46;
+}
+.path {
+    position: absolute;
+    left: 37.5%;
+    right: 37.5%;
+    top: 37.5%;
+    bottom: 37.5%;
+
+    background: #DADADA;
+}
+.path3 {
+
+    bottom: 18.75%;
+
+    background: #DADADA;
+}
+.path2 {
+
+    background: #DADADA;
+}

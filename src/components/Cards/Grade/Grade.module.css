@@ -1,0 +1,12 @@
+
+.starFull {
+    content: '&#9734';
+    color:  #FFC300;
+    cursor: auto;
+}
+
+
+.box {
+    display: flex;
+    justify-content: center;
+}
