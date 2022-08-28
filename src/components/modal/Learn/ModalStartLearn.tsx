@@ -1,35 +1,32 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import {BasicModal} from "../BasicModal";
-import m from "../../Cards/ModalForNewCards.module.css";
+import s from "./ModalStartLearn.module.css";
 import {Question} from "./Question";
-
+import {useState} from "react";
 
 type ModalAddPackPropsType = {
-    cardsCount:number
-    nameOfPack:string
-    packId:string
+    cardsCount: number
+    nameOfPack: string
+    packId: string
 }
 
-export const ModalStartLearn: React.FC<ModalAddPackPropsType> = props => {
+export const ModalStartLearn: React.FC<ModalAddPackPropsType> = ({cardsCount, nameOfPack, packId}) => {
 
-    const {cardsCount, nameOfPack, packId} = props;
-
-    const [open, setOpen] = React.useState(false);
-
-    const cancelHandler = () => {
-        setOpen(false)
-    }
+    const [open, setOpen] = useState(false);
+    const cancelHandler = () => setOpen(false)
 
     return (
-        <BasicModal cardsCount={cardsCount} button={"startLearn"} open={open} setOpen={setOpen} >
-            <div className={m.container} >
-                <div className={m.x}>
+        <BasicModal cardsCount={cardsCount} button={"startLearn"} open={open} setOpen={setOpen}>
+            <div className={s.container}>
+                <div className={s.buttonDelete}>
                     <Button onClick={cancelHandler} variant="text">X</Button>
                 </div>
-                    <h4 className={m.title}>Learn "{nameOfPack}"</h4>
-                <div style={{display:"flex"}} className={m.title}>
-                    <span><Question cancelHandler={cancelHandler}  packId={packId} cardsCount={cardsCount}/></span>
+                <div className={s.title}>
+                    <h4>Learn "{nameOfPack}"</h4>
+                </div>
+                <div>
+                    <Question cancelHandler={cancelHandler} packId={packId} cardsCount={cardsCount}/>
                 </div>
             </div>
         </BasicModal>

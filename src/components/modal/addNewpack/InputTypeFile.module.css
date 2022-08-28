@@ -1,0 +1,11 @@
+
+.buttonAddModal {
+    width:     177px ;
+    height:     30px;
+    background: #595fd0;
+    border-radius: 30px;
+}
+.block {
+    display: flex;
+    justify-content: center;
+}

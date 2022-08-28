@@ -2,8 +2,7 @@ import * as React from 'react';
 import {useCallback, useState} from 'react';
 import Button from '@mui/material/Button';
 import {BasicModal} from "./BasicModal";
-import s from "../Cards/ModalForNewCards.module.css";
-
+import s from "./ModalDelete.module.css";
 
 type ModalAddPackPropsType = {
     id: string
@@ -21,14 +20,12 @@ export const ModalDelete: React.FC<ModalAddPackPropsType> = ({id, deleteLine, na
         setOpen(false)
     },[])
 
-    const cancelHandler = () => {
-        setOpen(false)
-    }
+    const cancelHandler = () => setOpen(false)
 
     return (
-        <BasicModal button={"delButton"} open={open} setOpen={setOpen}>
+        <BasicModal button={"delButton"} open={open} setOpen={setOpen} >
             <div className={s.container}>
-                <div className={s.x}>
+                <div className={s.buttonDelete}>
                     <Button onClick={cancelHandler} variant="text">X</Button>
                 </div>
             </div>
@@ -41,8 +38,8 @@ export const ModalDelete: React.FC<ModalAddPackPropsType> = ({id, deleteLine, na
                     All cards will be excluded from this course.</p>
             </div>
             <div className={s.buttons}>
-                <button onClick={delPackHandler} className={s.button2}>Cancel</button>
-                <button onClick={cancelHandler} className={s.button}>Delete</button>
+                <button onClick={cancelHandler} className={s.button2}>Cancel</button>
+                <button onClick={delPackHandler} className={s.button}>Delete</button>
             </div>
         </BasicModal>
     );

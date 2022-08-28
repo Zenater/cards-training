@@ -16,7 +16,7 @@ import {PATH} from "../../../App";
 import style from "../EnhancedTable/EnhancedTable.module.css"
 import {ModalAddPack} from "../../modal/addNewpack/ModalAddPack";
 import {ModalDelete} from "../../modal/ModalDelete";
-import {ModalChangeNamePack} from "../../modal/ModalChangeNamePack";
+import {ModalChangeNamePack} from "../../modal/madalChangeNamePack/ModalChangeNamePack";
 import {ModalStartLearn} from "../../modal/Learn/ModalStartLearn";
 import cover from "../../../style/images/branding_logo.png"
 import ArrowDropDownSharpIcon from '@mui/icons-material/ArrowDropDownSharp';
@@ -68,7 +68,7 @@ export const EnhancedTable = () => {
         <div>
             <div className={style.headerForTableWithModale}>
                 <Search/>
-                <ModalAddPack addNewPack={addNewPack}/>
+                <ModalAddPack addNewPack={addNewPack} />
             </div>
             <TableContainer component={Paper}>
                 <Table sx={{minWidth: 650}} aria-label="simple table">
@@ -117,7 +117,7 @@ export const EnhancedTable = () => {
                                             <ModalDelete deleteLine={deletePackHandler} id={row._id} name={row.name}
                                                          title={'Pack'}/>
                                             <ModalChangeNamePack changeNamePack={changePack} id={row._id}
-                                                                 nameOfPack={row.name}/>
+                                                                 nameOfPack={row.name} img={row.deckCover}/>
                                         </div>
                                     }
                                     <ModalStartLearn packId={row._id} nameOfPack={row.name}

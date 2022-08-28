@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "../../../store/store";
 import {changeCountOfRawsCardsAC, changeGradeTC, getCardsTC} from "../../../store/cardsReducer";
 import {CardsType} from "../../api/cardsApi";
 import Button from "@mui/material/Button";
-import m from "../../Cards/ModalForNewCards.module.css";
+import s from "./ModalStartLearn.module.css";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -27,9 +27,7 @@ const getCard = (cards: CardsType[]): CardsType => {
     return cards[res.id + 1];
 }
 
-export const Question: React.FC<QuestionPropsType> = props => {
-
-    const {packId, cancelHandler} = props;
+export const Question: React.FC<QuestionPropsType> = ({packId, cancelHandler}) => {
 
     const dispatch = useAppDispatch();
     const cards = useAppSelector(state => state.card.cards);
@@ -81,25 +79,25 @@ export const Question: React.FC<QuestionPropsType> = props => {
         }
     }
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setValue((event.target as HTMLInputElement).value);
     };
 
     return (
-        <div>
-            <div style={{fontWeight: "normal"}} className={m.title}>
+        <div >
+            <div style={{fontWeight: "normal"}} className={s.title}>
                 <span style={{fontWeight: "bold"}}>Question:</span>
                 "{random && random.question}"
             </div>
             {isChecked && (
-                <div>
-                    <div style={{fontWeight: "normal"}} className={m.title}>
+                <div className={s.list}>
+                    <div style={{fontWeight: "normal"}} className={s.title}>
                         <span style={{fontWeight: "bold"}}>Answer: </span>
                         "{random && random.answer}"
                     </div>
                     <div style={{fontWeight: "bold"}}>Rate yourself:</div>
                     {grades.map((g, i) => (
-                        <div key={'grade-' + i}>
+                        <div key={'grade-' + i} className={s.assessment}>
                             <RadioGroup
                                 aria-labelledby="demo-controlled-radio-buttons-group"
                                 name="controlled-radio-buttons-group"
@@ -110,12 +108,12 @@ export const Question: React.FC<QuestionPropsType> = props => {
                             </RadioGroup>
                         </div>
                     ))}
-                    <Button onClick={() => onNext(value)}>Next</Button>
+                    <button className={s.buttonNext} onClick={() => onNext(value)}>Next</button>
                 </div>
             )}
-            <div className={m.buttons}>
-                <Button onClick={cancelHandler} style={{width: "124px"}}>Cancel</Button>
-                <Button onClick={() => setIsChecked(true)} style={{width: "190px"}}>Show Answer</Button>
+            <div className={s.buttons}>
+                <button onClick={cancelHandler} className={s.buttonCancel}>Cancel</button>
+                <button onClick={() => setIsChecked(true)} className={s.buttonSave}>Show Answer</button>
             </div>
         </div>
     );

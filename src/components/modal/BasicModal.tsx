@@ -1,13 +1,12 @@
 import * as React from 'react';
 import {FC, PropsWithChildren} from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import SchoolIcon from '@mui/icons-material/School';
-import s from "../Cards/ModalForNewCards.module.css";
+import s from "./ModalDelete.module.css";
 
 export type ButtonsForModalType = "justButton" | "delButton" | "changeNamePack" | "startLearn"
 
@@ -21,6 +20,7 @@ const style = {
     boxShadow: 24,
     p: 4,
     padding:'10px',
+
 };
 
 type PropsType = {
@@ -30,9 +30,7 @@ type PropsType = {
     cardsCount?:number
 
 }
-export const BasicModal: FC<PropsWithChildren<PropsType>> = (props) => {
-
-    const {children, open, setOpen, button, cardsCount} = props
+export const BasicModal: FC<PropsWithChildren<PropsType>> = ({children, open, setOpen, button, cardsCount} ) => {
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);

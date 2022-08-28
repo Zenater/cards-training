@@ -62,9 +62,7 @@ export const Profile = () => {
             dispatch(changeNameTC(name))
             setEditMode(false)
             SetError(null)
-        } else {
-            SetError("Enter text")
-        }
+        } else SetError("Enter text")
     }
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement> ) => {

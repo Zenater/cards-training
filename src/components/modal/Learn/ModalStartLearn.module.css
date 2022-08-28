@@ -1,62 +1,75 @@
 .container {
-    width: 270px;
+    width: 330px;
 }
+
 .title {
     display: flex;
-    align-items: center;
     justify-content: center;
+}
+
+.assessment {
+    display: flex;
+}
+.list {
+    padding: 16px 10px 3px 25px
 }
 .buttonDelete {
     display: flex;
     justify-content: right;
-    width: 295px;
+    width: 350px;
 }
 .buttons {
-    margin-top:20px ;
+    margin-top: 20px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
-.button {
-    width: 127px ;
-   height:  36px;
-    background: #F1453D;
-    box-shadow: 0px 4px 18px rgba(241, 69, 61, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+
+.buttonNext {
+    width: 100px;
+    height: 33px;
     border-radius: 30px;
     border: white;
+    background: #9A91C8;
+    color: bisque;
 }
+
 .button2 {
-    width: 127px ;
-   height:  36px;
+    width: 127px;
+    height: 36px;
     background: #D7D8EF;
     border-radius: 30px;
     border: white;
 }
+
 .buttonAddModal {
-    width:     184px ;
-   height:     36px;
+    width: 184px;
+    height: 36px;
     background: #21268F;
     border-radius: 30px;
     border: white;
-    color:white;
+    color: white;
 }
+
 .buttonSave {
-    width:     113px ;
-    height:     36px;
+    width: 113px;
+    height: 36px;
     background: #366EFF;
     border-radius: 30px;
     border: white;
-    color:white;
+    color: white;
 }
+
 .buttonCancel {
-    width:     113px ;
-    height:     36px;
+    width: 113px;
+    height: 36px;
     background: grey;
     border-radius: 30px;
     border: white;
-    color:white;
+    color: white;
 }
+
 .buttonGroup {
-    margin-top:20px ;
+    margin-top: 20px;
     display: flex;
     justify-content: space-evenly;
 }

@@ -4,15 +4,16 @@ import Button from '@mui/material/Button';
 import {BasicModal} from "../BasicModal";
 import TextField from "@mui/material/TextField";
 import style from "../../Profile/Profile.module.css";
-import m from "../../Cards/ModalForNewCards.module.css";
+import s from "../../Cards/ModalForNewCards.module.css";
 import Checkbox from '@mui/material/Checkbox';
 import {setPrivatePacksAC} from "../../../store/packsReducer";
 import {useAppDispatch, useAppSelector} from "../../../store/store";
 import {InputTypeFileCover} from "./InputTypeFileCover";
+import cover from "../../../style/images/branding_logo.png";
 
 
 type ModalAddPackPropsType = {
-    addNewPack: (newName: string,privatePacks:boolean,file:string) => void
+    addNewPack: (newName: string, privatePacks: boolean, file: string) => void
 }
 
 export const ModalAddPack: React.FC<ModalAddPackPropsType> = ({addNewPack}) => {
@@ -21,19 +22,16 @@ export const ModalAddPack: React.FC<ModalAddPackPropsType> = ({addNewPack}) => {
 
     const [newName, SetNewName] = useState("");
     const [error, SetError] = useState<null | string>(null);
-    const [open, setOpen] = React.useState(false);
-    const [file,setFile] = useState<string>('');
+    const [open, setOpen] = useState(false);
+    const [file, setFile] = useState('');
     const dispatch = useAppDispatch()
 
-    const addNewPackHandler = (file:string) => {
+    const addNewPackHandler = (file: string) => {
         if (newName.trim() !== "") {
-                addNewPack(newName, privatePacks!,file)
+            addNewPack(newName, privatePacks!, file)
             SetNewName("")
             setOpen(false)
-        } else {
-            SetError("Enter text")
-        }
-
+        } else SetError("Enter text")
     }
     const onKeyPressHandler = (e: React.KeyboardEvent<HTMLDivElement>) => e.key === 'Enter' && addNewPackHandler(file);
 
@@ -41,28 +39,26 @@ export const ModalAddPack: React.FC<ModalAddPackPropsType> = ({addNewPack}) => {
         SetError(null)
         SetNewName(e.currentTarget.value)
     }
-    const cancelHandler = () => {
-        setOpen(false)
-    }
+    const cancelHandler = () => setOpen(false)
 
     const onChangeHandlerStatus = (e: ChangeEvent<HTMLInputElement>) => {
-        let newIsDoneValue = e.currentTarget.checked
+        const newIsDoneValue = e.currentTarget.checked
         dispatch(setPrivatePacksAC(newIsDoneValue))
     }
-
-    const addPack = () => {
-        addNewPackHandler(file)
-    }
+    const addPack = () => addNewPackHandler(file)
 
     return (
         <BasicModal button={"justButton"} open={open} setOpen={setOpen}>
-            <div className={m.container}>
-                <div className={m.x}>
+            <div className={s.container}>
+                <div className={s.buttonDelete}>
                     <Button onClick={cancelHandler} variant="text">X</Button>
                 </div>
-                <p className={m.title}>Add new pack</p>
+                <p className={s.title}>Add new pack</p>
             </div>
-            <div className={m.title}>
+            <div className={s.title}>
+                <img width={60} height={30} src={cover} alt="you cover" />
+            </div>
+            <div className={s.title}>
                 <TextField
                     id="standard-textarea"
                     label="Name pack"
@@ -74,10 +70,10 @@ export const ModalAddPack: React.FC<ModalAddPackPropsType> = ({addNewPack}) => {
                     onKeyPress={onKeyPressHandler}
                 />
             </div>
-            <div className={m.title}>
+            <div className={s.title}>
                 {error && <div className={style.error}>{error}</div>}
             </div>
-            <div className={m.title}>
+            <div className={s.title}>
                 <Checkbox
                     checked={privatePacks}
                     color="primary"
@@ -85,11 +81,10 @@ export const ModalAddPack: React.FC<ModalAddPackPropsType> = ({addNewPack}) => {
                 />
                 <span>private packs</span>
             </div>
-
             <InputTypeFileCover setFile={setFile}/>
-                <div className={m.buttons}>
-                <Button onClick={cancelHandler} style={{width: "124px"}}>Cancel</Button>
-                <Button onClick={addPack} style={{width: "124px"}}>Send</Button>
+            <div className={s.buttonGroup}>
+                <button onClick={cancelHandler} className={s.buttonCancel}>Cancel</button>
+                <button onClick={addPack} className={s.buttonSave}>Save</button>
             </div>
         </BasicModal>
     );

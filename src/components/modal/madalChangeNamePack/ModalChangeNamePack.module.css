@@ -1,10 +1,12 @@
 .container {
     width: 270px;
+
 }
 .title {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 5px;
 }
 .buttonDelete {
     display: flex;
@@ -20,7 +22,6 @@
     width: 127px ;
    height:  36px;
     background: #F1453D;
-    box-shadow: 0px 4px 18px rgba(241, 69, 61, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
     border-radius: 30px;
     border: white;
 }

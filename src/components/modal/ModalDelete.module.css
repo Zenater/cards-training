@@ -9,12 +9,13 @@
 .buttonDelete {
     display: flex;
     justify-content: right;
-    width: 295px;
+    width: 318px;
 }
 .buttons {
     margin-top:20px ;
     display: flex;
     justify-content: space-evenly;
+
 }
 .button {
     width: 127px ;
