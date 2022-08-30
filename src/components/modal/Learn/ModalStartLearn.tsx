@@ -5,13 +5,13 @@ import s from "./ModalStartLearn.module.css";
 import {Question} from "./Question";
 import {useState} from "react";
 
-type ModalAddPackPropsType = {
+type ModalStartType = {
     cardsCount: number
     nameOfPack: string
     packId: string
 }
 
-export const ModalStartLearn: React.FC<ModalAddPackPropsType> = ({cardsCount, nameOfPack, packId}) => {
+export const ModalStartLearn: React.FC<ModalStartType> = ({cardsCount, nameOfPack, packId}) => {
 
     const [open, setOpen] = useState(false);
     const cancelHandler = () => setOpen(false)
@@ -22,8 +22,8 @@ export const ModalStartLearn: React.FC<ModalAddPackPropsType> = ({cardsCount, na
                 <div className={s.buttonDelete}>
                     <Button onClick={cancelHandler} variant="text">X</Button>
                 </div>
-                <div className={s.title}>
-                    <h4>Learn "{nameOfPack}"</h4>
+                <div>
+                    <h4  className={s.center}>Learn "{nameOfPack}"</h4>
                 </div>
                 <div>
                     <Question cancelHandler={cancelHandler} packId={packId} cardsCount={cardsCount}/>

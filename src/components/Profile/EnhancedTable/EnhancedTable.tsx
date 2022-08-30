@@ -15,11 +15,12 @@ import {NavLink} from "react-router-dom";
 import {PATH} from "../../../App";
 import style from "../EnhancedTable/EnhancedTable.module.css"
 import {ModalAddPack} from "../../modal/addNewpack/ModalAddPack";
-import {ModalDelete} from "../../modal/ModalDelete";
+import {ModalDelete} from "../../modal/modalDelete/ModalDelete";
 import {ModalChangeNamePack} from "../../modal/madalChangeNamePack/ModalChangeNamePack";
 import {ModalStartLearn} from "../../modal/Learn/ModalStartLearn";
 import cover from "../../../style/images/branding_logo.png"
 import ArrowDropDownSharpIcon from '@mui/icons-material/ArrowDropDownSharp';
+import {ModalUni} from "../../modal/modalUni";
 
 type filtersNamesType = "name" | "updated" | "cardsCount"
 
@@ -38,8 +39,8 @@ export const EnhancedTable = () => {
 
     const dispatch = useAppDispatch();
 
-    const addNewPack = (newName: string, privatePacks: boolean,file:string) => {
-        dispatch(addNewPackTS(newName, privatePacks,file))
+    const addNewPack = (name?: string,file?:string, privatePacks?: boolean,) => {
+        dispatch(addNewPackTS(name!,file! ,privatePacks!))
     }
 
     const handleChangeRowsPerPage = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
@@ -60,8 +61,8 @@ export const EnhancedTable = () => {
 
     const deletePackHandler = (id: string) => dispatch(deletePackTC(id));
 
-    const changePack = (id: string, name: string,file:string) => {
-        dispatch(changePackTC(id, name,file));
+    const changePack =  (name?: string,file?:string,id?: string) => {
+        dispatch(changePackTC(name!,file!,id!));
     }
 
     return (
@@ -69,6 +70,7 @@ export const EnhancedTable = () => {
             <div className={style.headerForTableWithModale}>
                 <Search/>
                 <ModalAddPack addNewPack={addNewPack} />
+                {/*<ModalUni addNewPack={addNewPack} button={"justButton"} />*/}
             </div>
             <TableContainer component={Paper}>
                 <Table sx={{minWidth: 650}} aria-label="simple table">
@@ -118,6 +120,8 @@ export const EnhancedTable = () => {
                                                          title={'Pack'}/>
                                             <ModalChangeNamePack changeNamePack={changePack} id={row._id}
                                                                  nameOfPack={row.name} img={row.deckCover}/>
+                                            {/*<ModalUni addNewPack={changePack} id={row._id} button={"changeNamePack"}*/}
+                                            {/*                     nameOfPack={row.name} img={row.deckCover}/>*/}
                                         </div>
                                     }
                                     <ModalStartLearn packId={row._id} nameOfPack={row.name}

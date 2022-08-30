@@ -25,15 +25,15 @@ export const PacksApi = {
             }
         })
     },
-    addNewPack(newName:string, privatePacks:boolean, file:string) {
-        const cardsPack = {name: newName,private:privatePacks, deckCover:file}
+    addNewPack(newName:string,file:string, privatePacks:boolean, ) {
+        const cardsPack = {name: newName,deckCover:file,private:privatePacks, }
         return instance.post(`cards/pack`, {cardsPack})}
     ,
     delPack(idPack:string) {
         return instance.delete(`/cards/pack?id=${idPack}`)
     },
-    changePack(idPack:string, name:string,file:string) {
-        const cardsPack = {_id:idPack, name:name,deckCover:file}
+    changePack( name:string,file:string,idPack:string,) {
+        const cardsPack = { name:name,deckCover:file,_id:idPack}
         return instance.put(`/cards/pack?id=${idPack}`,{cardsPack})
     }
 

@@ -2,7 +2,6 @@ import React, {ChangeEvent, useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "../../../store/store";
 import {changeCountOfRawsCardsAC, changeGradeTC, getCardsTC} from "../../../store/cardsReducer";
 import {CardsType} from "../../api/cardsApi";
-import Button from "@mui/material/Button";
 import s from "./ModalStartLearn.module.css";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
@@ -33,6 +32,7 @@ export const Question: React.FC<QuestionPropsType> = ({packId, cancelHandler}) =
     const cards = useAppSelector(state => state.card.cards);
 
     const [isChecked, setIsChecked] = useState(false);
+    const [show, setShow] = useState(true);
     const [random, setRandom] = useState<CardsType | null>(null);
     const [value, setValue] = useState('');
 
@@ -45,7 +45,7 @@ export const Question: React.FC<QuestionPropsType> = ({packId, cancelHandler}) =
     useEffect(() => {
         dispatch(changeCountOfRawsCardsAC(Infinity))
         dispatch(getCardsTC(packId))
-    }, [])
+    }, [dispatch, packId])
 
     const getAnswerNumber = (i: number) => {
         if (i === 0 && random) {
@@ -83,15 +83,24 @@ export const Question: React.FC<QuestionPropsType> = ({packId, cancelHandler}) =
         setValue((event.target as HTMLInputElement).value);
     };
 
+    const showAnswerHandler = () => {
+        setIsChecked(true)
+        setShow(false)
+    }
+    const showNextHandler = () => {
+        onNext(value)
+        setShow(true)
+    }
+
     return (
         <div >
-            <div style={{fontWeight: "normal"}} className={s.title}>
+            <div style={{fontWeight: "normal"}} className={s.center}>
                 <span style={{fontWeight: "bold"}}>Question:</span>
                 "{random && random.question}"
             </div>
             {isChecked && (
                 <div className={s.list}>
-                    <div style={{fontWeight: "normal"}} className={s.title}>
+                    <div style={{fontWeight: "normal"}} className={s.center}>
                         <span style={{fontWeight: "bold"}}>Answer: </span>
                         "{random && random.answer}"
                     </div>
@@ -108,12 +117,14 @@ export const Question: React.FC<QuestionPropsType> = ({packId, cancelHandler}) =
                             </RadioGroup>
                         </div>
                     ))}
-                    <button className={s.buttonNext} onClick={() => onNext(value)}>Next</button>
                 </div>
             )}
             <div className={s.buttons}>
                 <button onClick={cancelHandler} className={s.buttonCancel}>Cancel</button>
-                <button onClick={() => setIsChecked(true)} className={s.buttonSave}>Show Answer</button>
+                {show
+                    ? <button onClick={showAnswerHandler} className={s.buttonSave}>Show Answer</button>
+                    : <button className={s.buttonNext} onClick={showNextHandler}>Next</button>
+                }
             </div>
         </div>
     );

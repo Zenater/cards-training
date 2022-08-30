@@ -123,10 +123,10 @@ export const deletePackTC = (idPack: string): AppThunk =>async (dispatch,) => {
    }
 }
 
-export const changePackTC = (idPack: string, name: string,file:string): AppThunk =>async (dispatch,) => {
+export const changePackTC = ( name: string,file:string,idPack: string): AppThunk =>async (dispatch,) => {
    try {
        dispatch(setAppStatusAC('loading'))
-       await PacksApi.changePack(idPack, name,file)
+       await PacksApi.changePack (name,file,idPack,)
        dispatch(getPacksTC())
        dispatch(setAppStatusAC('succeeded'))
    } catch (e: any) {
@@ -136,10 +136,10 @@ export const changePackTC = (idPack: string, name: string,file:string): AppThunk
    }
 }
 
-export const addNewPackTS = (newName: string, privatePacks:boolean, file:string ): AppThunk =>async (dispatch,) => {
+export const addNewPackTS = (newName: string,file:string, privatePacks:boolean): AppThunk =>async (dispatch,) => {
   try {
       dispatch(setAppStatusAC('loading'))
-      await PacksApi.addNewPack(newName,privatePacks, file)
+      await PacksApi.addNewPack(newName, file,privatePacks)
       dispatch(getPacksTC())
       dispatch(setAppStatusAC('succeeded'))
   } catch (e: any) {

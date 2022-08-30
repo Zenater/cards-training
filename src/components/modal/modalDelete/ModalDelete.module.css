@@ -1,15 +1,17 @@
 .container {
     width: 270px;
 }
+.center {
+    display: flex;
+    justify-content: center;
+}
 .title {
     display: flex;
-    align-items: center;
-    justify-content: center;
 }
 .buttonDelete {
     display: flex;
     justify-content: right;
-    width: 318px;
+    width: 295px;
 }
 .buttons {
     margin-top:20px ;
@@ -17,7 +19,7 @@
     justify-content: space-evenly;
 
 }
-.button {
+.buttonForDelete {
     width: 127px ;
    height:  36px;
     background: #F1453D;
@@ -25,13 +27,14 @@
     border-radius: 30px;
     border: white;
 }
-.button2 {
+.buttonCancelForDelete {
     width: 127px ;
    height:  36px;
     background: #D7D8EF;
     border-radius: 30px;
     border: white;
 }
+
 .buttonAddModal {
     width:     184px ;
    height:     36px;

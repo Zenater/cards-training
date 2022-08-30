@@ -6,9 +6,9 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import SchoolIcon from '@mui/icons-material/School';
-import s from "./ModalDelete.module.css";
+import s from "./modalDelete/ModalDelete.module.css";
 
-export type ButtonsForModalType = "justButton" | "delButton" | "changeNamePack" | "startLearn"
+export type ButtonsForModalType = "justButton" | "delButton" | "changeNamePack" | "startLearn" |'newCard'
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -38,6 +38,9 @@ export const BasicModal: FC<PropsWithChildren<PropsType>> = ({children, open, se
     let changeButton;
     if (button === "justButton") {
         changeButton = <button className={s.buttonAddModal}  onClick={handleOpen}>New Pack</button>
+    }
+    if (button === "newCard") {
+        changeButton = <button className={s.buttonAddModal}  onClick={handleOpen}>New Card</button>
     }
     else if (button === "delButton") {
         changeButton = <IconButton onClick={handleOpen} aria-label="delete">

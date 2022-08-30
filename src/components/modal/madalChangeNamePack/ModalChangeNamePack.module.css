@@ -1,12 +1,14 @@
 .container {
     width: 270px;
-
 }
-.title {
+.center {
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 5px;
+}
+.img {
+    display: flex;
+    justify-content: center;
+    margin:8px
 }
 .buttonDelete {
     display: flex;

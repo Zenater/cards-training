@@ -1,20 +1,18 @@
 import * as React from 'react';
+import {useState} from 'react';
 import Button from '@mui/material/Button';
 import {BasicModal} from "../BasicModal";
 import TextField from "@mui/material/TextField";
-import {ButtonGroup} from "@mui/material";
-import {ChangeEvent, useState} from "react";
 import style from "../../Profile/Profile.module.css";
 import s from "./ModalChangeNamePack.module.css";
-import {InputTypeFileCover} from "../addNewpack/InputTypeFileCover";
-import Checkbox from "@mui/material/Checkbox";
-import {setPrivatePacksAC} from "../../../store/packsReducer";
-import {useAppDispatch, useAppSelector} from "../../../store/store";
+import {InputTypeFileCover} from "../../AddCover/InputTypeFileCover";
 import cover from "../../../style/images/branding_logo.png";
+import {CheckBox} from "../../Checkbox/CheckBox";
+import {ButtonGroup} from "../../ButtonsGroup/ButtonGroup";
 
 
 type ModalAddPackPropsType = {
-    changeNamePack: (id: string, name: string,file:string) => void
+    changeNamePack: (name?: string,file?:string,id?: string) => void
     id: string
     nameOfPack: string
     img:string
@@ -22,34 +20,27 @@ type ModalAddPackPropsType = {
 
 export const ModalChangeNamePack: React.FC<ModalAddPackPropsType> = ({changeNamePack, id, nameOfPack,img}) => {
 
-    const privatePacks = useAppSelector(state => state.packs.filterForPacks.private);
-    const dispatch = useAppDispatch()
-
     let [newName, SetNewName] = useState(nameOfPack);
     const [error, SetError] = useState<null | string>(null);
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const [file,setFile] = useState('');
 
-    const addNewPackHandler = (file:string) => {
+    const changeNamePackHandler = (file:string) => {
         if (newName.trim() !== "") {
-            changeNamePack(id, newName,file)
-            SetNewName("")
+            changeNamePack(newName,file,id)
             setOpen(false)
         } else SetError("Enter Text")
     }
 
-    const onKeyPressHandler = (e: React.KeyboardEvent<HTMLDivElement>) => e.key === 'Enter' && addNewPackHandler(file);
+    const onKeyPressHandler = (e: React.KeyboardEvent<HTMLDivElement>) => e.key === 'Enter' && changeNamePackHandler(file);
 
     const onChangeHandler = (e:React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> ) => {
         SetError(null)
         SetNewName(e.currentTarget.value)
     }
     const cancelHandler = () => setOpen(false)
+    const changePack = () => changeNamePackHandler(file)
 
-    const onChangeHandlerStatus = (e: ChangeEvent<HTMLInputElement>) => {
-        const newIsDoneValue = e.currentTarget.checked
-        dispatch(setPrivatePacksAC(newIsDoneValue))
-    }
 
     return (
         <BasicModal button={"changeNamePack"} open={open} setOpen={setOpen}>
@@ -58,12 +49,12 @@ export const ModalChangeNamePack: React.FC<ModalAddPackPropsType> = ({changeName
                     <Button onClick={cancelHandler} variant="text">X</Button>
                 </div>
                 <div>
-                    <p className={s.title}>Change name of your pack</p>
+                    <p className={s.center}>Change pack</p>
                 </div>
-                <div className={s.title}>
-                    <img width={60} height={30} src={img || cover} alt="you cover" />
+                <div className={s.img}>
+                    <img width={60} height={30} src={img || cover} alt="you cover"/>
                 </div>
-                <div className={s.title}>
+                <div className={s.center}>
                     <TextField
                         id="standard-textarea"
                         label="Name pack"
@@ -75,24 +66,13 @@ export const ModalChangeNamePack: React.FC<ModalAddPackPropsType> = ({changeName
                         onKeyPress={onKeyPressHandler}
                     />
                 </div>
-                <div className={s.title}>
+                <div className={s.center}>
                     {error && <div className={style.error}>{error}</div>}
                 </div>
-                <div className={s.title}>
-                    <Checkbox
-                        checked={privatePacks}
-                        color="primary"
-                        onChange={onChangeHandlerStatus}
-                    />
-                    <span>private packs</span>
-                </div>
-                <InputTypeFileCover setFile={setFile} />
-                <div className={s.buttons}>
-                    <button onClick={cancelHandler} className={s.buttonCancel}>Cancel</button>
-                    <button onClick={()=>addNewPackHandler(file)}className={s.buttonSave}>Save</button>
-                </div>
+                <CheckBox/>
+                <InputTypeFileCover setFile={setFile}/>
+                <ButtonGroup changeCards={changePack} cancelHandler={cancelHandler}/>
             </div>
         </BasicModal>
     );
 }
-

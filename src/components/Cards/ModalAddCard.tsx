@@ -7,10 +7,11 @@ import {addNewCardsTC} from "../../store/cardsReducer";
 import {useAppDispatch} from "../../store/store";
 import {useParams} from "react-router-dom";
 import style from "../Profile/Profile.module.css";
-import m from "./ModalForNewCards.module.css";
+import s from "./ModalForNewCards.module.css";
+import {ButtonGroup} from "../ButtonsGroup/ButtonGroup";
 
 
-export const ModalForNewCards = () => {
+export const ModalAddCard = () => {
 
     const [open, setOpen] = useState(false);
     const dispatch = useAppDispatch()
@@ -27,9 +28,7 @@ export const ModalForNewCards = () => {
                 setAddValue("")
                 setAddValue2("")
                 setOpen(false)
-            } else {
-                SetError("Введите текст")
-            }
+            } else SetError("both fields are required")
         }
     }
 
@@ -43,20 +42,18 @@ export const ModalForNewCards = () => {
     }
     const onKeyPressHandler = (e: React.KeyboardEvent<HTMLDivElement>) => e.key === 'Enter' && addNewCards();
 
-    const cancelHandler = () => {
-        setOpen(false)
-    }
+    const cancelHandler = () => setOpen(false)
 
 
     return (
-        <BasicModal button={"justButton"} open={open} setOpen={setOpen}>
-            <div className={m.container}>
-                <div className={m.x}>
+        <BasicModal button={"newCard"} open={open} setOpen={setOpen}>
+            <div className={s.container}>
+                <div className={s.buttonDelete}>
                     <Button onClick={cancelHandler} variant="text">X</Button>
                 </div>
                 <div>
-                    <h4 className={m.title}> Add new card</h4>
-                    <div className={m.title}>
+                    <h4 className={s.center}> Add new card</h4>
+                    <div className={s.center}>
                         <TextField
                             id="standard-textarea"
                             label="Question"
@@ -68,7 +65,7 @@ export const ModalForNewCards = () => {
                             onKeyPress={onKeyPressHandler}
                         />
                     </div>
-                    <div className={m.title}>
+                    <div className={s.center}>
                         <TextField
                             id="standard-textarea"
                             label="Answer"
@@ -80,15 +77,11 @@ export const ModalForNewCards = () => {
                             onKeyPress={onKeyPressHandler}
                         />
                     </div>
-                    <div className={m.title}>
+                    <div className={s.center}>
                         {error && <div className={style.error}>{error}</div>}
                     </div>
                 </div>
-
-            <div  className={m.buttons}>
-                <Button   variant="outlined" onClick={cancelHandler} style={{width: "124px"}}>Cancel</Button>
-                <Button  variant="outlined"  onClick={addNewCards} style={{width: "124px"}}>Send</Button>
-            </div>
+                <ButtonGroup changeCards={addNewCards} cancelHandler={cancelHandler}/>
             </div>
         </BasicModal>
     );

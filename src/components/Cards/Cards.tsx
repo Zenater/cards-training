@@ -3,11 +3,11 @@ import CircularProgress from '@mui/material/CircularProgress';
 import {useAppDispatch, useAppSelector} from '../../store/store';
 import {useParams} from "react-router-dom";
 import {changeCountOfRawsCardsAC, changeCurrentPageCardsAC, deleteCardsTC, getCardsTC} from '../../store/cardsReducer';
-import {ModalForNewCards} from "./ModalForNewCards";
-import {ModalChangeCards} from "./ModalChangeNameCards";
+import {ModalAddCard} from "./ModalAddCard";
+import {ModalChangeCards} from "./Modal Change Cards/ModalChangeCards";
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow} from "@mui/material";
 import {Grade} from './Grade/Grade';
-import {ModalDelete} from "../modal/ModalDelete";
+import {ModalDelete} from "../modal/modalDelete/ModalDelete";
 
 export const Cards = React.memo(() => {
 
@@ -49,7 +49,7 @@ export const Cards = React.memo(() => {
 
     return (
         <div>
-            <ModalForNewCards/>
+            <ModalAddCard/>
             <div>
                 <TableContainer component={Paper}>
                     <Table sx={{minWidth: 650}} aria-label="simple table">
