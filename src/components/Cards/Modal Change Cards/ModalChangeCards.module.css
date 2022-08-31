@@ -1,25 +1,39 @@
 .container {
-    width: 270px;
-}
-.center {
-    display: flex;
-    justify-content: center;
+    width: 292px;
 }
 .title {
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .buttonDelete {
     display: flex;
     justify-content: right;
-    width: 295px;
+    width: 312px;
 }
 .buttons {
     margin-top:20px ;
     display: flex;
     justify-content: space-evenly;
-
 }
-.buttonForDelete {
+
+.buttonCancel {
+    width: 113px;
+    height: 36px;
+    background: grey;
+    border-radius: 30px;
+    border: white;
+    color: white;
+}
+.buttonSave {
+    width: 113px;
+    height: 36px;
+    background: #366EFF;
+    border-radius: 30px;
+    border: white;
+    color: white;
+}
+.button {
     width: 127px ;
    height:  36px;
     background: #F1453D;
@@ -27,33 +41,21 @@
     border-radius: 30px;
     border: white;
 }
-.buttonCancelForDelete {
+.button2 {
     width: 127px ;
    height:  36px;
     background: #D7D8EF;
     border-radius: 30px;
     border: white;
 }
-
 .buttonAddModal {
     width:     184px ;
    height:     36px;
-    background: #366EFF;
+    background: #21268F;
     border-radius: 30px;
     border: white;
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 20px;
-    /* identical to box height */
-
-    text-align: center;
-    letter-spacing: 0.01em;
-
-    color: #FFFFFF;
+    color:white;
 }
-
 .buttonSave {
     width:     113px ;
     height:     36px;

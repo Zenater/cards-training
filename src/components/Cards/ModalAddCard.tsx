@@ -16,7 +16,7 @@ export const ModalAddCard = () => {
     const [open, setOpen] = useState(false);
     const dispatch = useAppDispatch()
     const [addValue, setAddValue] = useState('')
-    const [addValue2, setAddValue2] = useState('')//
+    const [addValue2, setAddValue2] = useState('')
     const [error, SetError] = useState<null | string>(null);
 
     const {id} = useParams()

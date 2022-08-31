@@ -8,7 +8,7 @@ import {ModalChangeCards} from "./Modal Change Cards/ModalChangeCards";
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow} from "@mui/material";
 import {Grade} from './Grade/Grade';
 import {ModalDelete} from "../modal/modalDelete/ModalDelete";
-
+import s from './Cards.module.css'
 export const Cards = React.memo(() => {
 
     const cards = useAppSelector(state => state.card.cards);
@@ -20,14 +20,9 @@ export const Cards = React.memo(() => {
     const dispatch = useAppDispatch()
     const {id} = useParams<{ id: string }>()
 
-    useEffect(() => {
-            dispatch(getCardsTC(id!));
-        }, [dispatch, id])
+    useEffect(() => dispatch(getCardsTC(id!)), [dispatch, id])
 
-
-    const deleteCardsHandler = (packId: string,) => {
-        dispatch(deleteCardsTC(id!, packId))
-    }
+    const deleteCardsHandler = (packId: string,) => dispatch(deleteCardsTC(id!, packId))
 
     if (!cards) {
         return <div
@@ -46,34 +41,40 @@ export const Cards = React.memo(() => {
         dispatch(getCardsTC(id!))
     }
 
-
     return (
         <div>
-            <ModalAddCard/>
-            <div>
+            <div className={s.addCard}>
+                <ModalAddCard/>
+            </div>
+
+            <div style={{margin:'10px'}}>
                 <TableContainer component={Paper}>
                     <Table sx={{minWidth: 650}} aria-label="simple table">
-                        <TableHead>
+                        <TableHead style={{backgroundColor:'#ECECF9'}}>
                             <TableRow>
-                                <TableCell>Question</TableCell>
-                                <TableCell align="left">Answer</TableCell>
+                                <TableCell align="center">Question</TableCell>
+                                <TableCell align="center">Answer</TableCell>
                                 <TableCell align="center"> Updated</TableCell>
-                                <TableCell align="right">Grade</TableCell>
-                                <TableCell align="right">Actions</TableCell>
+                                <TableCell align="center">Grade</TableCell>
+                                <TableCell align="center">Actions</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {cards.map((row) => (
                                 <TableRow
                                     key={row._id}
-                                    sx={{'&:last-child td, &:last-child th': {border: 0}}}>
-                                    <TableCell align="left">{row.question}</TableCell>
-                                    <TableCell align="left">{row.answer}</TableCell>
-                                    <TableCell align="right">{row.updated.toString().slice(2, 10)}</TableCell>
-                                    <TableCell align="right"><Grade value={row.grade}/></TableCell>
-                                    <TableCell align="right">
+                                    sx={{'&:last-child td, &:last-child th,&:nth-child(even)': {
+                                            border: 0,
+                                            backgroundColor: '#F8F7FD'
+                                    }}
+                                }>
+                                    <TableCell align="center">{row.question}</TableCell>
+                                    <TableCell align="center">{row.answer}</TableCell>
+                                    <TableCell align="center">{row.updated.toString().slice(2, 10)}</TableCell>
+                                    <TableCell align="center"><Grade value={row.grade}/></TableCell>
+                                    <TableCell align="center">
                                         {userID === row.user_id &&
-                                            <div style={{display: "flex"}}>
+                                            <div style={{display: "flex",alignItems:"center",justifyContent:'center'}}>
                                                 <ModalDelete deleteLine={deleteCardsHandler} id={row._id} name={'card'} title={'Cards'}/>
                                                 <ModalChangeCards _id={row._id} question={row.question} answer={row.answer}/>
                                             </div>

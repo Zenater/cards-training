@@ -20,16 +20,17 @@ import {ModalChangeNamePack} from "../../modal/madalChangeNamePack/ModalChangeNa
 import {ModalStartLearn} from "../../modal/Learn/ModalStartLearn";
 import cover from "../../../style/images/branding_logo.png"
 import ArrowDropDownSharpIcon from '@mui/icons-material/ArrowDropDownSharp';
-import {ModalUni} from "../../modal/modalUni";
+import {ModalUni} from "../../modal/trash/modalUni";
 
 type filtersNamesType = "name" | "updated" | "cardsCount"
 
-export const EnhancedTable = () => {
+export const EnhancedTable =React.memo( () => {
     const packs = useAppSelector(state => state.packs.cardPacks);
     const currentPacksPage = useAppSelector(state => state.packs.filterForPacks.page) || 1;
     const packsAllPage = useAppSelector(state => state.packs.cardPacksTotalCount);
     const amountOfRows = useAppSelector(state => state.packs.filterForPacks.pageCount) || 4;
     const userID = useAppSelector(state => state.profile.profile._id);
+    const dispatch = useAppDispatch();
 
     const [filter, setFilter] = useState<Record<filtersNamesType, boolean>>({
         name: false,
@@ -37,9 +38,7 @@ export const EnhancedTable = () => {
         cardsCount: false
     })
 
-    const dispatch = useAppDispatch();
-
-    const addNewPack = (name?: string,file?:string, privatePacks?: boolean,) => {
+    const addNewPack = (name?: string,file?:string, privatePacks?: boolean) => {
         dispatch(addNewPackTS(name!,file! ,privatePacks!))
     }
 
@@ -73,15 +72,17 @@ export const EnhancedTable = () => {
                 {/*<ModalUni addNewPack={addNewPack} button={"justButton"} />*/}
             </div>
             <TableContainer component={Paper}>
-                <Table sx={{minWidth: 650}} aria-label="simple table">
+                <Table aria-label="simple table">
                     <TableHead style={{backgroundColor:'#ECECF9'}}>
                         <TableRow>
-                            <TableCell align="center">Cover
+                            <TableCell align="center">
+                                Cover
                             </TableCell>
-                            <TableCell align="center">Name
+                            <TableCell align="center">
+                                Name
                                 <ArrowDropDownSharpIcon fontSize={"medium"} onClick={() => onSortTable(filter.name, "name")}/>
                             </TableCell>
-                            <TableCell align="right">Cards
+                            <TableCell align="center">Cards
                                 <ArrowDropDownSharpIcon fontSize={"medium"}
                                           onClick={() => onSortTable(filter.cardsCount, "cardsCount")}/>
                             </TableCell>
@@ -148,7 +149,7 @@ export const EnhancedTable = () => {
             />
         </div>
     );
-}
+})
 
 
 

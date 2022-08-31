@@ -14,6 +14,7 @@ import {PATH} from "../../App";
 import {InputTypeFile} from "./InputTypeFile";
 import {logoutTC} from "../../store/authReducer";
 import LogoutIcon from '@mui/icons-material/Logout';
+
 const useDebounce = (value1: number = 0, value2: number = 0, delay: number): number[] => {
     let [state, setState] = useState<number[]>([value1, value2])
 
@@ -53,9 +54,8 @@ export const Profile = () => {
             dispatch(getPacksTC())
         }
     }, [debouncedValue, dispatch])
-    const editModeHandler = () => {
-        setEditMode(true)
-    }
+
+    const editModeHandler = () => setEditMode(true)
 
     const onBlurHandler = () => {
         if (name.trim() !== "") {
@@ -70,11 +70,9 @@ export const Profile = () => {
         SetNewName(e.currentTarget.value)
     }
 
-
     const handleChange = (event: Event, newValue: number | number[]) => {
         dispatch(setMinMaxAmountOfCardsAC(newValue as number[]));
     };
-
 
     if (!isLoggedIn) {
         return <Navigate to={'/login'}/>
@@ -92,7 +90,6 @@ export const Profile = () => {
         setActiveComponent(true)
         dispatch(showPyPacksAC(null))
         dispatch(getPacksTC())
-
     }
 
     const myPacksClassName = `${activeComponent ? style.active : style.buttonPacks}`;
@@ -101,7 +98,7 @@ export const Profile = () => {
     return (
 
         <div className={styleContainer.container}>
-            <div className={style.mainProfile}>
+            {/*<div className={style.mainProfile}>*/}
                 <div className={style.profileWithTable}>
                     <div className={style.profile}>
                         <div className={style.profileInfo}>
@@ -156,7 +153,7 @@ export const Profile = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        // </div>
 
     );
 };

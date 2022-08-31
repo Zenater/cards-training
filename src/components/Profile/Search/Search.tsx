@@ -24,9 +24,7 @@ export const Search = () => {
         if (searchName.trim() !== '') {
             dispatch(getPacksTC())
             setSearchName('')
-        } else {
-            setError("Enter text")
-        }
+        } else setError("Enter text")
     }
 
     const onKeyPressHandler = (e: React.KeyboardEvent<HTMLDivElement>) => e.key === 'Enter' && onSearchHandler
@@ -39,7 +37,9 @@ export const Search = () => {
                        p: '2px 4px',
                        display: 'flex',
                        alignItems: 'center',
-                       width: 400,
+                       minWidth:100,
+                       maxWidth:400,
+                       // width: 400,
                        border: error ? "solid  2px red" : "solid  1px #635D80",
                        marginBottom: "20px",
                        backgroundColor: "#ECECF9",
@@ -54,7 +54,7 @@ export const Search = () => {
                     onChange={onChangeInputHandler}
                     value={searchName}
                     placeholder="Search... "
-                    style={{width:370}}
+                    // style={{maxWidth:'370px',minWidth:'100px'}}
                 />
             </Paper>
         </div>

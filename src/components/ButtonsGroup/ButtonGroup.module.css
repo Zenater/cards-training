@@ -1,0 +1,21 @@
+.buttons {
+    margin-top:20px ;
+    display: flex;
+    justify-content: space-evenly;
+}
+.buttonCancel {
+    width: 113px;
+    height: 36px;
+    background: grey;
+    border-radius: 30px;
+    border: white;
+    color: white;
+}
+.buttonSave {
+    width: 113px;
+    height: 36px;
+    background: #366EFF;
+    border-radius: 30px;
+    border: white;
+    color: white;
+}
