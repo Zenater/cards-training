@@ -38,19 +38,16 @@
 .buttonAddModal {
     width:     184px ;
    height:     36px;
-    background: #366EFF;
+    background: #9A91C8;
     border-radius: 30px;
     border: white;
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', serif;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
     line-height: 20px;
-    /* identical to box height */
-
     text-align: center;
     letter-spacing: 0.01em;
-
     color: #FFFFFF;
 }
 

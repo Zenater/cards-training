@@ -30,20 +30,19 @@ export const Search = () => {
     const onKeyPressHandler = (e: React.KeyboardEvent<HTMLDivElement>) => e.key === 'Enter' && onSearchHandler
 
     return (
-        <div>
+        <div className={style.center}>
             {error && <div className={style.error}>{error}</div>}
             <Paper component="form"
                    sx={{
                        p: '2px 4px',
                        display: 'flex',
                        alignItems: 'center',
-                       minWidth:100,
-                       maxWidth:400,
-                       // width: 400,
-                       border: error ? "solid  2px red" : "solid  1px #635D80",
+                       width:360,
+                       border: error ? "solid  2px red" : "solid  1px #9A91C8",
                        marginBottom: "20px",
-                       backgroundColor: "#ECECF9",
-                       height: '36px'
+                       backgroundColor: "#D9D9F1",
+                       height: '36px',
+                       borderRadius:'14px',
                    }}
             >
                 <IconButton type="submit" sx={{p: '10px'}} aria-label="search" onClick={onSearchHandler}>
@@ -53,8 +52,7 @@ export const Search = () => {
                     onKeyPress={onKeyPressHandler}
                     onChange={onChangeInputHandler}
                     value={searchName}
-                    placeholder="Search... "
-                    // style={{maxWidth:'370px',minWidth:'100px'}}
+                    placeholder="Search packs... "
                 />
             </Paper>
         </div>

@@ -1,9 +1,10 @@
 import React, {ChangeEvent, useState} from 'react';
 import {IconButton} from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import Vector from '../../style/images/Web app/Vector.png'
-import {useAppDispatch} from "../../store/store";
-import {savePhoto} from "../../store/profileReducer";
+import Vector from './../../../style/images/Web app/Vector.png'
+import s from './InputTypeFile.module.css'
+import {useAppDispatch} from "../../../store/store";
+import {savePhoto} from "../../../store/profileReducer";
 
 export const InputTypeFile = React.memo(() => {
 
@@ -39,10 +40,9 @@ export const InputTypeFile = React.memo(() => {
     }
 
     return (
-        <div style={{display: 'flex',height: '60px'}}>
+        <div className={s.containerInputUpdate}>
             <img
                 src={isAvaBroken ? Vector : ava}
-                style={{width: '100px'}}
                 onError={errorHandler}
                 alt="ava"
             />

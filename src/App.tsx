@@ -16,6 +16,8 @@ import {SetPassword} from "./components/Auth/setPassword/SetPassword";
 import {ForgotPass} from "./components/Auth/ForgotPass/ForgotPass";
 import {CheckEmail} from "./components/Auth/ForgotPass/checkEmail/CheckEmail";
 import {Login} from "./components/Auth/Login/Login";
+import s from './App.module.css'
+import {PacksTable} from "./components/Profile/Packs/PacksTable";
 
 export const PATH = {
     LOGIN: '/login',
@@ -49,7 +51,8 @@ export const App = () => {
     }
 
     return (
-        <div className="App">
+        <div className={s.app}>
+            <div className={s.container}>
             <ErrorSnackbar/>
             <NavBar/>
             {status === 'loading' && <LinearProgress color="success" />}
@@ -61,12 +64,14 @@ export const App = () => {
                 <Route path={"forgotPass"} element={<ForgotPass/>}/>
                 <Route path={"setPass/:token"} element={<SetPassword/>}/>
                 <Route path={"profile"} element={<Profile/>}/>
+                <Route path={"packs"} element={<PacksTable/>}/>
                 <Route path={"test"} element={<Test/>}/>
                 <Route path={"404"} element={<PageNotFound/>}/>
                 <Route path={"cards/:id"} element={<Cards/>}/>
                 <Route path={"checkEmail"} element={<CheckEmail/>}/>
                 <Route path="*" element={<Navigate to={"404"}/>}/>
             </Routes>
+        </div>
         </div>
     );
 }

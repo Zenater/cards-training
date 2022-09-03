@@ -1,0 +1,400 @@
+.packsBox {
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.settings {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.info {
+    display: flex;
+    margin: 30px 0;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.description {
+    opacity: 50%;
+    font-family: SF UI Display;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-top: 0px;
+}
+
+.buttonsForPack {
+    display: flex;
+    margin: 10px
+}
+
+.buttonPacks {
+    width: 90px;
+    height: 36px;
+    background: #9A91C8;
+    border-radius: 2px;
+    border: white;
+}
+
+.active {
+    opacity: 0.5;
+    width: 90px;
+    height: 36px;
+    background: #D7D8EF;
+    border-radius: 2px;
+    border: white;
+}
+
+.nameOfDescription {
+    margin-top: 17px;
+    font-family: SF UI Display, serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+    letter-spacing: 0em;
+    margin-bottom: 24px;
+}
+
+
+.tableBox {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    min-width: 80%;
+    background-color: #ECECF9
+}
+
+.profileInfo {
+    min-width: 20%;
+    background-color: #D9D9F1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.newB {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.table {
+    font-family: "Jost", sans-serif;
+    border-collapse: collapse;
+    min-width: 90%;
+    margin-bottom: 50px;
+    background: #FEFEFF;
+}
+
+.table th {
+    background-color: #c1c1ec;
+    font-size: medium;
+    padding: 20px;
+    border-width: 0;
+    font-weight: 500;
+    text-align: center;
+    color: white;
+    border-bottom: 1px solid #ccccf5;
+}
+
+.table tr:nth-child(even) {
+    background-color: #F8F7FD;
+}
+
+.table td {
+    padding: 15px;
+    border-width: 0;
+    word-break: break-word;
+    border-bottom: 1px solid #ccccf5;
+}
+
+.table tr:hover {
+    opacity: 0.7;
+}
+
+.actionModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex {
+    display: flex;
+}
+
+.slider {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nameOfProfile {
+    font-family: Poppins, fantasy;
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: 0;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+[data-tooltip] {
+    position: relative; /* Относительное позиционирование */
+}
+
+[data-tooltip]::after {
+    content: attr(data-tooltip);
+    opacity: 0;
+    transition: 1s;
+    position: absolute;
+    width: 100px; /* Ширина подсказки */
+    left: 35%;
+    top: 70%;
+    background-color: cadetblue;
+    color: #fff; /* Цвет текста */
+    padding: 0.1em; /* Поля вокруг текста */
+    pointer-events: none; /* Подсказка */
+    font-size: 14px;
+    line-height: 14px;
+    margin-top: 10px;
+}
+
+[data-tooltip]:hover::after {
+    opacity: 1;
+    top: 2.5em;
+}
+
+.inputName {
+    width: 100px;
+}
+
+@media screen and (max-width: 1150px) {
+    .buttonPacks {
+        width: 70px;
+        height: 40px;
+        background: #9A91C8;
+        border-radius: 2px;
+        border: white;
+        display: flex;
+        align-items: center;
+    }
+
+    .active {
+        opacity: 0.5;
+        width: 70px;
+        height: 40px;
+        background: #D7D8EF;
+        border-radius: 2px;
+        border: white;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.imagForProfile {
+    width: 96px;
+    height: 96px;
+    border-radius: 30px;
+    margin-top: 24px;
+}
+
+.changeInput {
+    height: 25px;
+    margin-top: 14px;
+}
+
+.description {
+    opacity: 50%;
+    font-family: SF UI Display, fantasy;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-top: 0px;
+}
+
+.slider {
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nameOfDescription {
+    margin-top: 17px;
+    font-family: SF UI Display, serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+    letter-spacing: 0em;
+    margin-bottom: 24px;
+}
+
+
+@media screen and (max-width: 950px) {
+    .info {
+        display: block;
+        margin: 30px 0;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .profileInfo {
+        background-color: #D9D9F1;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        height: 200px;
+    }
+
+    .newB {
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+    }
+
+    .imagForProfile {
+        width: 96px;
+        height: 96px;
+        border-radius: 30px;
+    }
+
+    .changeInput {
+        height: 25px;
+    }
+
+    .description {
+        opacity: 50%;
+        font-family: SF UI Display, fantasy;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 17px;
+        letter-spacing: 0em;
+        text-align: center;
+    }
+
+    .slider {
+        width: 85%;
+        display: flex;
+        flex-direction: column;
+        margin: 0 30px;
+    }
+
+    .nameOfDescription {
+        font-family: SF UI Display, serif;
+        font-weight: 600;
+        line-height: 19px;
+        letter-spacing: 0em;
+        margin-bottom: 24px;
+    }
+
+    .nameOfProfile {
+        font-family: Poppins, fantasy;
+        letter-spacing: 0;
+    }
+
+    [data-tooltip]::after {
+        width: 102px;
+        background-color: cadetblue;
+        color: #fff;
+        pointer-events: none;
+        height: 17px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .profileInfo {
+        background-color: #D9D9F1;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        height: 150px;
+    }
+
+    .table td,
+    .table th {
+        padding: 0;
+    }
+
+    th {
+        width: 20px;
+    }
+
+    td {
+        width: 20px;
+    }
+
+    .imagForProfile {
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+    }
+
+    .description {
+        display: none;
+    }
+
+    .nameOfDescription {
+        display: none;
+    }
+
+    .nameOfProfile {
+        display: flex;
+    }
+
+    .slider {
+        width: 85%;
+        display: flex;
+        flex-direction: column;
+        margin: 0 10px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .buttonsForPack {
+        display: block;
+        margin: 10px
+    }
+
+    .table td,
+    .table th {
+        padding: 0;
+        font-size: 10px;
+    }
+
+    .imagForProfile {
+        width: 50px;
+        height: 50px;
+        border-radius: 30px;
+    }
+
+    .buttonPacks {
+        width: 50px;
+        height: 40px;
+        background: #9A91C8;
+        border-radius: 2px;
+        border: white;
+        display: flex;
+        align-items: center;
+    }
+
+    .active {
+        opacity: 0.5;
+        width: 50px;
+        height: 40px;
+        background: #D7D8EF;
+        border-radius: 2px;
+        border: white;
+        display: flex;
+        align-items: center;
+    }
+}

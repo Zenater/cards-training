@@ -1,37 +1,48 @@
 
-/*.mainProfile {*/
-/*    padding-top: 24px;*/
-/*}*/
-
+.settings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
 .profileHeader {
     background-color: #EBE0E9;;
 }
 
 .profileWithTable {
-    padding-top: 24px;
+    margin: 30px 0;
+    /*padding-top: 24px;*/
     min-height: 636px;
     /*margin-right: auto;*/
     /*margin-left: auto;*/
     background-color: #ECECF9;
-    border-radius: 8px;
+    border-radius: 20px;
     display: flex;
     overflow: hidden;
-    margin: 30px;
+    /*margin: 30px;*/
 }
 
 .profile {
     background-color: #ECECF9;
     height: 100%;
-    min-width: 122px;
-    max-width: 180px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .profileInfo {
-    width: 100%;
-    min-height: 100%;
+    min-width: 20%;
     background-color: #D9D9F1;
     overflow: hidden;
-    border-radius: 0 0 8px 8px;;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.newB {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 
@@ -39,6 +50,7 @@
     background-color:#FEFEFF;
     width: 100%;
     padding-top: 10px;
+    overflow: auto;
 }
 
 .imagForProfile {
@@ -48,19 +60,11 @@
     margin-top: 24px;
 }
 
-.nameOfProfile {
-    font-family: Poppins;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 27px;
-    letter-spacing: 0em;
-    margin-top: 4px;
-    margin-bottom: 4px;
-}
+
 
 .description {
     opacity: 50%;
-    font-family: SF UI Display;
+    font-family: SF UI Display, fantasy;
     font-size: 14px;
     font-weight: 400;
     line-height: 17px;
@@ -71,7 +75,7 @@
 
 .nameOfDescription {
     margin-top: 17px;
-    font-family: SF UI Display;
+    font-family: SF UI Display, serif;
     font-size: 16px;
     font-weight: 600;
     line-height: 19px;
@@ -80,7 +84,7 @@
 }
 
 .slider {
-    width: 90%;
+    width: 85%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -101,6 +105,10 @@
 .numberOfCards {
     height: 100%;
     background-color: #ECECF9;
+}
+.center {
+    display: flex;
+    justify-content: center;
 }
 
 button {
@@ -155,7 +163,7 @@ button {
 
 .headerProfileHeader {
     width: 163px;
-    font-family: Poppins;
+    font-family: Poppins, serif;
     font-size: 26px;
     font-weight: 600;
     line-height: 39px;
@@ -169,7 +177,7 @@ button {
     margin: 10px
 }
 .buttonPacks {
-    width: 196px;
+    width: 90px;
     height: 36px;
     background: #9A91C8;
     border-radius: 2px;
@@ -177,7 +185,7 @@ button {
 }
 .active {
     opacity: 0.5;
-    width: 196px;
+    width: 90px;
     height: 36px;
     background: #D7D8EF;
     border-radius: 2px;

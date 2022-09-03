@@ -1,0 +1,10 @@
+.containerInputUpdate {
+    display: flex;
+    height: 60px
+}
+@media screen and (max-width: 950px) {
+    .containerInputUpdate {
+        display: flex;
+        height: 6px
+    }
+}

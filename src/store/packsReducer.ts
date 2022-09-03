@@ -10,7 +10,7 @@ const initialState = {
     filterForPacks: {
         minCardsCount: 0,
         maxCardsCount: 100,
-        pageCount: 4,
+        pageCount: 8,
         page: 1,
         sortPacksUpdate: "0updated",
         packName: '' as string,

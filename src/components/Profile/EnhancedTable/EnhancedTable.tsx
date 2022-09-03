@@ -63,17 +63,18 @@ export const EnhancedTable =React.memo( () => {
     const changePack =  (name?: string,file?:string,id?: string) => {
         dispatch(changePackTC(name!,file!,id!));
     }
-
+ // profiel table
+ //    overflow: auto;
+ //    word-break: break-word;
     return (
         <div>
             <div className={style.headerForTableWithModale}>
                 <Search/>
                 <ModalAddPack addNewPack={addNewPack} />
-                {/*<ModalUni addNewPack={addNewPack} button={"justButton"} />*/}
             </div>
             <TableContainer component={Paper}>
                 <Table aria-label="simple table">
-                    <TableHead style={{backgroundColor:'#ECECF9'}}>
+                    <TableHead style={{backgroundColor:'#ECECF9'}}  className={style.tableRow}>
                         <TableRow>
                             <TableCell align="center">
                                 Cover
@@ -103,18 +104,18 @@ export const EnhancedTable =React.memo( () => {
                                         backgroundColor: '#F8F7FD'
                                     }}
                                 }>
-                                <TableCell style={{height:"40px", boxSizing:"content-box"}} align="center">
+                                <TableCell data-label={'Cover'} style={{height:"40px", boxSizing:"content-box"}} align="center">
                                     <img width={30} height={30} src={row.deckCover || cover} alt=""/>
                                 </TableCell>
-                                    <TableCell style={{height:"40px", boxSizing:"content-box"}} align="center">
-                                        <NavLink to={PATH.CARDS + `/${row._id}`}>
+                                    <TableCell data-label={'Name'}  style={{height:"40px", boxSizing:"content-box"}} align="center">
+                                        <NavLink to={PATH.CARDS + `/${row._id}`} style={{wordBreak: 'break-word'}}>
                                             {row.name}
                                         </NavLink>
                                     </TableCell>
-                                <TableCell style={{height:"40px",}} align="center">{row.cardsCount}</TableCell>
-                                <TableCell style={{height:"40px", boxSizing:"content-box"}} align="center">{row.updated.toString().slice(2, 10)}</TableCell>
-                                <TableCell style={{height:"40px", boxSizing:"content-box"}} align="center">{row.user_name}</TableCell>
-                                <TableCell  style={{ height:"40px", boxSizing:"content-box",display:'flex',alignItems: 'center',justifyContent: 'center'}} align="center">
+                                <TableCell  data-label={'Cards'}  style={{height:"40px",}} align="center">{row.cardsCount}</TableCell>
+                                <TableCell  data-label={'Last Updated'}  style={{height:"40px", boxSizing:"content-box"}} align="center">{row.updated.toString().slice(2, 10)}</TableCell>
+                                <TableCell data-label={'Created by'}   style={{height:"40px", boxSizing:"content-box"}} align="center">{row.user_name}</TableCell>
+                                <TableCell  data-label={'Actions'}  style={{ height:"40px", boxSizing:"content-box",display:'flex',alignItems: 'center',justifyContent: 'center'}} align="center">
                                     {userID === row.user_id &&
                                         <div style={{display: "flex"}}>
                                             <ModalDelete deleteLine={deletePackHandler} id={row._id} name={row.name}

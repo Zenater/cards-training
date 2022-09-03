@@ -11,16 +11,17 @@ import avatar from "../../style/images/avatar.png"
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import Button from "@mui/material/Button";
 import {PATH} from "../../App";
-import {InputTypeFile} from "./InputTypeFile";
 import {logoutTC} from "../../store/authReducer";
 import LogoutIcon from '@mui/icons-material/Logout';
+import {PacksTable} from "./Packs/PacksTable";
+import {InputTypeFile} from "./inputForUpdateAvatar/InputTypeFile";
 
 const useDebounce = (value1: number = 0, value2: number = 0, delay: number): number[] => {
     let [state, setState] = useState<number[]>([value1, value2])
 
     useEffect(() => {
         const timeId = setTimeout(() => {
-            if(state[0] === value1 && state[1] === value2) return
+            if (state[0] === value1 && state[1] === value2) return
             setState([value1, value2])
         }, delay)
         return () => {
@@ -65,7 +66,7 @@ export const Profile = () => {
         } else SetError("Enter text")
     }
 
-    const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement> ) => {
+    const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         SetError(null)
         SetNewName(e.currentTarget.value)
     }
@@ -97,63 +98,62 @@ export const Profile = () => {
 
     return (
 
-        <div className={styleContainer.container}>
-            {/*<div className={style.mainProfile}>*/}
-                <div className={style.profileWithTable}>
-                    <div className={style.profile}>
-                        <div className={style.profileInfo}>
-                                <img className={style.imagForProfile}
-                                     src={profile.avatar || avatar}
-                                     alt="avatar"/>
-                                <p data-tooltip={"change avatar"} className={style.nameOfProfile}>
-                                    <InputTypeFile/>
-                                </p>
-                            <div className={style.changeInput}>
-                                {editMode ?
-                                    <input className={error ? style.errorInput : ""}
-                                           onChange={onChangeHandler} value={name}
-                                           onBlur={onBlurHandler} autoFocus
-                                           maxLength={20}
-                                           onKeyPress={onKeyPressHandler}
-                                    />
-                                    :
-                                    <p className={style.nameOfProfile}>{profile.name}
-                                        <DriveFileRenameOutlineIcon onClick={editModeHandler} style={{cursor:'pointer'}}/>
-                                    </p>
-                                }
-                            </div>
-                            {error && <div className={style.error}>{error}</div>}
-                            <p className={style.description}>Front-end developer</p>
-                        </div>
-                        <div className={style.numberOfCards}>
-                            <p className={style.nameOfDescription}>Number of cards</p>
-                            <div className={style.slider}>
-                                <Slider
-                                    getAriaLabel={() => 'Temperature range'}
-                                    value={minMAxAmount}
-                                    defaultValue={[0, 100]}
-                                    onChange={handleChange}
-                                    valueLabelDisplay="auto"
-                                />
-                            </div>
-                            <div>
-                                <p className={style.nameOfDescription}>Show packs cards</p>
-                                <div className={style.buttonsForPack}>
-                                    <button onClick={onClickForMyPacksHandler} className={myPacksClassName}>My
-                                        Packs</button>
-                                    <button onClick={onClickForAllHandler} className={allPacksClassName}>All
-                                        Packs</button>
-                                </div>
-                            </div>
-
-                        </div>
+        <div className={style.profileWithTable}>
+            <div className={style.profile}>
+                <div className={style.profileInfo}>
+                    <div className={style.newB}>
+                        <img className={style.imagForProfile}
+                             src={profile.avatar || avatar}
+                             alt="avatar"/>
+                        <p data-tooltip={"change avatar"} className={style.nameOfProfile}>
+                            <InputTypeFile/>
+                        </p>
                     </div>
-                    <div className={style.table}>
-                        <EnhancedTable/>
+                    <div className={style.changeInput}>
+                        {editMode ?
+                            <input className={error ? style.errorInput : ""}
+                                   onChange={onChangeHandler} value={name}
+                                   onBlur={onBlurHandler} autoFocus
+                                   maxLength={20}
+                                   onKeyPress={onKeyPressHandler}
+                            />
+                            :
+                            <p className={style.nameOfProfile}>{profile.name}
+                                <DriveFileRenameOutlineIcon onClick={editModeHandler} style={{cursor: 'pointer'}}/>
+                            </p>
+                        }
                     </div>
+                    {error && <div className={style.error}>{error}</div>}
+                    <p className={style.description}>Front-end developer</p>
+                    <p className={style.nameOfDescription}>Number of cards</p>
+                    <div className={style.slider}>
+                        <Slider
+                            getAriaLabel={() => 'Temperature range'}
+                            value={minMAxAmount}
+                            defaultValue={[0, 100]}
+                            onChange={handleChange}
+                            valueLabelDisplay="auto"
+                        />
+                    </div>
+                    {/*<div>*/}
+                        <p className={style.nameOfDescription}>Show packs cards</p>
+                        <div className={style.buttonsForPack}>
+                            <button onClick={onClickForMyPacksHandler} className={myPacksClassName}>My
+                                Packs
+                            </button>
+                            <button onClick={onClickForAllHandler} className={allPacksClassName}>All
+                                Packs
+                            </button>
+                        </div>
+                        {/*</div>*/}
+                    {/*</div>*/}
                 </div>
-            </div>
-        // </div>
 
+            </div>
+            <div className={style.settings}>
+                <EnhancedTable/>
+                {/*<PacksTable/>*/}
+            </div>
+        </div>
     );
 };
