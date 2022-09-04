@@ -20,13 +20,13 @@
 
 .description {
     opacity: 50%;
-    font-family: SF UI Display;
+    font-family: SF UI Display, serif;
     font-size: 14px;
     font-weight: 400;
     line-height: 17px;
-    letter-spacing: 0em;
+    letter-spacing: 0;
     text-align: center;
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 .buttonsForPack {
@@ -57,7 +57,7 @@
     font-size: 16px;
     font-weight: 600;
     line-height: 19px;
-    letter-spacing: 0em;
+    letter-spacing: 0;
     margin-bottom: 24px;
 }
 
@@ -95,7 +95,8 @@
 }
 
 .table th {
-    background-color: #c1c1ec;
+    /*background-color: #c1c1ec;*/
+    background-color: #D9D9F1;
     font-size: medium;
     padding: 20px;
     border-width: 0;
@@ -210,17 +211,6 @@
     margin-top: 14px;
 }
 
-.description {
-    opacity: 50%;
-    font-family: SF UI Display, fantasy;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 17px;
-    letter-spacing: 0em;
-    text-align: center;
-    margin-top: 0px;
-}
-
 .slider {
     width: 85%;
     margin-left: auto;
@@ -233,7 +223,7 @@
     font-size: 16px;
     font-weight: 600;
     line-height: 19px;
-    letter-spacing: 0em;
+    letter-spacing: 0;
     margin-bottom: 24px;
 }
 
@@ -277,7 +267,7 @@
         font-size: 14px;
         font-weight: 400;
         line-height: 17px;
-        letter-spacing: 0em;
+        letter-spacing: 0;
         text-align: center;
     }
 
@@ -292,7 +282,7 @@
         font-family: SF UI Display, serif;
         font-weight: 600;
         line-height: 19px;
-        letter-spacing: 0em;
+        letter-spacing: 0;
         margin-bottom: 24px;
     }
 
