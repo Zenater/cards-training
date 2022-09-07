@@ -1,6 +1,5 @@
 import React, {ChangeEvent, Dispatch, FC} from 'react';
 import s from './InputTypeFile.module.css'
-import Button from "@mui/material/Button";
 
 type PropsType ={
     setFile?: Dispatch<string>
@@ -34,9 +33,9 @@ export const InputTypeFileCover:FC<PropsType> = React.memo(({setFile}) => {
                    style={{display: 'none'}}
                    accept={"image/*"}
             />
-            <Button variant="contained" component="span" className={s.buttonAddModal} >
+            <button  className={s.addCover} >
                 New Cover
-            </Button>
+            </button>
         </label>
     )
 })

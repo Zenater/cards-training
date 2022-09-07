@@ -77,3 +77,10 @@
     display: flex;
     justify-content: space-evenly;
 }
+.error {
+    color: red
+}
+
+.errorInput {
+    border: solid 1px red;
+}

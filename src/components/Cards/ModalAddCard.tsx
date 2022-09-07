@@ -6,7 +6,6 @@ import {BasicModal} from "../modal/BasicModal";
 import {addNewCardsTC} from "../../store/cardsReducer";
 import {useAppDispatch} from "../../store/store";
 import {useParams} from "react-router-dom";
-import style from "../Profile/Profile.module.css";
 import s from "./ModalForNewCards.module.css";
 import {ButtonGroup} from "../ButtonsGroup/ButtonGroup";
 
@@ -78,7 +77,7 @@ export const ModalAddCard = () => {
                         />
                     </div>
                     <div className={s.center}>
-                        {error && <div className={style.error}>{error}</div>}
+                        {error && <div className={s.error}>{error}</div>}
                     </div>
                 </div>
                 <ButtonGroup changeCards={addNewCards} cancelHandler={cancelHandler}/>

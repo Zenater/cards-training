@@ -1,4 +1,14 @@
+.center {
+    display: flex;
+    justify-content: center;
+}
+.error {
+    color: red
+}
 
+.errorInput {
+    border: solid 1px red;
+}
 .superInput {
     display: flex;
     align-items: center;

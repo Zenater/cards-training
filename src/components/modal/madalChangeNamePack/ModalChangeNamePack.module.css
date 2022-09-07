@@ -1,5 +1,8 @@
 .container {
     width: 270px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .center {
     display: flex;
@@ -9,6 +12,10 @@
     display: flex;
     justify-content: center;
     margin:8px
+}
+.center {
+    display: flex;
+    justify-content: center;
 }
 .buttonDelete {
     display: flex;
@@ -62,4 +69,11 @@
     margin-top:20px ;
     display: flex;
     justify-content: space-evenly;
+}
+.error {
+    color: red
+}
+
+.errorInput {
+    border: solid 1px red;
 }

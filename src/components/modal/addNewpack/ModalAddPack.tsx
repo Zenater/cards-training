@@ -3,7 +3,6 @@ import {useState} from 'react';
 import Button from '@mui/material/Button';
 import {BasicModal} from "../BasicModal";
 import TextField from "@mui/material/TextField";
-import style from "../../Profile/Profile.module.css";
 import s from './ModalAddPack.module.css'
 import {useAppSelector} from "../../../store/store";
 import {InputTypeFileCover} from "../../AddCover/InputTypeFileCover";
@@ -67,7 +66,7 @@ export const ModalAddPack: React.FC<ModalAddPackPropsType> = ({addNewPack}) => {
                     />
                 </div>
                 <div className={s.center}>
-                    {error && <div className={style.error}>{error}</div>}
+                    {error && <div className={s.error}>{error}</div>}
                 </div>
                 <CheckBox/>
                 <InputTypeFileCover setFile={setFile}/>

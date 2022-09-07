@@ -2,7 +2,6 @@ import * as React from 'react';
 import {ChangeEvent, useState,KeyboardEvent} from 'react';
 import Button from '@mui/material/Button';
 import TextField from "@mui/material/TextField";
-import style from "../../Profile/Profile.module.css";
 import {useAppDispatch} from "../../../store/store";
 import {useParams} from "react-router-dom";
 import {BasicModal} from "../../modal/BasicModal";
@@ -71,7 +70,7 @@ export const ModalChangeCards: React.FC<ModalAddPackPropsType> = ({_id, answer, 
                         />
                     </div>
                     <div className={s.title}>
-                        {error && <div className={style.error}>{error}</div>}
+                        {error && <div className={s.error}>{error}</div>}
                     </div>
                     <div className={s.title}>
                         <TextField
@@ -86,7 +85,7 @@ export const ModalChangeCards: React.FC<ModalAddPackPropsType> = ({_id, answer, 
                         />
                     </div>
                     <div className={s.title}>
-                        {error && <div className={style.error}>{error}</div>}
+                        {error && <div className={s.error}>{error}</div>}
                     </div>
                     <ButtonGroup changeCards={changeCards} cancelHandler={cancelHandler}/>
                 </div>

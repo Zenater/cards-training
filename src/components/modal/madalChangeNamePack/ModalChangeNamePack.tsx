@@ -3,7 +3,6 @@ import {useState} from 'react';
 import Button from '@mui/material/Button';
 import {BasicModal} from "../BasicModal";
 import TextField from "@mui/material/TextField";
-import style from "../../Profile/Profile.module.css";
 import s from "./ModalChangeNamePack.module.css";
 import {InputTypeFileCover} from "../../AddCover/InputTypeFileCover";
 import cover from "../../../style/images/branding_logo.png";
@@ -67,7 +66,7 @@ export const ModalChangeNamePack: React.FC<ModalAddPackPropsType> = ({changeName
                     />
                 </div>
                 <div className={s.center}>
-                    {error && <div className={style.error}>{error}</div>}
+                    {error && <div className={s.error}>{error}</div>}
                 </div>
                 <CheckBox/>
                 <InputTypeFileCover setFile={setFile}/>

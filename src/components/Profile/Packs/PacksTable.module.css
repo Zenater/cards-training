@@ -61,6 +61,13 @@
     margin-bottom: 24px;
 }
 
+.error {
+    color: red
+}
+
+.errorInput {
+    border: solid 1px red;
+}
 
 .tableBox {
     position: relative;
@@ -129,7 +136,8 @@
 
 .flex {
     display: flex;
-}
+    justify-content: center;
+    align-items: center;}
 
 .slider {
     width: 90%;

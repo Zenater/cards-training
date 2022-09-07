@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import './App.css';
 import {NavBar} from "./components/Header/NavBar/NavBar";
 import {Navigate, Route, Routes, useNavigate} from "react-router-dom";
-import {Profile} from "./components/Profile/Profile";
 import {Test} from "./components/Test/Test";
 import {PageNotFound} from "./components/Page404/PageNotFound";
 import {useAppDispatch, useAppSelector} from "./store/store";
@@ -59,11 +58,11 @@ export const App = () => {
             {/*{isLoggedIn && <div style={{marginBottom:"5px"}}></div>}*/}
             <Routes>
                 <Route path={"login"} element={<Login/>}/>
-                <Route path={"/"} element={<Profile/>}/>
+                <Route path={"/"} element={<PacksTable/>}/>
                 <Route path={"registration"} element={<Registration/>}/>
                 <Route path={"forgotPass"} element={<ForgotPass/>}/>
                 <Route path={"setPass/:token"} element={<SetPassword/>}/>
-                <Route path={"profile"} element={<Profile/>}/>
+                {/*<Route path={"profile"} element={<Profile/>}/>*/}
                 <Route path={"packs"} element={<PacksTable/>}/>
                 <Route path={"test"} element={<Test/>}/>
                 <Route path={"404"} element={<PageNotFound/>}/>

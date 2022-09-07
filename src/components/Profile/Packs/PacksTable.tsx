@@ -20,12 +20,12 @@ import {ModalStartLearn} from "../../modal/Learn/ModalStartLearn";
 import s from './PacksTable.module.css'
 import {Search} from "../Search/Search";
 import {ModalAddPack} from "../../modal/addNewpack/ModalAddPack";
-import style from "../Profile.module.css";
 import {Slider, TablePagination} from "@mui/material";
 import {changeNameTC} from "../../../store/profileReducer";
 import avatar from "../../../style/images/avatar.png";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import {InputTypeFile} from "../inputForUpdateAvatar/InputTypeFile";
+import ArrowDropDownSharpIcon from '@mui/icons-material/ArrowDropDownSharp';
 
 type filtersNamesType = "name" | "updated" | "cardsCount"
 
@@ -40,7 +40,7 @@ const useDebounce = (value1: number = 0, value2: number = 0, delay: number): num
         return () => {
             clearTimeout(timeId)
         }
-    }, [delay, value1, value2])
+    }, [delay, value1, value2,state])
     return state
 }
 
@@ -163,7 +163,7 @@ export const PacksTable = () => {
                             </p>
                             <div className={s.changeInput}>
                                 {editMode ?
-                                    <input className={error ? style.errorInput : s.inputName}
+                                    <input className={error ? s.errorInput : s.inputName}
                                            onChange={onChangeHandler} value={name}
                                            onBlur={onBlurHandler} autoFocus
                                            maxLength={20}
@@ -176,7 +176,7 @@ export const PacksTable = () => {
                                 }
                             </div>
                             <div>
-                                {error && <div className={style.error}>{error}</div>}
+                                {error && <div className={s.error}>{error}</div>}
                                 <p className={s.description}>Front-end developer</p>
                             </div>
                         </div>
@@ -208,9 +208,25 @@ export const PacksTable = () => {
                             <thead>
                             <tr>
                                 <th>Cover</th>
-                                <th>Name</th>
-                                <th>Cards</th>
-                                <th>Last Updated</th>
+                                <th>Name
+                                    <ArrowDropDownSharpIcon fontSize={"medium"}
+                                                            onClick={() => onSortTable(filter.name, "name")}
+                                                            style={{cursor: 'pointer'}}
+                                    />
+                                        </th>
+                                <th>Cards
+                                    <ArrowDropDownSharpIcon fontSize={"medium"}
+                                                            onClick={() => onSortTable(filter.cardsCount, "cardsCount")}
+                                                            style={{cursor: 'pointer'}}
+
+                                    />
+                                </th>
+                                <th>Last Updated
+                                    <ArrowDropDownSharpIcon fontSize={"medium"}
+                                                            onClick={() => onSortTable(filter.updated, "updated")}
+                                                            style={{cursor: 'pointer'}}
+                                        />
+                                </th>
                                 <th>Created by</th>
                                 <th>Actions</th>
                             </tr>
@@ -221,7 +237,7 @@ export const PacksTable = () => {
 
                                 <tr key={row._id}>
                                     <td>
-                                        <img width={30} height={30} src={row.deckCover || cover} alt=""/>
+                                        <img width={30} height={30} src={row.deckCover || cover} alt="cover"/>
                                     </td>
                                     <td>
                                         <NavLink to={PATH.CARDS + `/${row._id}`} style={{wordBreak: 'break-word'}}>

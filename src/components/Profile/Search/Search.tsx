@@ -5,7 +5,7 @@ import {Paper} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
-import style from "../Profile.module.css";
+import s from "./Search.module.css";
 
 
 export const Search = () => {
@@ -30,8 +30,8 @@ export const Search = () => {
     const onKeyPressHandler = (e: React.KeyboardEvent<HTMLDivElement>) => e.key === 'Enter' && onSearchHandler
 
     return (
-        <div className={style.center}>
-            {error && <div className={style.error}>{error}</div>}
+        <div className={s.center}>
+            {error && <div className={s.error}>{error}</div>}
             <Paper component="form"
                    sx={{
                        p: '2px 4px',
