@@ -57,13 +57,12 @@ export const App = () => {
             {status === 'loading' && <LinearProgress color="success" />}
             {/*{isLoggedIn && <div style={{marginBottom:"5px"}}></div>}*/}
             <Routes>
-                <Route path={"login"} element={<Login/>}/>
                 <Route path={"/"} element={<PacksTable/>}/>
+                <Route path={"login"} element={<Login/>}/>
                 <Route path={"registration"} element={<Registration/>}/>
                 <Route path={"forgotPass"} element={<ForgotPass/>}/>
                 <Route path={"setPass/:token"} element={<SetPassword/>}/>
-                {/*<Route path={"profile"} element={<Profile/>}/>*/}
-                <Route path={"packs"} element={<PacksTable/>}/>
+                <Route path={"profile"} element={<PacksTable/>}/>
                 <Route path={"test"} element={<Test/>}/>
                 <Route path={"404"} element={<PageNotFound/>}/>
                 <Route path={"cards/:id"} element={<Cards/>}/>

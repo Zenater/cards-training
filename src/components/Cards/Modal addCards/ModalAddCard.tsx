@@ -2,12 +2,12 @@ import * as React from 'react';
 import {useState} from 'react';
 import Button from '@mui/material/Button';
 import TextField from "@mui/material/TextField";
-import {BasicModal} from "../modal/BasicModal";
-import {addNewCardsTC} from "../../store/cardsReducer";
-import {useAppDispatch} from "../../store/store";
+import {BasicModal} from "../../modal/BasicModal";
+import {addNewCardsTC} from "../../../store/cardsReducer";
+import {useAppDispatch} from "../../../store/store";
 import {useParams} from "react-router-dom";
 import s from "./ModalForNewCards.module.css";
-import {ButtonGroup} from "../ButtonsGroup/ButtonGroup";
+import {ButtonGroup} from "../../ButtonsGroup/ButtonGroup";
 
 
 export const ModalAddCard = () => {

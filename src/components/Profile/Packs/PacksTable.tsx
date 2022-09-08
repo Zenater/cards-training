@@ -40,12 +40,11 @@ const useDebounce = (value1: number = 0, value2: number = 0, delay: number): num
         return () => {
             clearTimeout(timeId)
         }
-    }, [delay, value1, value2,state])
+    }, [delay, value1, value2])
     return state
 }
 
 export const PacksTable = () => {
-
 
     const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
     const minAmount = useAppSelector(state => state.packs.filterForPacks.minCardsCount);
@@ -78,7 +77,7 @@ export const PacksTable = () => {
         if (debouncedValue) {
             dispatch(getPacksTC())
         }
-    }, [debouncedValue, dispatch])
+    }, [debouncedValue])
 
     const editModeHandler = () => setEditMode(true)
 

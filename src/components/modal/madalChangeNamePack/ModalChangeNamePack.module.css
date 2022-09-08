@@ -1,8 +1,5 @@
 .container {
     width: 270px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .center {
     display: flex;
@@ -13,10 +10,7 @@
     justify-content: center;
     margin:8px
 }
-.center {
-    display: flex;
-    justify-content: center;
-}
+
 .buttonDelete {
     display: flex;
     justify-content: right;
