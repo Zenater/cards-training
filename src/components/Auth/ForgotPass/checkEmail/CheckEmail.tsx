@@ -10,13 +10,15 @@ export const CheckEmail = React.memo(() => {
     const email = useAppSelector(state => state.forgotPas.email);
 
     return (
-        <div className={`${styleContainer.container} ${s.checkEmailContainerPad}`}>
-            <div className={s.checkEmailContainer}>
-                <p className={s.header}>It-incubator</p>
-                <img src={checkEmailAvatar} alt=""/>
-                <p className={s.textCheckEmail}>Check Email</p>
-                <p className={s.exampleMail}>We’ve sent an Email with instructions to <b>{email}</b></p>
-                <NavLink to={'/login'} >Back to Login?</NavLink>
+        <div className={styleContainer.container}>
+            <div className={s.container}>
+                <div className={s.checkEmailContainer}>
+                    <p className={s.header}>It-incubator</p>
+                    <img src={checkEmailAvatar} alt="check Email Avatar"/>
+                    <p className={s.textCheckEmail}>Check Email</p>
+                    <p className={s.exampleMail}>We’ve sent an Email with instructions to <b>{email}</b></p>
+                    <NavLink to={'/login'}>Back to Login?</NavLink>
+                </div>
             </div>
         </div>
     );

@@ -5,7 +5,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import {useFormik} from "formik";
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -19,6 +18,7 @@ import styleContainer from "../../../style/Container.module.css"
 import {useAppDispatch, useAppSelector} from "../../../store/store";
 import {loginTC} from "../../../store/authReducer";
 import s from './Login.module.css'
+
 export const Login = React.memo(() => {
     const dispatch = useAppDispatch()
     const [disable, setDisable] = useState<boolean>(false)
@@ -87,7 +87,7 @@ export const Login = React.memo(() => {
                                 {formik.errors.email && formik.touched.email &&
                                 <div style={{color: "red"}}>{formik.errors.email}</div>}
 
-                                <FormControl variant="outlined">
+                                <FormControl variant="outlined" sx={{marginTop:'7px'}}>
                                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                     <OutlinedInput label="Password"
                                         type={value.showPassword ? 'text' : 'password'}
@@ -108,14 +108,15 @@ export const Login = React.memo(() => {
                                 {formik.errors.password && formik.touched.password &&
                                 <div style={{color: "red"}}>{formik.errors.password}</div>}
 
-                                <FormControlLabel label={'Remember me'}  control=
-                                    {<Checkbox
+                                <FormControlLabel label={'Remember me'} control={
+                                    <Checkbox
                                         checked={formik.values.rememberMe}
                                         {...formik.getFieldProps('rememberMe')}
-                                    />}/>
-                                <Button disabled={disable} type={'submit'} variant={'contained'} className={s.button} style={{padding:'10px',borderRadius: '30px'}}>
+                                    />
+                                }/>
+                                <button disabled={disable}  className={s.buttonForLogin}>
                                     Login
-                                </Button>
+                                </button>
                             </FormGroup>
                         </form>
                         <FormLabel>

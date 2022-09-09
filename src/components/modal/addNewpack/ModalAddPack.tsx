@@ -12,7 +12,7 @@ import {ButtonGroup} from "../../ButtonsGroup/ButtonGroup";
 
 
 type ModalAddPackPropsType = {
-    addNewPack: (name?: string, file?: string, privatePacks?: boolean,) => void
+    addNewPack: (name: string, file: string, privatePacks: boolean) => void
 }
 
 export const ModalAddPack: React.FC<ModalAddPackPropsType> = ({addNewPack}) => {
@@ -26,7 +26,7 @@ export const ModalAddPack: React.FC<ModalAddPackPropsType> = ({addNewPack}) => {
 
     const addNewPackHandler = (file: string) => {
         if (newName.trim() !== "") {
-            addNewPack!(newName, file, privatePacks)
+            addNewPack(newName, file, privatePacks!)
             SetNewName("")
             setOpen(false)
         } else SetError("Enter text")

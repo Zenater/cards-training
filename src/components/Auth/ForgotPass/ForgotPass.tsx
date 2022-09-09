@@ -3,7 +3,6 @@ import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
 import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import {useFormik} from "formik";
 import s from './../Login/Login.module.css'
 import {Navigate, useNavigate} from "react-router-dom";
@@ -63,16 +62,16 @@ export const ForgotPass = () => {
                                 <TextField margin="normal"
                                            label="Email"
                                            sx={{
-                                               width:'347px'}}
+                                               width:'266px'}}
                                            {...formik.getFieldProps('email')}
                                 />
                                 {formik.errors.email && formik.touched.email &&
                                     <div style={{color: "red"}}>{formik.errors.email}</div>}
                                     <p style={{padding:'15px'}}>Enter your email address and we will send you further instructions</p>
 
-                                <Button disabled={disable} type={'submit'} variant={'contained'} className={s.button} style={{padding:'10px',borderRadius: '30px'}}>
+                                <button disabled={disable} className={s.buttonForLogin}>
                                     Send Instructions
-                                </Button>
+                                </button>
                             </FormGroup>
                         </form>
                         <FormLabel>

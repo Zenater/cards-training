@@ -1,8 +1,6 @@
 import React, {useState} from 'react'
 import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import {useFormik} from "formik";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
@@ -17,9 +15,10 @@ import {FormikErrorType} from '../Registartion/Registration';
 import {useAppDispatch, useAppSelector} from "../../../store/store";
 import {sendNewPasswordTC} from "../../../store/forgotPasReducer";
 import {handleServerAppError} from "../../../utils/error-utils";
-import s from "./SetPassword.module.css";
+import s from "./../Login/Login.module.css";
 
 export const SetPassword = () => {
+
     const [disable, setDisable] = useState<boolean>(false)
     const isRegistration = useAppSelector(state => state.auth.isRegistration)
     const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
@@ -30,7 +29,8 @@ export const SetPassword = () => {
     const formik = useFormik({
         initialValues: {
             password: '',
-            resetPasswordToken: token
+            resetPasswordToken: token,
+            confirmPassword: ''
         },
         validate: (values) => {
             const errors: Partial<FormikErrorType> = {};
@@ -39,54 +39,59 @@ export const SetPassword = () => {
             } else if (values.password.length < 8) {
                 errors.password = 'password shout be > 8 symbols';
             }
-            if (formik.errors.password) {
+
+            if (!values.confirmPassword) {
+                errors.confirmPassword = 'Password is required';
+            }
+            if (values.password !== values.confirmPassword) {
+                errors.confirmPassword = 'Passwords are not equal';
+            }
+            if (formik.errors.password || formik.errors.confirmPassword) {
                 Object.keys(errors).length === 0 ? setDisable(false) : setDisable(true)
             }
             return errors;
         },
-        onSubmit:  async (values) => {
-            try{
+        onSubmit: async (values) => {
+            try {
                 await dispatch(sendNewPasswordTC(values))
                 navigate('/login')
                 setDisable(true)
                 formik.resetForm()
-            }
-            catch (e:any) {
-             handleServerAppError(e,dispatch)
+            } catch (e: any) {
+                handleServerAppError(e, dispatch)
                 setDisable(false)
             }
         },
     })
-    const [values, setValues] = React.useState({
+    const [values, setValues] = useState({
         amount: '',
         password: '',
+        confirmPassword: false,
         weight: '',
         weightRange: '',
         showPassword: false,
     });
 
-    const handleClickShowPassword = () => {
-        setValues({...values, showPassword: !values.showPassword,});
-    };
-    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-    };
+    const handleClickShowPassword = () => setValues({...values, showPassword: !values.showPassword,})
+    const handleClickShowConfirmPassword = () => setValues({...values, confirmPassword: !values.confirmPassword,});
+
+    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => event.preventDefault();
 
     if (isRegistration) {
         return <Navigate to={'/login'}/>
     }
-    // if (isLoggedIn) {
-    //     return <Navigate to={'/profile'}/>
-    // }
+    if (isLoggedIn) {
+        return <Navigate to={'/profile'}/>
+    }
     return (
         <div className={styleContainer.container}>
             <div className={s.container}>
                 <div className={s.group}>
                     <FormControl>
-                            <h2 className={s.title}>it-incubator</h2>
-                            <p>Create new password</p>
+                        <h2 className={s.title}>it-incubator</h2>
+                        <p>Create new password</p>
                         <form onSubmit={formik.handleSubmit}>
-                            <FormGroup sx={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+                            <FormGroup sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                                 <FormControl variant="outlined">
                                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                     <OutlinedInput label="Password"
@@ -109,12 +114,35 @@ export const SetPassword = () => {
                                 {formik.errors.password && formik.touched.password &&
                                     <div style={{color: "red"}}>{formik.errors.password}</div>
                                 }
+                                <FormControl style={{marginTop: "10px", marginBottom: "10px"}} variant="outlined"
+                                             className={s.confirmPass}>
+                                    <InputLabel htmlFor="outlined-adornment-password">Confirm Password</InputLabel>
+                                    <OutlinedInput label="Confirm Password"
+                                                   type={values.confirmPassword ? 'confirmPassword' : 'password'}
+                                                   {...formik.getFieldProps("confirmPassword")}
+                                                   endAdornment={
+                                                       <InputAdornment position="end">
+                                                           <IconButton
+                                                               aria-label="toggle password visibility"
+                                                               onClick={handleClickShowConfirmPassword}
+                                                               onMouseDown={handleMouseDownPassword}
+                                                               edge="end"
+                                                           >
+                                                               {values.confirmPassword ? <VisibilityOff/> :
+                                                                   <Visibility/>}
+                                                           </IconButton>
+                                                       </InputAdornment>
+                                                   }
+                                    />
+                                </FormControl>
+                                {formik.errors.confirmPassword && formik.touched.confirmPassword &&
+                                    <div style={{color: "red"}}>{formik.errors.confirmPassword}</div>}
                                 <br/>
                                 <p>Create new password and we will send you further instructions to email</p>
                                 <br/>
-                                <Button disabled={disable} type={'submit'} variant={'contained'} className={s.button} style={{padding:'10px',borderRadius: '30px'}}>
+                                <button disabled={disable} className={s.buttonForLogin}>
                                     Create new password
-                                </Button>
+                                </button>
                             </FormGroup>
                         </form>
                         <FormLabel>

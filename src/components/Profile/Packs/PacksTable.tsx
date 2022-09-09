@@ -98,9 +98,6 @@ export const PacksTable = () => {
         dispatch(setMinMaxAmountOfCardsAC(newValue as number[]));
     };
 
-    if (!isLoggedIn) {
-        return <Navigate to={'/login'}/>
-    }
 
     const onKeyPressHandler = (e: React.KeyboardEvent<HTMLDivElement>) => e.key === 'Enter' && onBlurHandler();
 
@@ -115,8 +112,8 @@ export const PacksTable = () => {
         dispatch(showPyPacksAC(null))
         dispatch(getPacksTC())
     }
-    const addNewPack = (name?: string, file?: string, privatePacks?: boolean) => {
-        dispatch(addNewPackTS(name!, file!, privatePacks!))
+    const addNewPack = (name: string, file: string, privatePacks: boolean) => {
+        dispatch(addNewPackTS(name, file, privatePacks))
     }
 
     const handleChangeRowsPerPage = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
@@ -143,6 +140,9 @@ export const PacksTable = () => {
     const myPacksClassName = `${activeComponent ? s.active : s.buttonPacks}`;
     const allPacksClassName = `${!activeComponent ? s.active : s.buttonPacks}`;
 
+    if (!isLoggedIn) {
+        return <Navigate to={'/login'}/>
+    }
 
     return (
         <div className={s.packsBox}>
@@ -155,9 +155,7 @@ export const PacksTable = () => {
                             <img className={s.imagForProfile}
                                  src={profile.avatar || avatar}
                                  alt="avatar"/>
-                            <p data-tooltip={"change avatar"}
-                               className={s.nameOfProfile}
-                            >
+                            <p data-tooltip={"change avatar"} className={s.nameOfProfile}>
                                 <InputTypeFile/>
                             </p>
                             <div className={s.changeInput}>
@@ -170,7 +168,8 @@ export const PacksTable = () => {
                                     />
                                     :
                                     <div className={s.nameOfProfile}>{profile.name}
-                                        <DriveFileRenameOutlineIcon onClick={editModeHandler} style={{cursor: 'pointer'}}/>
+                                        <DriveFileRenameOutlineIcon onClick={editModeHandler}
+                                                                    style={{cursor: 'pointer'}}/>
                                     </div>
                                 }
                             </div>
@@ -212,7 +211,7 @@ export const PacksTable = () => {
                                                             onClick={() => onSortTable(filter.name, "name")}
                                                             style={{cursor: 'pointer'}}
                                     />
-                                        </th>
+                                </th>
                                 <th>Cards
                                     <ArrowDropDownSharpIcon fontSize={"medium"}
                                                             onClick={() => onSortTable(filter.cardsCount, "cardsCount")}
@@ -224,7 +223,7 @@ export const PacksTable = () => {
                                     <ArrowDropDownSharpIcon fontSize={"medium"}
                                                             onClick={() => onSortTable(filter.updated, "updated")}
                                                             style={{cursor: 'pointer'}}
-                                        />
+                                    />
                                 </th>
                                 <th>Created by</th>
                                 <th>Actions</th>

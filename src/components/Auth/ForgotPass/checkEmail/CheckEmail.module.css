@@ -1,28 +1,30 @@
-.checkEmailContainerPad {
-    padding-top: 126px;
+
+.container {
+    height: 720px;
+    padding-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .checkEmailContainer {
     height: 468px;
     width: 413px;
-    border-radius: 8px;
     background: #F9F9FE;
-    margin: 0 auto 126px auto;
-    padding-top: 21px;
-
+    border-radius: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 30px;
 }
 
 .header {
     height: 39px;
     width: 163px;
-
     font-size: 26px;
     font-weight: 600;
     line-height: 39px;
-    letter-spacing: 0em;
-    margin: 0 auto  35px auto
-    /*text-align: left;*/
-
+    letter-spacing: 0;
+    margin: 0 auto 35px auto
 }
 
 .textCheckEmail {
@@ -31,19 +33,21 @@
     font-size: 22px;
     font-weight: 600;
     line-height: 33px;
-    letter-spacing: 0em;
-    margin: 24px auto  21px auto
-
-
+    letter-spacing: 0;
+    margin: 24px auto 21px auto
 }
 
 .exampleMail {
     height: 48px;
-    width: 328px;
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
-    letter-spacing: 0em;
-    margin: 0 auto  auto auto
+    letter-spacing: 0;
+    margin: 0 auto auto auto
+}
 
+@media screen and (max-width: 480px) {
+    .checkEmailContainer {
+        padding: 10px;
+    }
 }

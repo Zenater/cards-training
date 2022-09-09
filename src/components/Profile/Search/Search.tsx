@@ -53,6 +53,7 @@ export const Search = () => {
                     onChange={onChangeInputHandler}
                     value={searchName}
                     placeholder="Search packs... "
+                    sx={{ width:340}}
                 />
             </Paper>
         </div>
