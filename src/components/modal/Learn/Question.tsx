@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "../../../store/store";
 import {changeCountOfRawsCardsAC, changeGradeTC, getCardsTC} from "../../../store/cardsReducer";
-import {CardsType} from "../../api/cardsApi";
+import {CardsType} from "../../../api/cardsApi";
 import s from "./ModalStartLearn.module.css";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';

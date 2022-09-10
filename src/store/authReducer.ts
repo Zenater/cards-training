@@ -1,4 +1,4 @@
-import {authAPI, LoginParamsType, ProfileType} from "../components/api/api";
+import {authAPI, LoginParamsType, ProfileType} from "../api/authApi";
 import {setAppErrorAC, setAppIsInitializedAC, setAppStatusAC} from "./appReducer";
 import {AppThunk} from "./store";
 import {handleServerAppError} from "../utils/error-utils";

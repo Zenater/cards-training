@@ -1,11 +1,5 @@
-import axios from "axios";
-import {ProfileType} from "./api";
-
-
-export const instance = axios.create({
-    baseURL: process.env.REACT_APP_BACK_URL || ' https://neko-back.herokuapp.com/2.0',
-    withCredentials: true,
-})
+import {instance} from "./cardsApi";
+import {ProfileType} from "./authApi";
 
 export const profileApi = {
     changeName(name: string) {
@@ -14,13 +8,6 @@ export const profileApi = {
     changeAvatar( avatar: string) {
         return instance.put<AnswerChangeProfileType>(`/auth/me`, { avatar})
     }
-}
-
-
-//types
-export type ChangeProfileType = {
-    name: string
-    avatar?: string
 }
 
 export type AnswerChangeProfileType = {

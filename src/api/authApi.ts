@@ -1,4 +1,4 @@
-import {instance} from './profileApi'
+import {instance} from "./cardsApi";
 
 export const authAPI = {
     login(data: LoginParamsType) {
@@ -15,7 +15,6 @@ export const authAPI = {
     },
 
 }
-
 
 export type ProfileType = {
     _id: string

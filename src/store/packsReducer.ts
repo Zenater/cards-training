@@ -1,7 +1,7 @@
 import {AppThunk} from "./store";
 import {setAppStatusAC} from "./appReducer";
 import {handleServerAppError} from "../utils/error-utils";
-import {AnswerGetPackType, OnePackType, PacksApi, sortPacksUpdateType} from "../components/api/packsApi";
+import {AnswerGetPackType, OnePackType, PacksApi, sortPacksUpdateType} from "../api/packsApi";
 
 
 const initialState = {

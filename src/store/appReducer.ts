@@ -1,4 +1,4 @@
-import {authAPI} from "../components/api/api";
+import {authAPI} from "../api/authApi";
 import {setIsLoggedInAC} from "./authReducer";
 import {AppThunk} from "./store";
 import {getProfileDataAC} from "./profileReducer";

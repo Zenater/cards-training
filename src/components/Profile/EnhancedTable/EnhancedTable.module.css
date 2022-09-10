@@ -1,9 +1,0 @@
-.headerForTableWithModale {
-    display: flex;
-    justify-content: space-around;
-}
-@media screen and(max-width: 1050px) {
-    .tableRow {
-        display: none;
-    }
-}

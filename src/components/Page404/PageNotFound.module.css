@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    min-height: 100vh;
+    min-height: 720px;
     min-width: 100%;
 }
 .backHome {
@@ -20,4 +20,46 @@
     letter-spacing: 0.01em;
     color: #FFFFFF;
     border: white;
+}
+
+.oops {
+    width: 180px;
+    height: 115px;
+}
+.error404 {
+    height: 300px;
+    width: 388px;
+}
+
+
+@media screen and (max-width: 950px) {
+    .oops {
+        width: 100px;
+    }
+    .error404 {
+        width: 275px;
+    }
+}
+@media screen and (max-width: 650px) {
+    .container {
+        display: block;
+    }
+    .oops {
+        width: 130px;
+    }
+    .error404 {
+        width: 300px;
+    }
+    .backHome {
+        width :138px;
+    }
+}
+@media screen and (max-width: 360px) {
+
+    .oops {
+        width: 110px;
+    }
+    .error404 {
+        width:  240px
+    }
 }

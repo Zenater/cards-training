@@ -11,7 +11,7 @@ import {ButtonGroup} from "../../ButtonsGroup/ButtonGroup";
 
 
 type ModalAddPackPropsType = {
-    changeNamePack: (name?: string,file?:string,id?: string) => void
+    changeNamePack: (name: string,file:string,id: string) => void
     id: string
     nameOfPack: string
     img:string

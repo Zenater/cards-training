@@ -16,7 +16,7 @@ import {ForgotPass} from "./components/Auth/ForgotPass/ForgotPass";
 import {CheckEmail} from "./components/Auth/ForgotPass/checkEmail/CheckEmail";
 import {Login} from "./components/Auth/Login/Login";
 import s from './App.module.css'
-import {PacksTable} from "./components/Profile/Packs/PacksTable";
+import {Profile} from "./components/Profile/Packs/Profile";
 
 export const PATH = {
     LOGIN: '/login',
@@ -57,12 +57,12 @@ export const App = () => {
             {status === 'loading' && <LinearProgress color="success" />}
             {/*{isLoggedIn && <div style={{marginBottom:"5px"}}></div>}*/}
             <Routes>
-                <Route path={"/"} element={<PacksTable/>}/>
+                <Route path={"/"} element={<Profile/>}/>
                 <Route path={"login"} element={<Login/>}/>
                 <Route path={"registration"} element={<Registration/>}/>
                 <Route path={"forgotPass"} element={<ForgotPass/>}/>
                 <Route path={"setPass/:token"} element={<SetPassword/>}/>
-                <Route path={"profile"} element={<PacksTable/>}/>
+                <Route path={"profile"} element={<Profile/>}/>
                 <Route path={"test"} element={<Test/>}/>
                 <Route path={"404"} element={<PageNotFound/>}/>
                 <Route path={"cards/:id"} element={<Cards/>}/>

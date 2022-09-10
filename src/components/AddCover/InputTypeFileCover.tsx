@@ -1,3 +1,4 @@
+import Button from '@mui/material/Button';
 import React, {ChangeEvent, Dispatch, FC} from 'react';
 import s from './InputTypeFile.module.css'
 
@@ -33,9 +34,9 @@ export const InputTypeFileCover:FC<PropsType> = React.memo(({setFile}) => {
                    style={{display: 'none'}}
                    accept={"image/*"}
             />
-            <button  className={s.addCover} >
+            <Button variant="contained" component="span" className={s.addCover} >
                 New Cover
-            </button>
+            </Button>
         </label>
     )
 })

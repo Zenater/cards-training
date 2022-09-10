@@ -8,7 +8,7 @@ import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutli
 import SchoolIcon from '@mui/icons-material/School';
 import s from "./modalDelete/ModalDelete.module.css";
 
-export type ButtonsForModalType = "justButton" | "delButton" | "changeNamePack" | "startLearn" |'newCard'
+export type ButtonsForModalType = "justButton" | "delButton" | "changeNamePack" | "startLearn" | 'newCard'
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -19,7 +19,7 @@ const style = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
-    padding:'10px',
+    padding: '10px',
 
 };
 
@@ -27,34 +27,31 @@ type PropsType = {
     button: ButtonsForModalType
     open: boolean
     setOpen: (value: boolean) => void
-    cardsCount?:number
+    cardsCount?: number
 
 }
-export const BasicModal: FC<PropsWithChildren<PropsType>> = ({children, open, setOpen, button, cardsCount} ) => {
+export const BasicModal: FC<PropsWithChildren<PropsType>> = ({children, open, setOpen, button, cardsCount}) => {
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     let changeButton;
     if (button === "justButton") {
-        changeButton = <button className={s.buttonAddModal}  onClick={handleOpen}>New Pack</button>
+        changeButton = <button className={s.buttonAddModal} onClick={handleOpen}>New Pack</button>
     }
     if (button === "newCard") {
-        changeButton = <button className={s.buttonAddModal}  onClick={handleOpen}>New Card</button>
-    }
-    else if (button === "delButton") {
+        changeButton = <button className={s.buttonAddModal} onClick={handleOpen}>New Card</button>
+    } else if (button === "delButton") {
         changeButton = <IconButton onClick={handleOpen} aria-label="delete">
             <DeleteIcon/>
         </IconButton>
-    }
-    else if (button === "changeNamePack") {
-        changeButton = <DriveFileRenameOutlineIcon onClick={handleOpen} style={{cursor:'pointer',display:'flex'}}/>
-    }
-    else if (button === "startLearn") {
+    } else if (button === "changeNamePack") {
+        changeButton = <DriveFileRenameOutlineIcon onClick={handleOpen} style={{cursor: 'pointer', display: 'flex'}}/>
+    } else if (button === "startLearn") {
         changeButton = <button
-            style={{border:"none", backgroundColor:"transparent",padding:0,marginLeft:'5px'}}
-                               onClick={handleOpen}
-                               disabled={cardsCount === 0}>
+            style={{border: "none", backgroundColor: "transparent", padding: 0, marginLeft: '5px'}}
+            onClick={handleOpen}
+            disabled={cardsCount === 0}>
             <SchoolIcon/>
         </button>
     }

@@ -1,7 +1,7 @@
 import {AppThunk} from "./store";
 import {setAppStatusAC} from "./appReducer";
 import {handleServerAppError} from "../utils/error-utils";
-import {cardsApi, RequestCardType} from "../components/api/cardsApi";
+import {cardsApi, RequestCardType} from "../api/cardsApi";
 import {setPackUserIdAC} from "./packsReducer";
 
 const initialState = {} as RequestCardType;

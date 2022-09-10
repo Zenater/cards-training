@@ -1,7 +1,7 @@
-import {ProfileType} from "../components/api/api";
+import {ProfileType} from "../api/authApi";
 import {AppThunk} from "./store";
 import {setAppStatusAC} from "./appReducer";
-import {profileApi} from "../components/api/profileApi";
+import {profileApi} from "../api/profileApi";
 import {handleServerAppError} from "../utils/error-utils";
 
 

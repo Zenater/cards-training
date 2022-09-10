@@ -1,4 +1,4 @@
-import {NewPasswordType, passwordRecoveryAPI, SendMailType} from "../components/api/passwordApi";
+import {NewPasswordType, passwordRecoveryAPI, SendMailType} from "../api/passwordApi";
 import {setAppStatusAC} from "./appReducer";
 import {AppThunk} from "./store";
 import {handleServerAppError} from "../utils/error-utils";

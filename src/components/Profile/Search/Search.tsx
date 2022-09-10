@@ -37,7 +37,7 @@ export const Search = () => {
                        p: '2px 4px',
                        display: 'flex',
                        alignItems: 'center',
-                       width:360,
+                       width:300,
                        border: error ? "solid  2px red" : "solid  1px #9A91C8",
                        marginBottom: "20px",
                        backgroundColor: "#D9D9F1",
@@ -53,7 +53,7 @@ export const Search = () => {
                     onChange={onChangeInputHandler}
                     value={searchName}
                     placeholder="Search packs... "
-                    sx={{ width:340}}
+                    sx={{ width:280}}
                 />
             </Paper>
         </div>

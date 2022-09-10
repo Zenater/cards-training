@@ -1,10 +1,4 @@
-import axios from 'axios';
-
-const instance = axios.create({
-    baseURL: 'https://neko-back.herokuapp.com/2.0/',
-    withCredentials: true
-})
-
+import {instance} from "./cardsApi";
 
 export const passwordRecoveryAPI = {
     sendEmail(data: SendMailType) {
