@@ -11,7 +11,7 @@ import styleContainer from "../../../style/Container.module.css"
 import {NavLink} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from "../../../store/store";
 import {sendEmailTC, setEmailsAC} from "../../../store/forgotPassReducer";
-import {PATH} from "../../../App";
+import {PATH} from "../../Navigates/Navigates";
 
 
 export const ForgotPass = React.memo(() => {
@@ -27,7 +27,7 @@ export const ForgotPass = React.memo(() => {
             message: `<div style="background-color: lime; padding: 15px">
             password recovery link: 
             <a href='https://zenater.github.io/cards-training/#/setPass/$token$'>
-            https://zenater.github.io/cards-training/#/login
+        
             link</a>
             </div>`,
         },

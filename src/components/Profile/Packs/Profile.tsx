@@ -7,7 +7,7 @@ import {Search} from "../Search/Search";
 import {ModalAddPack} from "../../modal/addNewpack/ModalAddPack";
 import {ProfileInfo} from "../Profile Info/ProfileInfo";
 import {PacksTable} from "../PacksTable/PacksTable";
-import {PATH} from "../../../App";
+import {PATH} from "../../Navigates/Navigates";
 
 
 export const Profile = () => {

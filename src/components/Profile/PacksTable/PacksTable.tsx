@@ -3,13 +3,13 @@ import s from "./PacksTable.module.css";
 import ArrowDropDownSharpIcon from "@mui/icons-material/ArrowDropDownSharp";
 import cover from "../../../style/images/branding_logo.png";
 import {NavLink} from "react-router-dom";
-import {PATH} from "../../../App";
 import {ModalDelete} from "../../modal/modalDelete/ModalDelete";
 import {ModalChangeNamePack} from "../../modal/madalChangeNamePack/ModalChangeNamePack";
 import {ModalStartLearn} from "../../modal/Learn/ModalStartLearn";
 import {Pagination} from "../Pagination/Pagination";
 import {changePackTC, deletePackTC, getPacksTC, sortPacksAc} from "../../../store/packsReducer";
 import {useAppDispatch, useAppSelector} from "../../../store/store";
+import {PATH} from "../../Navigates/Navigates";
 
 type filtersNamesType = "name" | "updated" | "cardsCount"
 

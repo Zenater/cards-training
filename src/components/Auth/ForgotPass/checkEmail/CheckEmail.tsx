@@ -4,7 +4,7 @@ import styleContainer from "../../../../style/Container.module.css"
 import checkEmailAvatar from "../../../../style/images/Web app/Group 281.png"
 import {useAppSelector} from "../../../../store/store";
 import {NavLink} from "react-router-dom";
-import {PATH} from "../../../../App";
+import {PATH} from "../../../Navigates/Navigates";
 
 export const CheckEmail = React.memo(() => {
 

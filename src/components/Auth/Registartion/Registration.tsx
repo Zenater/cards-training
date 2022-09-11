@@ -15,7 +15,7 @@ import styleContainer from "../../../style/Container.module.css"
 import {useAppDispatch, useAppSelector} from "../../../store/store";
 import {registerTC} from "../../../store/authReducer";
 import s from "../Login/Login.module.css";
-import {PATH} from "../../../App";
+import {PATH} from "../../Navigates/Navigates";
 
 export type  FormikErrorType = {
     email: string

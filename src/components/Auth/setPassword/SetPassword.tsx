@@ -16,7 +16,7 @@ import {useAppDispatch, useAppSelector} from "../../../store/store";
 import {sendNewPasswordTC} from "../../../store/forgotPassReducer";
 import {handleServerAppError} from "../../../utils/error-utils";
 import s from "./../Login/Login.module.css";
-import {PATH} from "../../../App";
+import {PATH} from "../../Navigates/Navigates";
 
 export const SetPassword = React.memo(() => {
 
@@ -56,6 +56,7 @@ export const SetPassword = React.memo(() => {
             try {
                 await dispatch(sendNewPasswordTC(values))
                 navigate(PATH.LOGIN)
+                alert('successful! =)')
                 setDisable(true)
                 formik.resetForm()
             } catch (e: any) {

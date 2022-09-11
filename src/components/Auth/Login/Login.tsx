@@ -18,7 +18,7 @@ import styleContainer from "../../../style/Container.module.css"
 import {useAppDispatch, useAppSelector} from "../../../store/store";
 import {loginTC} from "../../../store/authReducer";
 import s from './Login.module.css'
-import {PATH} from "../../../App";
+import {PATH} from "../../Navigates/Navigates";
 
 export const Login = React.memo(() => {
     const dispatch = useAppDispatch()
