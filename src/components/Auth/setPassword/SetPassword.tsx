@@ -13,11 +13,12 @@ import {Navigate, useNavigate, useParams} from 'react-router-dom';
 import styleContainer from "../../../style/Container.module.css"
 import {FormikErrorType} from '../Registartion/Registration';
 import {useAppDispatch, useAppSelector} from "../../../store/store";
-import {sendNewPasswordTC} from "../../../store/forgotPasReducer";
+import {sendNewPasswordTC} from "../../../store/forgotPassReducer";
 import {handleServerAppError} from "../../../utils/error-utils";
 import s from "./../Login/Login.module.css";
+import {PATH} from "../../../App";
 
-export const SetPassword = () => {
+export const SetPassword = React.memo(() => {
 
     const [disable, setDisable] = useState<boolean>(false)
     const isRegistration = useAppSelector(state => state.auth.isRegistration)
@@ -37,7 +38,7 @@ export const SetPassword = () => {
             if (!values.password) {
                 errors.password = 'Required';
             } else if (values.password.length < 8) {
-                errors.password = 'password shout be > 8 symbols';
+                errors.password = 'password must be > 8 symbols';
             }
 
             if (!values.confirmPassword) {
@@ -54,7 +55,7 @@ export const SetPassword = () => {
         onSubmit: async (values) => {
             try {
                 await dispatch(sendNewPasswordTC(values))
-                navigate('/login')
+                navigate(PATH.LOGIN)
                 setDisable(true)
                 formik.resetForm()
             } catch (e: any) {
@@ -78,10 +79,10 @@ export const SetPassword = () => {
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => event.preventDefault();
 
     if (isRegistration) {
-        return <Navigate to={'/login'}/>
+        return <Navigate to={PATH.LOGIN}/>
     }
     if (isLoggedIn) {
-        return <Navigate to={'/profile'}/>
+        return <Navigate to={PATH.PROFILE}/>
     }
     return (
         <div className={styleContainer.container}>
@@ -152,7 +153,7 @@ export const SetPassword = () => {
             </div>
         </div>
     )
-};
+})
 
 
 

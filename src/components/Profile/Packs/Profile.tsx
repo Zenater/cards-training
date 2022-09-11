@@ -7,6 +7,7 @@ import {Search} from "../Search/Search";
 import {ModalAddPack} from "../../modal/addNewpack/ModalAddPack";
 import {ProfileInfo} from "../Profile Info/ProfileInfo";
 import {PacksTable} from "../PacksTable/PacksTable";
+import {PATH} from "../../../App";
 
 
 export const Profile = () => {
@@ -19,11 +20,11 @@ export const Profile = () => {
     }
 
     if (!isLoggedIn) {
-        return <Navigate to={'/login'}/>
+        return <Navigate to={PATH.LOGIN}/>
     }
 
     return (
-        <div className={s.packsBox}>
+        <div className={s.profileBox}>
             <div className={s.settings}>
                 <Search/>
                 <ModalAddPack addNewPack={addNewPack}/>

@@ -15,6 +15,7 @@ import styleContainer from "../../../style/Container.module.css"
 import {useAppDispatch, useAppSelector} from "../../../store/store";
 import {registerTC} from "../../../store/authReducer";
 import s from "../Login/Login.module.css";
+import {PATH} from "../../../App";
 
 export type  FormikErrorType = {
     email: string
@@ -80,10 +81,10 @@ export const Registration = () => {
     const handleMouseDownPassword = (e: React.MouseEvent<HTMLButtonElement>) => e.preventDefault();
 
     if (isRegistration) {
-        return <Navigate to={'/login'}/>
+        return <Navigate to={PATH.LOGIN}/>
     }
     if (isLoggedIn) {
-        return <Navigate to={'/profile'}/>
+        return <Navigate to={PATH.PROFILE}/>
     }
 
     return (

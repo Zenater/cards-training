@@ -13,7 +13,7 @@ import {useAppDispatch, useAppSelector} from "../../../store/store";
 
 type filtersNamesType = "name" | "updated" | "cardsCount"
 
-export const PacksTable = () => {
+export const PacksTable = React.memo(() => {
 
     const packs = useAppSelector(state => state.packs.cardPacks);
     const userID = useAppSelector(state => state.profile.profile._id);
@@ -28,9 +28,7 @@ export const PacksTable = () => {
 
     const deletePackHandler = (id: string) => dispatch(deletePackTC(id));
 
-    const changePack = (name: string, file: string, id: string) => {
-        dispatch(changePackTC(name, file, id));
-    }
+    const changePack = (name: string, file: string, id: string) => dispatch(changePackTC(name, file, id));
 
 
     const onSortTable = (filterStatus: boolean, filteresNames: filtersNamesType) => {
@@ -38,6 +36,7 @@ export const PacksTable = () => {
         setFilter({...filter, [filteresNames]: !filterStatus})
         dispatch(getPacksTC())
     };
+
     return (
         <div className={s.tableBox}>
             <table className={s.table}>
@@ -84,7 +83,7 @@ export const PacksTable = () => {
                             {row.cardsCount}
                         </td>
                         <td>
-                            {row.updated.toString().slice(2, 10)}
+                            {row.updated.slice(2, 10)}
                         </td>
                         <td>
                             {row.user_name}
@@ -122,5 +121,5 @@ export const PacksTable = () => {
         </div>
 
     );
-};
+})
 

@@ -18,6 +18,7 @@ import styleContainer from "../../../style/Container.module.css"
 import {useAppDispatch, useAppSelector} from "../../../store/store";
 import {loginTC} from "../../../store/authReducer";
 import s from './Login.module.css'
+import {PATH} from "../../../App";
 
 export const Login = React.memo(() => {
     const dispatch = useAppDispatch()
@@ -69,7 +70,7 @@ export const Login = React.memo(() => {
         };
 
         if(isLoggedIn) {
-            return <Navigate to={'/profile'}/>
+            return <Navigate to={PATH.PROFILE}/>
         }
 
         return (
@@ -121,9 +122,9 @@ export const Login = React.memo(() => {
                         </form>
                         <FormLabel>
                             <p style={{padding:'30px'}}>don't have an account?</p>
-                            <NavLink to={'/registration'}>SIGN UP</NavLink>
+                            <NavLink to={PATH.REGISTER}>SIGN UP</NavLink>
                             <div>
-                                <NavLink to={'/forgotPass'} >Forgot your password?</NavLink>
+                                <NavLink to={PATH.FORGOT_PASS} >Forgot your password?</NavLink>
                             </div>
                         </FormLabel>
                     </FormControl>

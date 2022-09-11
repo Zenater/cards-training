@@ -10,10 +10,11 @@ import {FormikErrorType} from "../Registartion/Registration";
 import styleContainer from "../../../style/Container.module.css"
 import {NavLink} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from "../../../store/store";
-import {sendEmailTC, setEmailsAC} from "../../../store/forgotPasReducer";
+import {sendEmailTC, setEmailsAC} from "../../../store/forgotPassReducer";
+import {PATH} from "../../../App";
 
 
-export const ForgotPass = () => {
+export const ForgotPass = React.memo(() => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
 
@@ -25,7 +26,8 @@ export const ForgotPass = () => {
             from: "",
             message: `<div style="background-color: lime; padding: 15px">
             password recovery link: 
-            <a href='http://localhost:3000/#/setPass/$token$'>
+            <a href='https://zenater.github.io/cards-training/#/setPass/$token$'>
+            https://zenater.github.io/cards-training/#/login
             link</a>
             </div>`,
         },
@@ -41,14 +43,14 @@ export const ForgotPass = () => {
         onSubmit: async (values) => {
             dispatch(setEmailsAC(values.email))
             await dispatch(sendEmailTC(values))
-            navigate('/checkEmail')
+            navigate(PATH.CHECK_EMAIL)
             setDisable(true)
             formik.resetForm()
         },
     })
 
     if (isLoggedIn) {
-        return <Navigate to={'/profile'}/>
+        return <Navigate to={PATH.PROFILE}/>
     }
 
     return (
@@ -76,12 +78,12 @@ export const ForgotPass = () => {
                         </form>
                         <FormLabel>
                             <p style={{padding:'30px'}}>Did you remember your password?</p>
-                            <NavLink to={'/login'}>Try logging in</NavLink>
+                            <NavLink to={PATH.LOGIN}>Try logging in</NavLink>
                         </FormLabel>
                     </FormControl>
                 </div>
             </div>
         </div>
     )
-}
+})
 

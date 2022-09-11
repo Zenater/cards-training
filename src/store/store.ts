@@ -1,4 +1,4 @@
-import {ForgotPasswordActionsType, forgotPasswordReducer} from "./forgotPasReducer";
+import {ForgotPasswordActionsType, forgotPasswordReducer} from "./forgotPassReducer";
 import {ProfileActionType, profileReducer} from "./profileReducer";
 import {TypedUseSelectorHook, useDispatch, useSelector,} from "react-redux";
 import {applyMiddleware, combineReducers, legacy_createStore as createStore} from 'redux'

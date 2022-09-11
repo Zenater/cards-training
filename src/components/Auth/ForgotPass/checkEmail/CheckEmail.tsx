@@ -4,6 +4,7 @@ import styleContainer from "../../../../style/Container.module.css"
 import checkEmailAvatar from "../../../../style/images/Web app/Group 281.png"
 import {useAppSelector} from "../../../../store/store";
 import {NavLink} from "react-router-dom";
+import {PATH} from "../../../../App";
 
 export const CheckEmail = React.memo(() => {
 
@@ -17,7 +18,7 @@ export const CheckEmail = React.memo(() => {
                     <img src={checkEmailAvatar} alt="check Email Avatar"/>
                     <p className={s.textCheckEmail}>Check Email</p>
                     <p className={s.exampleMail}>We’ve sent an Email with instructions to <b>{email}</b></p>
-                    <NavLink to={'/login'}>Back to Login?</NavLink>
+                    <NavLink to={PATH.LOGIN}>Back to Login?</NavLink>
                 </div>
             </div>
         </div>

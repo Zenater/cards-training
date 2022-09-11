@@ -9,6 +9,7 @@ import {TablePagination} from "@mui/material";
 import {Grade} from './Grade/Grade';
 import {ModalDelete} from "../modal/modalDelete/ModalDelete";
 import s from './Cards.module.css'
+import {Pagination} from "../Profile/Pagination/Pagination";
 
 export const Cards = React.memo(() => {
 
@@ -44,7 +45,8 @@ export const Cards = React.memo(() => {
 
     return (
         <div className={s.packsBox}>
-            <div className={s.settings}>
+            <div className={s.settingsCards}>
+
                 <ModalAddCard/>
                 <div className={s.tableBox}>
                     <table className={s.table}>
@@ -79,17 +81,7 @@ export const Cards = React.memo(() => {
                         </tbody>
                     </table>
                     {cards && 0 !== cards.length &&
-                        <TablePagination
-                            onClick={() => {
-                                window.scrollTo({top: 0, behavior: 'smooth'})
-                            }}
-                            component="div"
-                            count={cardsAllPage}
-                            page={currentCardsPage}
-                            onPageChange={handleChangePage}
-                            rowsPerPage={amountOfRows}
-                            onRowsPerPageChange={handleChangeRowsPerPage}
-                        />
+                        <Pagination/>
                     }
                     <div>
                         {cards && !cards.length && <span style={{color: "purple"}}>cards not created</span>}
