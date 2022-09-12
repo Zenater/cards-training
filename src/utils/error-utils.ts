@@ -1,6 +1,6 @@
-import {setAppErrorAC, setAppStatusAC} from "../store/appReducer";
+import {setAppErrorAC, setAppStatusAC} from "../store/reducers/appReducer";
 import {Dispatch} from "redux";
-import {AuthActionsType} from "../store/authReducer";
+import {AuthActionsType} from "../store/reducers/authReducer";
 import axios, {AxiosError} from "axios";
 
 export const handleServerAppError = (error: Error | AxiosError, dispatch: Dispatch<AuthActionsType>) => {

@@ -2,22 +2,19 @@ import React, {useEffect} from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import {useAppDispatch, useAppSelector} from '../../store/store';
 import {useParams} from "react-router-dom";
-import {changeCountOfRawsCardsAC, changeCurrentPageCardsAC, deleteCardsTC, getCardsTC} from '../../store/cardsReducer';
-import {ModalAddCard} from "./Modal addCards/ModalAddCard";
+import {changeCountOfRawsCardsAC, changeCurrentPageCardsAC, deleteCardsTC, getCardsTC} from '../../store/reducers/cardsReducer';
+import {ModalAddCard} from "./Modal Add Cards/ModalAddCard";
 import {ModalChangeCards} from "./Modal Change Cards/ModalChangeCards";
 import {TablePagination} from "@mui/material";
 import {Grade} from './Grade/Grade';
-import {ModalDelete} from "../modal/modalDelete/ModalDelete";
+import {ModalDelete} from "../Profile/PacksTable/modal/modalDelete/ModalDelete";
 import s from './Cards.module.css'
-import {Pagination} from "../Profile/Pagination/Pagination";
+import {Pagination} from "../../common/Pagination/Pagination";
 
 export const Cards = React.memo(() => {
 
     const cards = useAppSelector(state => state.card.cards);
     const userID = useAppSelector(state => state.profile.profile._id);
-    const cardsAllPage = useAppSelector(state => state.card.cardsTotalCount);
-    const currentCardsPage = useAppSelector(state => state.card.page) || 1;
-    const amountOfRows = useAppSelector(state => state.card.pageCount) || 4;
 
     const dispatch = useAppDispatch()
     const {id} = useParams<{ id: string }>()
@@ -31,16 +28,6 @@ export const Cards = React.memo(() => {
             style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>
             <CircularProgress/>
         </div>
-    }
-
-    const handleChangePage = (e: React.MouseEvent<HTMLButtonElement> | null, value: number) => {
-        dispatch(changeCurrentPageCardsAC(value))
-        dispatch(getCardsTC(id!))
-    }
-
-    const handleChangeRowsPerPage = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        dispatch(changeCountOfRawsCardsAC(+e.target.value))
-        dispatch(getCardsTC(id!))
     }
 
     return (

@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import s from "./ProfileInfo.module.css";
-import avatar from "../../../style/images/avatar.png";
-import {InputTypeFile} from "../inputForUpdateAvatar/InputTypeFile";
+import avatar from "../../../assests/images/avatar.png";
+import {InputTypeFile} from "./InputForUpdateAvatar/InputTypeFile";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
-import {SliderForPacks} from "../Slider/SliderForPacks";
-import {ButtonsForPack} from "../ButtonsForPack/ButtonsForPack";
+import {SliderForPacks} from "./Slider/SliderForPacks";
+import {ButtonsForPack} from "./ButtonsForPack/ButtonsForPack";
 import {useAppDispatch, useAppSelector} from "../../../store/store";
-import {changeNameTC} from "../../../store/profileReducer";
+import {changeNameTC} from "../../../store/reducers/profileReducer";
 
 export const ProfileInfo = () => {
 

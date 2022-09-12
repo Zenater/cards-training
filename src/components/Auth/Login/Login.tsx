@@ -16,9 +16,9 @@ import {Navigate, NavLink} from "react-router-dom";
 import {FormikErrorType} from "../Registartion/Registration";
 import styleContainer from "../../../style/Container.module.css"
 import {useAppDispatch, useAppSelector} from "../../../store/store";
-import {loginTC} from "../../../store/authReducer";
+import {loginTC} from "../../../store/reducers/authReducer";
 import s from './Login.module.css'
-import {PATH} from "../../Navigates/Navigates";
+import {PATH} from "../../Routes/Navigates";
 
 export const Login = React.memo(() => {
     const dispatch = useAppDispatch()

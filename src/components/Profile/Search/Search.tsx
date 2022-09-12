@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
-import {getPacksTC, setSearchNamePacksAC} from "../../../store/packsReducer";
+import {getPacksTC, setSearchNamePacksAC} from "../../../store/reducers/packsReducer";
 import {useAppDispatch} from "../../../store/store";
 import {Paper} from "@mui/material";
 import IconButton from "@mui/material/IconButton";

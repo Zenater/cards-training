@@ -2,11 +2,11 @@ import React, {useEffect} from 'react';
 import {NavBar} from "./components/Header/NavBar/NavBar";
 import {useAppDispatch, useAppSelector} from "./store/store";
 import CircularProgress from '@mui/material/CircularProgress/CircularProgress';
-import {initializeAppTC} from "./store/appReducer";
+import {initializeAppTC} from "./store/reducers/appReducer";
 import LinearProgress from '@mui/material/LinearProgress';
-import {ErrorSnackbar} from "./components/ErrorSnackbar/ErrorSnackbar";
+import {ErrorSnackbar} from "./common/ErrorSnackbar/ErrorSnackbar";
 import s from './App.module.css'
-import {Navigates} from "./components/Navigates/Navigates";
+import {Navigates} from "./components/Routes/Navigates";
 
 
 export const App = () => {

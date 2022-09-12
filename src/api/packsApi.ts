@@ -1,4 +1,4 @@
-import {instance} from "./cardsApi";
+import {instance} from "./Instance/instance";
 
 
 export const PacksApi = {

@@ -4,10 +4,10 @@ import Button from '@mui/material/Button';
 import TextField from "@mui/material/TextField";
 import {useAppDispatch} from "../../../store/store";
 import {useParams} from "react-router-dom";
-import {BasicModal} from "../../modal/BasicModal";
-import {updateCardsTC} from "../../../store/cardsReducer";
+import {BasicModal} from "../../../common/Basic modal/BasicModal";
+import {updateCardsTC} from "../../../store/reducers/cardsReducer";
 import s from "./ModalChangeCards.module.css";
-import {ButtonGroup} from "../../ButtonsGroup/ButtonGroup";
+import {ButtonGroup} from "../../../common/ButtonsGroup/ButtonGroup";
 
 
 type ModalAddPackPropsType = {

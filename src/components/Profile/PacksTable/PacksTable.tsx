@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
 import s from "./PacksTable.module.css";
 import ArrowDropDownSharpIcon from "@mui/icons-material/ArrowDropDownSharp";
-import cover from "../../../style/images/branding_logo.png";
+import cover from "../../../assests/images/branding_logo.png";
 import {NavLink} from "react-router-dom";
-import {ModalDelete} from "../../modal/modalDelete/ModalDelete";
-import {ModalChangeNamePack} from "../../modal/madalChangeNamePack/ModalChangeNamePack";
-import {ModalStartLearn} from "../../modal/Learn/ModalStartLearn";
-import {Pagination} from "../Pagination/Pagination";
-import {changePackTC, deletePackTC, getPacksTC, sortPacksAc} from "../../../store/packsReducer";
+import {ModalDelete} from "./modal/modalDelete/ModalDelete";
+import {ModalChangeNamePack} from "./modal/madalChangeNamePack/ModalChangeNamePack";
+import {ModalStartLearn} from "./modal/Learn/ModalStartLearn";
+import {Pagination} from "../../../common/Pagination/Pagination";
+import {changePackTC, deletePackTC, getPacksTC, sortPacksAc} from "../../../store/reducers/packsReducer";
 import {useAppDispatch, useAppSelector} from "../../../store/store";
-import {PATH} from "../../Navigates/Navigates";
+import {PATH} from "../../Routes/Navigates";
 
 type filtersNamesType = "name" | "updated" | "cardsCount"
 

@@ -1,12 +1,12 @@
-import {ForgotPasswordActionsType, forgotPasswordReducer} from "./forgotPassReducer";
-import {ProfileActionType, profileReducer} from "./profileReducer";
+import {ForgotPasswordActionsType, forgotPasswordReducer} from "./reducers/forgotPassReducer";
+import {ProfileActionType, profileReducer} from "./reducers/profileReducer";
 import {TypedUseSelectorHook, useDispatch, useSelector,} from "react-redux";
 import {applyMiddleware, combineReducers, legacy_createStore as createStore} from 'redux'
 import thunkMiddleware, {ThunkAction, ThunkDispatch} from 'redux-thunk'
-import {AuthActionsType, authReducer} from "./authReducer";
-import {AppActionType, appReducer} from "./appReducer";
-import {packReducer, PacksActionType} from "./packsReducer";
-import {CardsActionType, cardsReducer} from "./cardsReducer";
+import {AuthActionsType, authReducer} from "./reducers/authReducer";
+import {AppActionType, appReducer} from "./reducers/appReducer";
+import {packReducer, PacksActionType} from "./reducers/packsReducer";
+import {CardsActionType, cardsReducer} from "./reducers/cardsReducer";
 
 
 const rootReducer = combineReducers({

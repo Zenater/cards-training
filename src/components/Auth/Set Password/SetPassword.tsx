@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
-import TextField from '@mui/material/TextField';
 import {useFormik} from "formik";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
@@ -10,60 +9,60 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormLabel from '@mui/material/FormLabel';
-import {Navigate, NavLink} from 'react-router-dom';
+import {Navigate, useNavigate, useParams} from 'react-router-dom';
 import styleContainer from "../../../style/Container.module.css"
+import {FormikErrorType} from '../Registartion/Registration';
 import {useAppDispatch, useAppSelector} from "../../../store/store";
-import {registerTC} from "../../../store/reducers/authReducer";
-import s from "../Login/Login.module.css";
+import {sendNewPasswordTC} from "../../../store/reducers/forgotPassReducer";
+import {handleServerAppError} from "../../../utils/error-utils";
+import s from "./../Login/Login.module.css";
 import {PATH} from "../../Routes/Navigates";
 
-export type  FormikErrorType = {
-    email: string
-    password: string
-    confirmPassword: string
-    rememberMe: boolean
-}
+export const SetPassword = React.memo(() => {
 
-export const Registration = () => {
-
-    const [disable, setDisable] = useState(false)
+    const [disable, setDisable] = useState<boolean>(false)
     const isRegistration = useAppSelector(state => state.auth.isRegistration)
     const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
     const dispatch = useAppDispatch()
+    const {token} = useParams<string>()
+    const navigate = useNavigate()
 
     const formik = useFormik({
         initialValues: {
-            email: '',
             password: '',
-            confirmPassword: '',
+            resetPasswordToken: token,
+            confirmPassword: ''
         },
-
         validate: (values) => {
             const errors: Partial<FormikErrorType> = {};
-            if (!values.email) {
-                errors.email = 'Required';
-            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-                errors.email = 'Invalid email address';
-            }
             if (!values.password) {
                 errors.password = 'Required';
             } else if (values.password.length < 8) {
                 errors.password = 'password must be > 8 symbols';
             }
+
             if (!values.confirmPassword) {
                 errors.confirmPassword = 'Password is required';
             }
             if (values.password !== values.confirmPassword) {
                 errors.confirmPassword = 'Passwords are not equal';
             }
-            if (formik.errors.email || formik.errors.password || formik.errors.confirmPassword) {
+            if (formik.errors.password || formik.errors.confirmPassword) {
                 Object.keys(errors).length === 0 ? setDisable(false) : setDisable(true)
             }
             return errors;
         },
-        onSubmit: values => {
-            dispatch(registerTC(values))
-            setDisable(true)
+        onSubmit: async (values) => {
+            try {
+                await dispatch(sendNewPasswordTC(values))
+                navigate(PATH.LOGIN)
+                alert('successful! =)')
+                setDisable(true)
+                formik.resetForm()
+            } catch (e: any) {
+                handleServerAppError(e, dispatch)
+                setDisable(false)
+            }
         },
     })
     const [values, setValues] = useState({
@@ -75,10 +74,10 @@ export const Registration = () => {
         showPassword: false,
     });
 
-    const handleClickShowPassword = () => setValues({...values, showPassword: !values.showPassword,});
+    const handleClickShowPassword = () => setValues({...values, showPassword: !values.showPassword,})
     const handleClickShowConfirmPassword = () => setValues({...values, confirmPassword: !values.confirmPassword,});
 
-    const handleMouseDownPassword = (e: React.MouseEvent<HTMLButtonElement>) => e.preventDefault();
+    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => event.preventDefault();
 
     if (isRegistration) {
         return <Navigate to={PATH.LOGIN}/>
@@ -86,23 +85,16 @@ export const Registration = () => {
     if (isLoggedIn) {
         return <Navigate to={PATH.PROFILE}/>
     }
-
     return (
         <div className={styleContainer.container}>
             <div className={s.container}>
                 <div className={s.group}>
                     <FormControl>
-                            <h2 className={s.title}>Sign Up</h2>
+                        <h2 className={s.title}>it-incubator</h2>
+                        <p>Create new password</p>
                         <form onSubmit={formik.handleSubmit}>
-                            <FormGroup>
-                                <TextField margin="normal"
-                                           label="Email"
-                                           {...formik.getFieldProps('email')}
-                                />
-                                {formik.errors.email && formik.touched.email &&
-                                <div style={{color: "red"}}>{formik.errors.email}</div>}
-
-                                <FormControl variant="outlined" style={{marginTop:"5px", marginBottom:"5px"}}>
+                            <FormGroup sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                                <FormControl variant="outlined">
                                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                     <OutlinedInput label="Password"
                                                    type={values.showPassword ? 'text' : 'password'}
@@ -121,11 +113,11 @@ export const Registration = () => {
                                                    }
                                     />
                                 </FormControl>
-
                                 {formik.errors.password && formik.touched.password &&
-                                <div style={{color: "red"}}>{formik.errors.password}</div>}
-
-                                <FormControl style={{marginTop:"10px", marginBottom:"10px"}} variant="outlined" className={s.confirmPass}>
+                                    <div style={{color: "red"}}>{formik.errors.password}</div>
+                                }
+                                <FormControl style={{marginTop: "10px", marginBottom: "10px"}} variant="outlined"
+                                             className={s.confirmPass}>
                                     <InputLabel htmlFor="outlined-adornment-password">Confirm Password</InputLabel>
                                     <OutlinedInput label="Confirm Password"
                                                    type={values.confirmPassword ? 'confirmPassword' : 'password'}
@@ -138,28 +130,31 @@ export const Registration = () => {
                                                                onMouseDown={handleMouseDownPassword}
                                                                edge="end"
                                                            >
-                                                               {values.confirmPassword ? <VisibilityOff/> : <Visibility/>}
+                                                               {values.confirmPassword ? <VisibilityOff/> :
+                                                                   <Visibility/>}
                                                            </IconButton>
                                                        </InputAdornment>
                                                    }
                                     />
                                 </FormControl>
                                 {formik.errors.confirmPassword && formik.touched.confirmPassword &&
-                                <div style={{color: "red"}}>{formik.errors.confirmPassword}</div>}
-                                <button disabled={disable}  className={s.buttonForLogin} >
-                                    Register
+                                    <div style={{color: "red"}}>{formik.errors.confirmPassword}</div>}
+                                <br/>
+                                <p>Create new password and we will send you further instructions to email</p>
+                                <br/>
+                                <button disabled={disable} className={s.buttonForLogin}>
+                                    Create new password
                                 </button>
                             </FormGroup>
                         </form>
                         <FormLabel>
-                            <p style={{padding:'20px'}}>Already registered?</p>
-                            <NavLink to={'/login'}>SIGN IN</NavLink>
                         </FormLabel>
                     </FormControl>
                 </div>
             </div>
         </div>
     )
-}
+})
+
 
 

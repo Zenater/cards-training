@@ -2,9 +2,9 @@ import React from 'react';
 import {NavLink} from "react-router-dom";
 import s from "./NavBar.module.css"
 import LogoutIcon from "@mui/icons-material/Logout";
-import {logoutTC} from "../../../store/authReducer";
+import {logoutTC} from "../../../store/reducers/authReducer";
 import {useAppDispatch, useAppSelector} from "../../../store/store";
-import {PATH} from "../../Navigates/Navigates";
+import {PATH} from "../../Routes/Navigates";
 
 export const NavBar = () => {
     const dispatch = useAppDispatch();
