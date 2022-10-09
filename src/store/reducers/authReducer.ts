@@ -85,6 +85,7 @@ export const registerTC = (data: LoginParamsType): AppThunk => async (dispatch) 
         await authAPI.register(data)
         dispatch(signUpAC(true))
         dispatch(setAppStatusAC('succeeded'))
+        alert('success!')
     } catch (e: any) {
         handleServerAppError(e, dispatch)
     } finally {

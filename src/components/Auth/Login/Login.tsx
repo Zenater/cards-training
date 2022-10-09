@@ -48,16 +48,14 @@ export const Login = React.memo(() => {
             }
             return errors;
         },
-        onSubmit: values => {
-            dispatch(loginTC(values))
+        onSubmit: async values => {
             setDisable(true)
+            await dispatch(loginTC(values))
+            setDisable(false)
         },
     })
         const [value, setValue] = React.useState({
-            amount: '',
             password: '',
-            weight: '',
-            weightRange: '',
             showPassword: false,
         });
 

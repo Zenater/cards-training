@@ -13,9 +13,9 @@ import FormLabel from '@mui/material/FormLabel';
 import {Navigate, NavLink} from 'react-router-dom';
 import styleContainer from "../../../style/Container.module.css"
 import {useAppDispatch, useAppSelector} from "../../../store/store";
-import {registerTC} from "../../../store/reducers/authReducer";
 import s from "../Login/Login.module.css";
 import {PATH} from "../../Routes/Navigates";
+import {registerTC} from "../../../store/reducers/authReducer";
 
 export type  FormikErrorType = {
     email: string
@@ -24,12 +24,14 @@ export type  FormikErrorType = {
     rememberMe: boolean
 }
 
+
 export const Registration = () => {
 
     const [disable, setDisable] = useState(false)
     const isRegistration = useAppSelector(state => state.auth.isRegistration)
     const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
     const dispatch = useAppDispatch()
+
 
     const formik = useFormik({
         initialValues: {
@@ -61,17 +63,17 @@ export const Registration = () => {
             }
             return errors;
         },
-        onSubmit: values => {
-            dispatch(registerTC(values))
-            setDisable(true)
+        onSubmit: async values => {
+            if(values) {
+                setDisable(true)
+                await dispatch(registerTC(values))
+                setDisable(false)
+            }
         },
     })
     const [values, setValues] = useState({
-        amount: '',
         password: '',
         confirmPassword: false,
-        weight: '',
-        weightRange: '',
         showPassword: false,
     });
 
@@ -153,7 +155,7 @@ export const Registration = () => {
                         </form>
                         <FormLabel>
                             <p style={{padding:'20px'}}>Already registered?</p>
-                            <NavLink to={'/login'}>SIGN IN</NavLink>
+                            <NavLink to={PATH.LOGIN}>SIGN IN</NavLink>
                         </FormLabel>
                     </FormControl>
                 </div>

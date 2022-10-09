@@ -54,10 +54,11 @@ export const SetPassword = React.memo(() => {
         },
         onSubmit: async (values) => {
             try {
+                setDisable(true)
                 await dispatch(sendNewPasswordTC(values))
                 navigate(PATH.LOGIN)
                 alert('successful! =)')
-                setDisable(true)
+                setDisable(false)
                 formik.resetForm()
             } catch (e: any) {
                 handleServerAppError(e, dispatch)
@@ -66,11 +67,8 @@ export const SetPassword = React.memo(() => {
         },
     })
     const [values, setValues] = useState({
-        amount: '',
         password: '',
         confirmPassword: false,
-        weight: '',
-        weightRange: '',
         showPassword: false,
     });
 

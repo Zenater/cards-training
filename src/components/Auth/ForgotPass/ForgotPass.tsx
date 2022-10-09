@@ -42,9 +42,10 @@ export const ForgotPass = React.memo(() => {
         },
         onSubmit: async (values) => {
             dispatch(setEmailsAC(values.email))
+            setDisable(true)
             await dispatch(sendEmailTC(values))
             navigate(PATH.CHECK_EMAIL)
-            setDisable(true)
+            setDisable(false)
             formik.resetForm()
         },
     })
