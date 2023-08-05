@@ -1,8 +1,8 @@
 import {AppThunk} from "../store";
-import {setAppStatusAC} from "./appReducer";
+import {setAppStatus} from "./appReducer";
 import {handleServerAppError} from "../../utils/error-utils";
-import {AnswerGetPackType, OnePackType, PacksApi, sortPacksUpdateType} from "../../api/packsApi";
-
+import {PacksApi} from "../../api/packsApi";
+import {AnswerGetPackType, OnePackType, sortPacksUpdateType} from "../../types/PacksTypes";
 
 const initialState = {
     cardPacks: [] as OnePackType[],
@@ -17,7 +17,7 @@ const initialState = {
         user_id: '' as string,
         packUserId: '' as string,
         private: false,
-        deckCover:""
+        deckCover: ""
     },
 } as AnswerGetPackType
 
@@ -54,13 +54,16 @@ export const packReducer = (state = initialState, action: PacksActionType): Pack
         case "PACK/SORT-PACKS":
             return {...state, filterForPacks: {...state.filterForPacks, sortPacksUpdate: action.sort}}
         case "PACK/SET-PACK-USER-ID":
-            return {...state, filterForPacks: {
+            return {
+                ...state, filterForPacks: {
                     ...state.filterForPacks, packUserId: action.packUserId
                 }
             }
         case "PACK/PRIVATE-PACKS":
-            return {...state, filterForPacks:
-                    {...state.filterForPacks, private: action.privatePacks}}
+            return {
+                ...state, filterForPacks:
+                    {...state.filterForPacks, private: action.privatePacks}
+            }
         default:
             return state
     }
@@ -70,12 +73,14 @@ export const setSearchNamePacksAC = (packName: string) => ({type: "PACK/SET-SEAR
 export const getPacksDataAC = (packs: AnswerGetPackType) => ({type: "PACK/GET-PACKS", packs} as const);
 export const setPrivatePacksAC = (privatePacks: boolean) => ({type: "PACK/PRIVATE-PACKS", privatePacks} as const);
 export const changeCountOfRawsAC = (countOfRows: number) => ({type: "PACK/CHANGE-COUNT-ROWS", countOfRows} as const);
-export const setMinMaxAmountOfCardsAC = (minMaxValue: number[]) => ({type: "PACK/SET-MIN-MAX-ROWS", minMaxValue} as const);
-export const changeCurrentPageAC = (currentPage: number) => ({type: "PACK/CHANGE-CURRENT-PAGE",currentPage} as const);
+export const setMinMaxAmountOfCardsAC = (minMaxValue: number[]) => ({
+    type: "PACK/SET-MIN-MAX-ROWS",
+    minMaxValue
+} as const);
+export const changeCurrentPageAC = (currentPage: number) => ({type: "PACK/CHANGE-CURRENT-PAGE", currentPage} as const);
 export const showPyPacksAC = (user_id: string | null) => ({type: "PACK/SHOW-MY-PACKS", user_id} as const);
 export const sortPacksAc = (sort: sortPacksUpdateType) => ({type: "PACK/SORT-PACKS", sort} as const);
 export const setPackUserIdAC = (packUserId: string) => ({type: 'PACK/SET-PACK-USER-ID', packUserId} as const)
-
 
 //types for AC
 export type PacksActionType =
@@ -93,58 +98,57 @@ export type PacksActionType =
     | ReturnType<typeof setPrivatePacksAC>
 
 //thunks
-export const getPacksTC = (): AppThunk =>async (dispatch, getState) => {
+export const getPacksTC = (): AppThunk => async (dispatch, getState) => {
     try {
         let model = getState().packs.filterForPacks
 
-        dispatch(setAppStatusAC('loading'))
+        dispatch(setAppStatus('loading'))
         let res = await PacksApi.getPack(model)
         dispatch(getPacksDataAC(res.data))
-        dispatch(setAppStatusAC('succeeded'))
-    }
-    catch (e: any) {
+        dispatch(setAppStatus('succeeded'))
+    } catch (e: any) {
         handleServerAppError(e, dispatch)
     } finally {
-        dispatch(setAppStatusAC('idle'))
+        dispatch(setAppStatus('idle'))
     }
 };
 
 
-export const deletePackTC = (idPack: string): AppThunk =>async (dispatch,) => {
-   try {
-       dispatch(setAppStatusAC('loading'))
-       await PacksApi.delPack(idPack)
-       dispatch(getPacksTC())
-       dispatch(setAppStatusAC('succeeded'))
-   } catch (e: any) {
-       handleServerAppError(e, dispatch)
-   } finally {
-       dispatch(setAppStatusAC('idle'))
-   }
+export const deletePackTC = (idPack: string): AppThunk => async (dispatch,) => {
+    try {
+        dispatch(setAppStatus('loading'))
+        await PacksApi.delPack(idPack)
+        dispatch(getPacksTC())
+        dispatch(setAppStatus('succeeded'))
+    } catch (e: any) {
+        handleServerAppError(e, dispatch)
+    } finally {
+        dispatch(setAppStatus('idle'))
+    }
 }
 
-export const changePackTC = ( name: string,file:string,idPack: string): AppThunk =>async (dispatch,) => {
-   try {
-       dispatch(setAppStatusAC('loading'))
-       await PacksApi.changePack (name,file,idPack,)
-       dispatch(getPacksTC())
-       dispatch(setAppStatusAC('succeeded'))
-   } catch (e: any) {
-       handleServerAppError(e, dispatch)
-   } finally {
-       dispatch(setAppStatusAC('idle'))
-   }
+export const changePackTC = (name: string, file: string, idPack: string): AppThunk => async (dispatch,) => {
+    try {
+        dispatch(setAppStatus('loading'))
+        await PacksApi.changePack(name, file, idPack,)
+        dispatch(getPacksTC())
+        dispatch(setAppStatus('succeeded'))
+    } catch (e: any) {
+        handleServerAppError(e, dispatch)
+    } finally {
+        dispatch(setAppStatus('idle'))
+    }
 }
 
-export const addNewPackTS = (newName: string,file:string, privatePacks:boolean): AppThunk =>async (dispatch,) => {
-  try {
-      dispatch(setAppStatusAC('loading'))
-      await PacksApi.addNewPack(newName, file,privatePacks)
-      dispatch(getPacksTC())
-      dispatch(setAppStatusAC('succeeded'))
-  } catch (e: any) {
-      handleServerAppError(e, dispatch)
-  } finally {
-      dispatch(setAppStatusAC('idle'))
-  }
+export const addNewPackTS = (newName: string, file: string, privatePacks: boolean): AppThunk => async (dispatch,) => {
+    try {
+        dispatch(setAppStatus('loading'))
+        await PacksApi.addNewPack(newName, file, privatePacks)
+        dispatch(getPacksTC())
+        dispatch(setAppStatus('succeeded'))
+    } catch (e: any) {
+        handleServerAppError(e, dispatch)
+    } finally {
+        dispatch(setAppStatus('idle'))
+    }
 }

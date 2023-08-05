@@ -1,9 +1,10 @@
-import {authAPI, LoginParamsType, ProfileType} from "../../api/authApi";
-import {setAppErrorAC, setAppIsInitializedAC, setAppStatusAC} from "./appReducer";
+import {setAppError, setAppIsInitialized, setAppStatus} from "./appReducer";
 import {AppThunk} from "../store";
 import {handleServerAppError} from "../../utils/error-utils";
 import {getProfileDataAC} from "./profileReducer";
 import {Dispatch} from "redux";
+import {LoginParamsType, ProfileType} from "../../types/AuthTypes";
+import {authAPI} from "../../api/authApi";
 
 export type ProfileInitialStateType = {
     profile: ProfileType
@@ -47,59 +48,59 @@ export const authReducer = (state = initialState, action: AuthActionsType): Prof
     }
 }
 // actions
-export const setIsLoggedInAC = (value: boolean) => ({type: 'LOGIN/SET-IS-LOGGED-IN', value} as const)
-export const setIdProfileAC = (myId: string | null) => ({type: 'LOGIN/SET-MY-ID', myId} as const)
-export const setServerErrorAC = (error: string | null) => ({type: 'LOGIN/REGISTRATION-ERROR', error} as const)
-export const signUpAC = (isRegistration: boolean) => ({type: 'LOGIN/SIGN-UP', isRegistration} as const)
+export const setIsLoggedIn = (value: boolean) => ({type: 'LOGIN/SET-IS-LOGGED-IN', value} as const)
+export const setIdProfile = (myId: string | null) => ({type: 'LOGIN/SET-MY-ID', myId} as const)
+export const setServerError = (error: string | null) => ({type: 'LOGIN/REGISTRATION-ERROR', error} as const)
+export const signUp = (isRegistration: boolean) => ({type: 'LOGIN/SIGN-UP', isRegistration} as const)
 
 // thunks
 export const loginTC = (data: LoginParamsType): AppThunk => async (dispatch: Dispatch) => {
-    try{
-        dispatch(setAppStatusAC('loading'))
-        let res = await authAPI.login(data)
-        dispatch(setIsLoggedInAC(true))
-        dispatch(getProfileDataAC(res.data))
-        dispatch(setAppStatusAC('succeeded'))
-        dispatch(setIdProfileAC(res.data._id))
-    } catch (e: any) {
-        handleServerAppError(e, dispatch)
-    }finally {
-            dispatch(setAppStatusAC('idle'))
-        }
-}
-export const logoutTC = (): AppThunk => async (dispatch) => {
     try {
-        dispatch (setAppStatusAC('loading'))
-        await authAPI.logout()
-        dispatch(setIsLoggedInAC(false))
-        dispatch(setAppStatusAC('succeeded'))
+        dispatch(setAppStatus('loading'))
+        let res = await authAPI.login(data)
+        dispatch(setIsLoggedIn(true))
+        dispatch(getProfileDataAC(res.data))
+        dispatch(setAppStatus('succeeded'))
+        dispatch(setIdProfile(res.data._id))
     } catch (e: any) {
         handleServerAppError(e, dispatch)
     } finally {
-        dispatch(setAppStatusAC('idle'))
+        dispatch(setAppStatus('idle'))
+    }
+}
+export const logoutTC = (): AppThunk => async (dispatch) => {
+    try {
+        dispatch(setAppStatus('loading'))
+        await authAPI.logout()
+        dispatch(setIsLoggedIn(false))
+        dispatch(setAppStatus('succeeded'))
+    } catch (e: any) {
+        handleServerAppError(e, dispatch)
+    } finally {
+        dispatch(setAppStatus('idle'))
     }
 }
 export const registerTC = (data: LoginParamsType): AppThunk => async (dispatch) => {
     try {
-        dispatch(setAppStatusAC('loading'))
+        dispatch(setAppStatus('loading'))
         await authAPI.register(data)
-        dispatch(signUpAC(true))
-        dispatch(setAppStatusAC('succeeded'))
+        dispatch(signUp(true))
+        dispatch(setAppStatus('succeeded'))
         alert('success!')
     } catch (e: any) {
         handleServerAppError(e, dispatch)
     } finally {
-        dispatch(setAppStatusAC('idle'))
+        dispatch(setAppStatus('idle'))
     }
 }
 
 // types
 export type AuthActionsType =
-    | ReturnType<typeof setIsLoggedInAC>
-    | ReturnType<typeof setAppErrorAC>
-    | ReturnType<typeof setAppStatusAC>
-    | ReturnType<typeof setAppIsInitializedAC>
-    | ReturnType<typeof setServerErrorAC>
-    | ReturnType<typeof setIdProfileAC>
-    | ReturnType<typeof signUpAC>
+    | ReturnType<typeof setIsLoggedIn>
+    | ReturnType<typeof setAppError>
+    | ReturnType<typeof setAppStatus>
+    | ReturnType<typeof setAppIsInitialized>
+    | ReturnType<typeof setServerError>
+    | ReturnType<typeof setIdProfile>
+    | ReturnType<typeof signUp>
 

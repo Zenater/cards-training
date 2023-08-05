@@ -1,4 +1,5 @@
 import {instance} from "./Instance/instance";
+import {NewPasswordType, RequestType, SendMailType} from "../types/PasswordTypes";
 
 export const passwordRecoveryAPI = {
     sendEmail(data: SendMailType) {
@@ -6,20 +7,7 @@ export const passwordRecoveryAPI = {
     },
     sendNewPassword(data: NewPasswordType) {
         return instance.post<RequestType>(`auth/set-new-password`, data)
-    }
+    },
 }
 
-export type SendMailType = {
-    email: string
-    from: string
-    message: string
-}
 
-export type RequestType = {
-    info: string
-    error: string;
-}
-export type NewPasswordType = {
-    password?: string
-    resetPasswordToken?: string | undefined
-}

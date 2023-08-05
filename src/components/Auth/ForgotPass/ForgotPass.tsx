@@ -10,7 +10,7 @@ import {FormikErrorType} from "../Registartion/Registration";
 import styleContainer from "../../../style/Container.module.css"
 import {NavLink} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from "../../../store/store";
-import {sendEmailTC, setEmailsAC} from "../../../store/reducers/forgotPassReducer";
+import {sendEmailTC, setEmail} from "../../../store/reducers/forgotPassReducer";
 import {PATH} from "../../Routes/Navigates";
 
 
@@ -41,7 +41,7 @@ export const ForgotPass = React.memo(() => {
             return errors;
         },
         onSubmit: async (values) => {
-            dispatch(setEmailsAC(values.email))
+            dispatch(setEmail(values.email))
             setDisable(true)
             await dispatch(sendEmailTC(values))
             navigate(PATH.CHECK_EMAIL)

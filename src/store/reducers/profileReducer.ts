@@ -1,8 +1,8 @@
-import {ProfileType} from "../../api/authApi";
 import {AppThunk} from "../store";
-import {setAppStatusAC} from "./appReducer";
+import {setAppStatus} from "./appReducer";
 import {profileApi} from "../../api/profileApi";
 import {handleServerAppError} from "../../utils/error-utils";
+import {ProfileType} from "../../types/AuthTypes";
 
 
 const initialState = {
@@ -45,26 +45,25 @@ export type ProfileActionType = ReturnType<typeof getProfileDataAC> | ReturnType
 
 export const changeNameTC = (newName: string): AppThunk => async (dispatch) => {
     try {
-        dispatch(setAppStatusAC('loading'))
+        dispatch(setAppStatus('loading'))
         await profileApi.changeName(newName)
         dispatch(changeNameAC(newName))
-        dispatch(setAppStatusAC('succeeded'))
+        dispatch(setAppStatus('succeeded'))
     } catch (e: any) {
         handleServerAppError(e, dispatch)
     } finally {
-        dispatch(setAppStatusAC('idle'))
+        dispatch(setAppStatus('idle'))
     }
 }
 export const savePhoto = (avatar: string): AppThunk => async (dispatch) => {
     try {
-        dispatch(setAppStatusAC('loading'))
+        dispatch(setAppStatus('loading'))
         await profileApi.changeAvatar(avatar)
         dispatch(savePhotoSuccess(avatar))
-        dispatch(setAppStatusAC('succeeded'))
+        dispatch(setAppStatus('succeeded'))
     } catch (e: any) {
         handleServerAppError(e, dispatch)
     } finally {
-        dispatch(setAppStatusAC('idle'))
+        dispatch(setAppStatus('idle'))
     }
-
 }

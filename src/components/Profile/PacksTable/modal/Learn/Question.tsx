@@ -1,11 +1,11 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "../../../../../store/store";
 import {changeCountOfRawsCardsAC, changeGradeTC, getCardsTC} from "../../../../../store/reducers/cardsReducer";
-import {CardsType} from "../../../../../api/cardsApi";
 import s from "./ModalStartLearn.module.css";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
+import {CardsType} from "../../../../../types/CardsTypes";
 
 type QuestionPropsType = {
     packId: string
@@ -93,7 +93,7 @@ export const Question: React.FC<QuestionPropsType> = ({packId, cancelHandler}) =
     }
 
     return (
-        <div >
+        <div>
             <div style={{fontWeight: "normal"}} className={s.center}>
                 <span style={{fontWeight: "bold"}}>Question:</span>
                 "{random && random.question}"

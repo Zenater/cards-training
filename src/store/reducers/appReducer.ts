@@ -1,5 +1,5 @@
 import {authAPI} from "../../api/authApi";
-import {setIsLoggedInAC} from "./authReducer";
+import {setIsLoggedIn} from "./authReducer";
 import {AppThunk} from "../store";
 import {getProfileDataAC} from "./profileReducer";
 
@@ -25,26 +25,27 @@ export const appReducer = (state = initialState, action: AppActionType): AppInit
     }
 }
 
-export const initializeAppTC = ():AppThunk => async (dispatch) => {
-   try {
-       dispatch(setAppStatusAC('loading'))
+export const initializeAppTC = (): AppThunk => async (dispatch) => {
+    try {
+        dispatch(setAppStatus('loading'))
         let res = await authAPI.me()
-       dispatch(setIsLoggedInAC(true))
-       dispatch(setAppStatusAC('succeeded'))
-       dispatch(getProfileDataAC(res.data))
-   } catch (e: any) {
-       dispatch(setIsLoggedInAC(false))
-       dispatch(setAppStatusAC('idle'))
-   } finally {
-       dispatch(setAppIsInitializedAC(true))
-   }
+        dispatch(setIsLoggedIn(true))
+        dispatch(setAppStatus('succeeded'))
+        dispatch(getProfileDataAC(res.data))
+    } catch (e: any) {
+        dispatch(setIsLoggedIn(false))
+        dispatch(setAppStatus('idle'))
+    } finally {
+        dispatch(setAppIsInitialized(true))
+    }
 }
-export const setAppErrorAC = (error: string | null) => ({type: 'APP/SET-ERROR', error} as const)
-export const setAppStatusAC = (status: RequestStatusType) => ({type: 'APP/SET-STATUS', status} as const)
-export const setAppIsInitializedAC = (isInitialized: boolean) => ({
-    type: 'APP/SET-IS-INITIALIZED', isInitialized} as const)
+export const setAppError = (error: string | null) => ({type: 'APP/SET-ERROR', error} as const)
+export const setAppStatus = (status: RequestStatusType) => ({type: 'APP/SET-STATUS', status} as const)
+export const setAppIsInitialized = (isInitialized: boolean) => ({
+    type: 'APP/SET-IS-INITIALIZED', isInitialized
+} as const)
 
 export type AppActionType =
-    | ReturnType<typeof setAppErrorAC>
-    | ReturnType<typeof setAppStatusAC>
-    | ReturnType<typeof setAppIsInitializedAC>
+    | ReturnType<typeof setAppError>
+    | ReturnType<typeof setAppStatus>
+    | ReturnType<typeof setAppIsInitialized>

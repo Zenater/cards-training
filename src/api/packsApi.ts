@@ -1,8 +1,8 @@
 import {instance} from "./Instance/instance";
-
+import {AnswerGetPackType, FilterForPacksType} from "../types/PacksTypes";
 
 export const PacksApi = {
-    getPack(value:FilterForPacksType) {
+    getPack(value: FilterForPacksType) {
         return instance.get<AnswerGetPackType>(`cards/pack`, {
             params: {
                 min: value.minCardsCount,
@@ -15,54 +15,16 @@ export const PacksApi = {
             }
         })
     },
-    addNewPack(newName:string,file:string, privatePacks:boolean, ) {
-        const cardsPack = {name: newName,deckCover:file,private:privatePacks, }
-        return instance.post(`cards/pack`, {cardsPack})}
+    addNewPack(newName: string, file: string, privatePacks: boolean,) {
+        const cardsPack = {name: newName, deckCover: file, private: privatePacks,}
+        return instance.post(`cards/pack`, {cardsPack})
+    }
     ,
-    delPack(idPack:string) {
+    delPack(idPack: string) {
         return instance.delete(`/cards/pack?id=${idPack}`)
     },
-    changePack( name:string,file:string,idPack:string,) {
-        const cardsPack = { name:name,deckCover:file,_id:idPack}
-        return instance.put(`/cards/pack?id=${idPack}`,{cardsPack})
+    changePack(name: string, file: string, idPack: string,) {
+        const cardsPack = {name: name, deckCover: file, _id: idPack}
+        return instance.put(`/cards/pack?id=${idPack}`, {cardsPack})
     }
-
 }
-
-export type AnswerGetPackType = {
-    cardPacks: OnePackType[]
-    cardPacksTotalCount: number
-    filterForPacks: FilterForPacksType
-};
-
-export type OnePackType = {
-    _id: string
-    user_id: string
-    user_name:string
-    name: string
-    path: string
-    cardsCount: number
-    grade: number
-    shots: number
-    rating: number
-    type: string
-    created: string
-    updated: string
-    __v: number
-    deckCover:string
-}
-
-export type FilterForPacksType = {
-    minCardsCount?: number
-    maxCardsCount?: number
-    pageCount?: number
-    page: number
-    sortPacksUpdate?:sortPacksUpdateType
-    packName?:string
-    user_id?: string | null
-    packUserId?: string | null
-    private?:boolean
-
-}
-
-export type sortPacksUpdateType = "0updated" | "1updated" | "0name" | "1name" | "0cardsCount" | "1cardsCount"
