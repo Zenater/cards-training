@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import s from "./SliderForPacks.module.css";
 import {Slider} from "@mui/material";
-import {getPacksTC, setMinMaxAmountOfCardsAC} from "../../../../store/reducers/packsReducer";
+import {getPacksTC, setMinMaxAmountOfCards} from "../../../../store/reducers/packsReducer";
 import {useAppDispatch, useAppSelector} from "../../../../store/store";
 
 const useDebounce = (value1: number = 0, value2: number = 0, delay: number): number[] => {
@@ -19,7 +19,6 @@ const useDebounce = (value1: number = 0, value2: number = 0, delay: number): num
     return state
 }
 export const SliderForPacks = () => {
-
     const dispatch = useAppDispatch();
     const minAmount = useAppSelector(state => state.packs.filterForPacks.minCardsCount);
     const maxAmount = useAppSelector(state => state.packs.filterForPacks.maxCardsCount);
@@ -33,7 +32,7 @@ export const SliderForPacks = () => {
     }, [debouncedValue])
 
     const handleChange = (event: Event, newValue: number | number[]) => {
-        dispatch(setMinMaxAmountOfCardsAC(newValue as number[]));
+        dispatch(setMinMaxAmountOfCards(newValue as number[]));
     };
     return (
         <div className={s.slider}>

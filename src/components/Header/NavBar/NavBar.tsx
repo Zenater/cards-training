@@ -9,19 +9,16 @@ import {PATH} from "../../Routes/Navigates";
 export const NavBar = () => {
     const dispatch = useAppDispatch();
     const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
-
     const logoutHandler = () => dispatch(logoutTC())
 
     return (
         <nav className={s.navBar}>
-
             <div className={s.item}><NavLink to={PATH.PROFILE} className={({isActive})=> isActive ? s.active : s.item}>Profile</NavLink></div>
             {isLoggedIn
                 ? <LogoutIcon onClick={logoutHandler} style={{cursor: 'pointer'}}/>
                 :   <div className={s.item}><NavLink to={PATH.LOGIN} className={({isActive})=> isActive ? s.active : s.item}>Login</NavLink></div>
                 && <div className={s.item}><NavLink to={PATH.REGISTER} className={({isActive})=> isActive ? s.active : s.item}>Registration</NavLink></div>
             }
-
         </nav>
     );
 };

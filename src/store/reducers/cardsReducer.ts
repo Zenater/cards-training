@@ -1,7 +1,7 @@
 import {AppThunk} from "../store";
 import {setAppStatus} from "./appReducer";
 import {handleServerAppError} from "../../utils/error-utils";
-import {setPackUserIdAC} from "./packsReducer";
+import {setPackUserId} from "./packsReducer";
 import {cardsApi} from "../../api/cardsApi";
 import {RequestCardType} from "../../types/CardsTypes";
 
@@ -53,7 +53,7 @@ export const getCardsTC = (cardsPack_id: string,): AppThunk => async (dispatch, 
         let pageCount = getState().card.pageCount
 
         let res = await cardsApi.getCards(cardsPack_id, pageCount)
-        dispatch(setPackUserIdAC(res.data.packUserId))
+        dispatch(setPackUserId(res.data.packUserId))
         dispatch(getCardsDataAC(res.data))
         dispatch(setAppStatus('succeeded'))
     } catch (e: any) {

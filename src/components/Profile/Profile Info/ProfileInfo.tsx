@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import s from "./ProfileInfo.module.css";
 import avatar from "../../../assests/images/avatar.png";
 import {InputTypeFile} from "./InputForUpdateAvatar/InputTypeFile";
@@ -7,10 +7,11 @@ import {SliderForPacks} from "./Slider/SliderForPacks";
 import {ButtonsForPack} from "./ButtonsForPack/ButtonsForPack";
 import {useAppDispatch, useAppSelector} from "../../../store/store";
 import {changeNameTC} from "../../../store/reducers/profileReducer";
+import {selectProfile} from "../../../store/selectors";
 
 export const ProfileInfo = () => {
 
-    const profile = useAppSelector(state => state.profile.profile);
+    const profile = useAppSelector(selectProfile);
     const [editMode, setEditMode] = useState(false);
     const [error, SetError] = useState<null | string>(null);
     const [name, SetNewName] = useState(profile && profile.name ? profile.name : '')
@@ -26,9 +27,9 @@ export const ProfileInfo = () => {
         } else SetError("Enter text")
     }
 
-    const onKeyPressHandler = (e: React.KeyboardEvent<HTMLDivElement>) => e.key === 'Enter' && onBlurHandler();
+    const onKeyPressHandler = (e: KeyboardEvent<HTMLDivElement>) => e.key === 'Enter' && onBlurHandler();
 
-    const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         SetError(null)
         SetNewName(e.currentTarget.value)
     }

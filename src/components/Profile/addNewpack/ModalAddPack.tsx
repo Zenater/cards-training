@@ -11,11 +11,11 @@ import {CheckBox} from "../../../common/Checkbox/CheckBox";
 import {ButtonGroup} from "../../../common/ButtonsGroup/ButtonGroup";
 
 
-type ModalAddPackPropsType = {
+type PropsType = {
     addNewPack: (name: string, file: string, privatePacks: boolean) => void
 }
 
-export const ModalAddPack: React.FC<ModalAddPackPropsType> = ({addNewPack}) => {
+export const ModalAddPack = ({addNewPack}: PropsType) => {
 
     const privatePacks = useAppSelector(state => state.packs.filterForPacks.private);
 

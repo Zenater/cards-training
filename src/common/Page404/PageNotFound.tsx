@@ -4,7 +4,6 @@ import oops from "../../assests/images/oops.png"
 import s from './PageNotFound.module.css'
 import {NavLink} from "react-router-dom";
 
-
 export const PageNotFound = () => {
     return (
         <div className={s.container}>

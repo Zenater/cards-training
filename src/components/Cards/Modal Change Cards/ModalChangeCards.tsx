@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {ChangeEvent, useState,KeyboardEvent} from 'react';
+import {ChangeEvent, useState, KeyboardEvent} from 'react';
 import Button from '@mui/material/Button';
 import TextField from "@mui/material/TextField";
 import {useAppDispatch} from "../../../store/store";
@@ -16,7 +16,7 @@ type ModalAddPackPropsType = {
     answer: string
 }
 
-export const ModalChangeCards: React.FC<ModalAddPackPropsType> = ({_id, answer, question}) => {
+export const ModalChangeCards = ({_id, answer, question}: ModalAddPackPropsType) => {
 
     const dispatch = useAppDispatch()
     const {id} = useParams()

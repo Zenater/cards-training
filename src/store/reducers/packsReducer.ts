@@ -69,42 +69,41 @@ export const packReducer = (state = initialState, action: PacksActionType): Pack
     }
 };
 //AC
-export const setSearchNamePacksAC = (packName: string) => ({type: "PACK/SET-SEARCH-PACKS-NAME", packName} as const)
-export const getPacksDataAC = (packs: AnswerGetPackType) => ({type: "PACK/GET-PACKS", packs} as const);
-export const setPrivatePacksAC = (privatePacks: boolean) => ({type: "PACK/PRIVATE-PACKS", privatePacks} as const);
-export const changeCountOfRawsAC = (countOfRows: number) => ({type: "PACK/CHANGE-COUNT-ROWS", countOfRows} as const);
-export const setMinMaxAmountOfCardsAC = (minMaxValue: number[]) => ({
+export const setSearchNamePacks = (packName: string) => ({type: "PACK/SET-SEARCH-PACKS-NAME", packName} as const)
+export const getPacksData = (packs: AnswerGetPackType) => ({type: "PACK/GET-PACKS", packs} as const);
+export const setPrivatePacks = (privatePacks: boolean) => ({type: "PACK/PRIVATE-PACKS", privatePacks} as const);
+export const changeCountOfRaws = (countOfRows: number) => ({type: "PACK/CHANGE-COUNT-ROWS", countOfRows} as const);
+export const changeCurrentPage = (currentPage: number) => ({type: "PACK/CHANGE-CURRENT-PAGE", currentPage} as const);
+export const showPyPacks = (user_id: string | null) => ({type: "PACK/SHOW-MY-PACKS", user_id} as const);
+export const sortPacks = (sort: sortPacksUpdateType) => ({type: "PACK/SORT-PACKS", sort} as const);
+export const setPackUserId = (packUserId: string) => ({type: 'PACK/SET-PACK-USER-ID', packUserId} as const)
+export const setMinMaxAmountOfCards = (minMaxValue: number[]) => ({
     type: "PACK/SET-MIN-MAX-ROWS",
     minMaxValue
 } as const);
-export const changeCurrentPageAC = (currentPage: number) => ({type: "PACK/CHANGE-CURRENT-PAGE", currentPage} as const);
-export const showPyPacksAC = (user_id: string | null) => ({type: "PACK/SHOW-MY-PACKS", user_id} as const);
-export const sortPacksAc = (sort: sortPacksUpdateType) => ({type: "PACK/SORT-PACKS", sort} as const);
-export const setPackUserIdAC = (packUserId: string) => ({type: 'PACK/SET-PACK-USER-ID', packUserId} as const)
 
 //types for AC
 export type PacksActionType =
-    ReturnType<typeof getPacksDataAC>
-    | ReturnType<typeof changeCountOfRawsAC>
-    | ReturnType<typeof setMinMaxAmountOfCardsAC>
-    | ReturnType<typeof changeCurrentPageAC>
-    | ReturnType<typeof setSearchNamePacksAC>
-    | ReturnType<typeof showPyPacksAC>
-    | ReturnType<typeof changeCountOfRawsAC>
-    | ReturnType<typeof setMinMaxAmountOfCardsAC>
-    | ReturnType<typeof changeCurrentPageAC>
-    | ReturnType<typeof sortPacksAc>
-    | ReturnType<typeof setPackUserIdAC>
-    | ReturnType<typeof setPrivatePacksAC>
+    ReturnType<typeof getPacksData>
+    | ReturnType<typeof changeCountOfRaws>
+    | ReturnType<typeof setMinMaxAmountOfCards>
+    | ReturnType<typeof changeCurrentPage>
+    | ReturnType<typeof setSearchNamePacks>
+    | ReturnType<typeof showPyPacks>
+    | ReturnType<typeof changeCountOfRaws>
+    | ReturnType<typeof setMinMaxAmountOfCards>
+    | ReturnType<typeof changeCurrentPage>
+    | ReturnType<typeof sortPacks>
+    | ReturnType<typeof setPackUserId>
+    | ReturnType<typeof setPrivatePacks>
 
 //thunks
 export const getPacksTC = (): AppThunk => async (dispatch, getState) => {
     try {
         let model = getState().packs.filterForPacks
-
         dispatch(setAppStatus('loading'))
         let res = await PacksApi.getPack(model)
-        dispatch(getPacksDataAC(res.data))
+        dispatch(getPacksData(res.data))
         dispatch(setAppStatus('succeeded'))
     } catch (e: any) {
         handleServerAppError(e, dispatch)
@@ -112,7 +111,6 @@ export const getPacksTC = (): AppThunk => async (dispatch, getState) => {
         dispatch(setAppStatus('idle'))
     }
 };
-
 
 export const deletePackTC = (idPack: string): AppThunk => async (dispatch,) => {
     try {
@@ -140,7 +138,7 @@ export const changePackTC = (name: string, file: string, idPack: string): AppThu
     }
 }
 
-export const addNewPackTS = (newName: string, file: string, privatePacks: boolean): AppThunk => async (dispatch,) => {
+export const addNewPackTC = (newName: string, file: string, privatePacks: boolean): AppThunk => async (dispatch,) => {
     try {
         dispatch(setAppStatus('loading'))
         await PacksApi.addNewPack(newName, file, privatePacks)

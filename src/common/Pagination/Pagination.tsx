@@ -1,5 +1,5 @@
 import React from 'react';
-import {changeCountOfRawsAC, changeCurrentPageAC, getPacksTC} from "../../store/reducers/packsReducer";
+import {changeCountOfRaws, changeCurrentPage, getPacksTC} from "../../store/reducers/packsReducer";
 import {TablePagination} from "@mui/material";
 import {useAppDispatch, useAppSelector} from "../../store/store";
 
@@ -11,11 +11,11 @@ export const Pagination = () => {
     const amountOfRows = useAppSelector(state => state.packs.filterForPacks.pageCount) || 4;
 
     const handleChangePage = (e: React.MouseEvent<HTMLButtonElement> | null, value: number) => {
-        dispatch(changeCurrentPageAC(value))
+        dispatch(changeCurrentPage(value))
         dispatch(getPacksTC())
     }
     const handleChangeRowsPerPage = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        dispatch(changeCountOfRawsAC(+e.target.value))
+        dispatch(changeCountOfRaws(+e.target.value))
         dispatch(getPacksTC())
     }
     return (

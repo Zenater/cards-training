@@ -13,7 +13,6 @@ import {useAppDispatch, useAppSelector} from "../../../store/store";
 import {sendEmailTC, setEmail} from "../../../store/reducers/forgotPassReducer";
 import {PATH} from "../../Routes/Navigates";
 
-
 export const ForgotPass = React.memo(() => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()

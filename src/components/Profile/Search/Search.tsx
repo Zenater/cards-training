@@ -1,5 +1,5 @@
-import React, {ChangeEvent, useState} from 'react';
-import {getPacksTC, setSearchNamePacksAC} from "../../../store/reducers/packsReducer";
+import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
+import {getPacksTC, setSearchNamePacks} from "../../../store/reducers/packsReducer";
 import {useAppDispatch} from "../../../store/store";
 import {Paper} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
@@ -17,7 +17,7 @@ export const Search = () => {
     const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setError(null)
         setSearchName(e.currentTarget.value)
-        dispatch(setSearchNamePacksAC(e.currentTarget.value))
+        dispatch(setSearchNamePacks(e.currentTarget.value))
     }
 
     const onSearchHandler = () => {
@@ -27,7 +27,7 @@ export const Search = () => {
         } else setError("Enter text")
     }
 
-    const onKeyPressHandler = (e: React.KeyboardEvent<HTMLDivElement>) => e.key === 'Enter' && onSearchHandler
+    const onKeyPressHandler = (e: KeyboardEvent<HTMLDivElement>) => e.key === 'Enter' && onSearchHandler
 
     return (
         <div className={s.center}>
@@ -37,12 +37,12 @@ export const Search = () => {
                        p: '2px 4px',
                        display: 'flex',
                        alignItems: 'center',
-                       width:270,
+                       width: 270,
                        border: error ? "solid  2px red" : "solid  1px #9A91C8",
                        marginBottom: "20px",
                        backgroundColor: "#D9D9F1",
                        height: '36px',
-                       borderRadius:'14px',
+                       borderRadius: '14px',
                    }}
             >
                 <IconButton type="submit" sx={{p: '10px'}} aria-label="search" onClick={onSearchHandler}>
@@ -53,7 +53,7 @@ export const Search = () => {
                     onChange={onChangeInputHandler}
                     value={searchName}
                     placeholder="Search packs... "
-                    sx={{ width:250}}
+                    sx={{width: 250}}
                 />
             </Paper>
         </div>

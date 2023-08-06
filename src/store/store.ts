@@ -8,31 +8,29 @@ import {AppActionType, appReducer} from "./reducers/appReducer";
 import {packReducer, PacksActionType} from "./reducers/packsReducer";
 import {CardsActionType, cardsReducer} from "./reducers/cardsReducer";
 
-
 const rootReducer = combineReducers({
-    auth: authReducer ,
+    auth: authReducer,
     forgotPas: forgotPasswordReducer,
     profile: profileReducer,
     app: appReducer,
-    packs:packReducer,
+    packs: packReducer,
     card: cardsReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
-type AppRootActionType= AuthActionsType | AppActionType | ProfileActionType 
-    | ForgotPasswordActionsType  | PacksActionType | CardsActionType
+type AppRootActionType = AuthActionsType | AppActionType | ProfileActionType
+    | ForgotPasswordActionsType | PacksActionType | CardsActionType
 
 // export type AppRootStateType = ReturnType<typeof rootReducer>  old type
 export type RootState = ReturnType<typeof store.getState>
 // typing all dispatches
-export type AppDispatch=ThunkDispatch<RootState,unknown,AppRootActionType>
+export type AppDispatch = ThunkDispatch<RootState, unknown, AppRootActionType>
 // new typing for all Thunk, will be work just with useAppSelector!
-export type AppThunk<ReturnType = void>=ThunkAction<ReturnType,RootState,unknown,AppRootActionType>
-
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, AppRootActionType>
 
 // custom hook
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
-export const useAppDispatch=()=>useDispatch<AppDispatch>()
+export const useAppDispatch = () => useDispatch<AppDispatch>()
 
 // @ts-ignore
 window.store = store;

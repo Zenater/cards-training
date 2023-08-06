@@ -7,7 +7,7 @@ import {ModalDelete} from "./modal/modalDelete/ModalDelete";
 import {ModalChangeNamePack} from "./modal/madalChangeNamePack/ModalChangeNamePack";
 import {ModalStartLearn} from "./modal/Learn/ModalStartLearn";
 import {Pagination} from "../../../common/Pagination/Pagination";
-import {changePackTC, deletePackTC, getPacksTC, sortPacksAc} from "../../../store/reducers/packsReducer";
+import {changePackTC, deletePackTC, getPacksTC, sortPacks} from "../../../store/reducers/packsReducer";
 import {useAppDispatch, useAppSelector} from "../../../store/store";
 import {PATH} from "../../Routes/Navigates";
 
@@ -19,7 +19,6 @@ export const PacksTable = React.memo(() => {
     const userID = useAppSelector(state => state.profile.profile._id);
     const dispatch = useAppDispatch();
 
-
     const [filter, setFilter] = useState<Record<filtersNamesType, boolean>>({
         name: false,
         updated: false,
@@ -30,10 +29,9 @@ export const PacksTable = React.memo(() => {
 
     const changePack = (name: string, file: string, id: string) => dispatch(changePackTC(name, file, id));
 
-
-    const onSortTable = (filterStatus: boolean, filteresNames: filtersNamesType) => {
-        filterStatus ? dispatch(sortPacksAc(`0${filteresNames}`)) : dispatch(sortPacksAc(`1${filteresNames}`))
-        setFilter({...filter, [filteresNames]: !filterStatus})
+    const onSortTable = (filterStatus: boolean, filtersNames: filtersNamesType) => {
+        filterStatus ? dispatch(sortPacks(`0${filtersNames}`)) : dispatch(sortPacks(`1${filtersNames}`))
+        setFilter({...filter, [filtersNames]: !filterStatus})
         dispatch(getPacksTC())
     };
 

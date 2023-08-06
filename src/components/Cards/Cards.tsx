@@ -33,7 +33,6 @@ export const Cards = React.memo(() => {
     return (
         <div className={s.packsBox}>
             <div className={s.settingsCards}>
-
                 <ModalAddCard/>
                 <div className={s.tableBox}>
                     <table className={s.table}>

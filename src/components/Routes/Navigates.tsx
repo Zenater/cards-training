@@ -16,10 +16,10 @@ export const PATH = {
     PACKS: '/packs',
     CARDS: '/cards',
     FORGOT_PASS: '/forgotPass',
-    CHECK_EMAIL: "/checkEmail",
+    CHECK_EMAIL: '/checkEmail',
     SET_NEW_PASS: '/setPass',
+    PAGE_404 : '/404',
 };
-
 
 export const Navigates = () => {
     return (
@@ -30,10 +30,10 @@ export const Navigates = () => {
             <Route path={PATH.FORGOT_PASS} element={<ForgotPass/>}/>
             <Route path={PATH.SET_NEW_PASS + `/:token`} element={<SetPassword/>}/>
             <Route path={PATH.PROFILE} element={<Profile/>}/>
-            <Route path={"404"} element={<PageNotFound/>}/>
+            <Route path={PATH.PAGE_404} element={<PageNotFound/>}/>
             <Route path={PATH.CARDS + `/:id`} element={<Cards/>}/>
             <Route path={PATH.CHECK_EMAIL} element={<CheckEmail/>}/>
-            <Route path="*" element={<Navigate to={"404"}/>}/>
+            <Route path="*" element={<Navigate to={PATH.PAGE_404}/>}/>
         </Routes>
     );
 }
