@@ -17,12 +17,12 @@ import {sendNewPasswordTC} from "../../../store/reducers/forgotPassReducer";
 import {handleServerAppError} from "../../../utils/error-utils";
 import s from "./../Login/Login.module.css";
 import {PATH} from "../../Routes/Navigates";
+import {selectIsLoggedIn, selectIsRegistration} from "../../../store/selectors";
 
 export const SetPassword = React.memo(() => {
-
     const [disable, setDisable] = useState<boolean>(false)
-    const isRegistration = useAppSelector(state => state.auth.isRegistration)
-    const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+    const isRegistration = useAppSelector(selectIsRegistration)
+    const isLoggedIn = useAppSelector(selectIsLoggedIn)
     const dispatch = useAppDispatch()
     const {token} = useParams<string>()
     const navigate = useNavigate()
@@ -112,7 +112,7 @@ export const SetPassword = React.memo(() => {
                                     />
                                 </FormControl>
                                 {formik.errors.password && formik.touched.password &&
-                                    <div style={{color: "red"}}>{formik.errors.password}</div>
+                                <div style={{color: "red"}}>{formik.errors.password}</div>
                                 }
                                 <FormControl style={{marginTop: "10px", marginBottom: "10px"}} variant="outlined"
                                              className={s.confirmPass}>
@@ -136,7 +136,7 @@ export const SetPassword = React.memo(() => {
                                     />
                                 </FormControl>
                                 {formik.errors.confirmPassword && formik.touched.confirmPassword &&
-                                    <div style={{color: "red"}}>{formik.errors.confirmPassword}</div>}
+                                <div style={{color: "red"}}>{formik.errors.confirmPassword}</div>}
                                 <br/>
                                 <p>Create new password and we will send you further instructions to email</p>
                                 <br/>

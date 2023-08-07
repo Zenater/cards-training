@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState} from 'react';
+import {ChangeEvent, useState, KeyboardEvent} from 'react';
 import Button from '@mui/material/Button';
 import TextField from "@mui/material/TextField";
 import {BasicModal} from "../../../common/Basic modal/BasicModal";
@@ -11,13 +11,11 @@ import {ButtonGroup} from "../../../common/ButtonsGroup/ButtonGroup";
 
 
 export const ModalAddCard = () => {
-
     const [open, setOpen] = useState(false);
     const dispatch = useAppDispatch()
     const [addValue, setAddValue] = useState('')
     const [addValue2, setAddValue2] = useState('')
     const [error, SetError] = useState<null | string>(null);
-
     const {id} = useParams()
 
     const addNewCards = () => {
@@ -31,18 +29,16 @@ export const ModalAddCard = () => {
         }
     }
 
-    const onChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         SetError(null)
         setAddValue(e.currentTarget.value)
     }
-    const onChangeHandler2 = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    const onChangeHandler2 = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         SetError(null)
         setAddValue2(e.currentTarget.value)
     }
-    const onKeyPressHandler = (e: React.KeyboardEvent<HTMLDivElement>) => e.key === 'Enter' && addNewCards();
-
+    const onKeyPressHandler = (e: KeyboardEvent<HTMLDivElement>) => e.key === 'Enter' && addNewCards();
     const cancelHandler = () => setOpen(false)
-
 
     return (
         <BasicModal button={"newCard"} open={open} setOpen={setOpen}>

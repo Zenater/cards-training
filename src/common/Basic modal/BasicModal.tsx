@@ -7,8 +7,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import SchoolIcon from '@mui/icons-material/School';
 import s from "../../components/Profile/PacksTable/modal/modalDelete/ModalDelete.module.css";
-
-export type ButtonsForModalType = "justButton" | "delButton" | "changeNamePack" | "startLearn" | 'newCard'
+import {ButtonsForModalType} from "../../types/ModalTypes";
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -20,7 +19,6 @@ const style = {
     boxShadow: 24,
     p: 4,
     padding: '10px',
-
 };
 
 type PropsType = {
@@ -28,7 +26,6 @@ type PropsType = {
     open: boolean
     setOpen: (value: boolean) => void
     cardsCount?: number
-
 }
 export const BasicModal: FC<PropsWithChildren<PropsType>> = ({children, open, setOpen, button, cardsCount}) => {
 
@@ -55,6 +52,55 @@ export const BasicModal: FC<PropsWithChildren<PropsType>> = ({children, open, se
             <SchoolIcon/>
         </button>
     }
+    // switch (button) {
+    //     case "justButton":
+    //         changeButton = (
+    //             <button className={s.buttonAddModal} onClick={handleOpen}>
+    //                 New Pack
+    //             </button>
+    //         );
+    //         break;
+    //     case "newCard":
+    //         changeButton = (
+    //             <button className={s.buttonAddModal} onClick={handleOpen}>
+    //                 New Card
+    //             </button>
+    //         );
+    //         break;
+    //     case "delButton":
+    //         changeButton = (
+    //             <IconButton onClick={handleOpen} aria-label="delete">
+    //                 <DeleteIcon />
+    //             </IconButton>
+    //         );
+    //         break;
+    //     case "changeNamePack":
+    //         changeButton = (
+    //             <DriveFileRenameOutlineIcon
+    //                 onClick={handleOpen}
+    //                 style={{ cursor: 'pointer', display: 'flex' }}
+    //             />
+    //         );
+    //         break;
+    //     case "startLearn":
+    //         changeButton = (
+    //             <button
+    //                 style={{
+    //                     border: "none",
+    //                     backgroundColor: "transparent",
+    //                     padding: 0,
+    //                     marginLeft: '5px'
+    //                 }}
+    //                 onClick={handleOpen}
+    //                 disabled={cardsCount === 0}
+    //             >
+    //                 <SchoolIcon />
+    //             </button>
+    //         );
+    //         break;
+    //     default:
+    //         break;
+    // }
     return (
         <div>
             {changeButton}

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, MouseEvent} from 'react'
 import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
 import TextField from '@mui/material/TextField';
@@ -16,8 +16,9 @@ import {useAppDispatch, useAppSelector} from "../../../store/store";
 import s from "../Login/Login.module.css";
 import {PATH} from "../../Routes/Navigates";
 import {registerTC} from "../../../store/reducers/authReducer";
+import {selectIsLoggedIn, selectIsRegistration} from "../../../store/selectors";
 
-export type  FormikErrorType = {
+export type FormikErrorType = {
     email: string
     password: string
     confirmPassword: string
@@ -26,12 +27,10 @@ export type  FormikErrorType = {
 
 
 export const Registration = () => {
-
     const [disable, setDisable] = useState(false)
-    const isRegistration = useAppSelector(state => state.auth.isRegistration)
-    const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+    const isRegistration = useAppSelector(selectIsRegistration)
+    const isLoggedIn = useAppSelector(selectIsLoggedIn)
     const dispatch = useAppDispatch()
-
 
     const formik = useFormik({
         initialValues: {
@@ -64,7 +63,7 @@ export const Registration = () => {
             return errors;
         },
         onSubmit: async values => {
-            if(values) {
+            if (values) {
                 setDisable(true)
                 await dispatch(registerTC(values))
                 setDisable(false)
@@ -80,7 +79,7 @@ export const Registration = () => {
     const handleClickShowPassword = () => setValues({...values, showPassword: !values.showPassword,});
     const handleClickShowConfirmPassword = () => setValues({...values, confirmPassword: !values.confirmPassword,});
 
-    const handleMouseDownPassword = (e: React.MouseEvent<HTMLButtonElement>) => e.preventDefault();
+    const handleMouseDownPassword = (e: MouseEvent<HTMLButtonElement>) => e.preventDefault();
 
     if (isRegistration) {
         return <Navigate to={PATH.LOGIN}/>
@@ -94,7 +93,7 @@ export const Registration = () => {
             <div className={s.container}>
                 <div className={s.group}>
                     <FormControl>
-                            <h2 className={s.title}>Sign Up</h2>
+                        <h2 className={s.title}>Sign Up</h2>
                         <form onSubmit={formik.handleSubmit}>
                             <FormGroup>
                                 <TextField margin="normal"
@@ -104,7 +103,7 @@ export const Registration = () => {
                                 {formik.errors.email && formik.touched.email &&
                                 <div style={{color: "red"}}>{formik.errors.email}</div>}
 
-                                <FormControl variant="outlined" style={{marginTop:"5px", marginBottom:"5px"}}>
+                                <FormControl variant="outlined" style={{marginTop: "5px", marginBottom: "5px"}}>
                                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                     <OutlinedInput label="Password"
                                                    type={values.showPassword ? 'text' : 'password'}
@@ -127,7 +126,8 @@ export const Registration = () => {
                                 {formik.errors.password && formik.touched.password &&
                                 <div style={{color: "red"}}>{formik.errors.password}</div>}
 
-                                <FormControl style={{marginTop:"10px", marginBottom:"10px"}} variant="outlined" className={s.confirmPass}>
+                                <FormControl style={{marginTop: "10px", marginBottom: "10px"}} variant="outlined"
+                                             className={s.confirmPass}>
                                     <InputLabel htmlFor="outlined-adornment-password">Confirm Password</InputLabel>
                                     <OutlinedInput label="Confirm Password"
                                                    type={values.confirmPassword ? 'confirmPassword' : 'password'}
@@ -140,7 +140,8 @@ export const Registration = () => {
                                                                onMouseDown={handleMouseDownPassword}
                                                                edge="end"
                                                            >
-                                                               {values.confirmPassword ? <VisibilityOff/> : <Visibility/>}
+                                                               {values.confirmPassword ? <VisibilityOff/> :
+                                                                   <Visibility/>}
                                                            </IconButton>
                                                        </InputAdornment>
                                                    }
@@ -148,13 +149,13 @@ export const Registration = () => {
                                 </FormControl>
                                 {formik.errors.confirmPassword && formik.touched.confirmPassword &&
                                 <div style={{color: "red"}}>{formik.errors.confirmPassword}</div>}
-                                <button disabled={disable}  className={s.buttonForLogin} >
+                                <button disabled={disable} className={s.buttonForLogin}>
                                     Register
                                 </button>
                             </FormGroup>
                         </form>
                         <FormLabel>
-                            <p style={{padding:'20px'}}>Already registered?</p>
+                            <p style={{padding: '20px'}}>Already registered?</p>
                             <NavLink to={PATH.LOGIN}>SIGN IN</NavLink>
                         </FormLabel>
                     </FormControl>

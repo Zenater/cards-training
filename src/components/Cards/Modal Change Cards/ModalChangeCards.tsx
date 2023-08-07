@@ -1,59 +1,53 @@
-import * as React from 'react';
-import {ChangeEvent, useState, KeyboardEvent} from 'react';
+import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
 import Button from '@mui/material/Button';
-import TextField from "@mui/material/TextField";
-import {useAppDispatch} from "../../../store/store";
-import {useParams} from "react-router-dom";
-import {BasicModal} from "../../../common/Basic modal/BasicModal";
-import {updateCardsTC} from "../../../store/reducers/cardsReducer";
-import s from "./ModalChangeCards.module.css";
-import {ButtonGroup} from "../../../common/ButtonsGroup/ButtonGroup";
+import TextField from '@mui/material/TextField';
+import {useAppDispatch} from '../../../store/store';
+import {useParams} from 'react-router-dom';
+import {BasicModal} from '../../../common/Basic modal/BasicModal';
+import {updateCardsTC} from '../../../store/reducers/cardsReducer';
+import {ButtonGroup} from '../../../common/ButtonsGroup/ButtonGroup';
+import {ModalChangeCardsPropsType} from '../../../types/ModalTypes';
+import s from './ModalChangeCards.module.css';
 
+export const ModalChangeCards = ({_id, answer, question}: ModalChangeCardsPropsType) => {
+    const dispatch = useAppDispatch();
+    const {id} = useParams();
 
-type ModalAddPackPropsType = {
-    _id?: string
-    question: string
-    answer: string
-}
-
-export const ModalChangeCards = ({_id, answer, question}: ModalAddPackPropsType) => {
-
-    const dispatch = useAppDispatch()
-    const {id} = useParams()
-
-    const [addValue, setAddValue] = useState(question)
-    const [addValue2, setAddValue2] = useState(answer)
+    const [addValues, setAddValues] = useState({question, answer});
     const [error, setError] = useState<null | string>(null);
     const [open, setOpen] = useState(false);
 
     const changeCards = () => {
         if (_id && id) {
-            if (addValue.trim() && addValue2.trim() !== "") {
-                dispatch(updateCardsTC(_id, addValue, addValue2, id))
-                setOpen(false)
-            } else setError("Enter text")
+            if (addValues.question.trim() && addValues.answer.trim() !== '') {
+                dispatch(updateCardsTC(_id, addValues.question, addValues.answer, id));
+                setOpen(false);
+            } else {
+                setError('Enter text');
+            }
         }
-    }
-    const onKeyPressHandler = (e: KeyboardEvent<HTMLDivElement>) => e.key === 'Enter' && changeCards();
-    const onKeyPressHandler2 = (e: KeyboardEvent<HTMLDivElement>) => e.key === 'Enter' && changeCards();
+    };
 
-    const cancelHandler = () => setOpen(false)
+    const handleKeyPress = (e: KeyboardEvent<HTMLDivElement>) => {
+        if (e.key === 'Enter') {
+            changeCards();
+        }
+    };
 
-    const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        setError(null)
-        setAddValue(e.currentTarget.value)
-    }
+    const cancelHandler = () => setOpen(false);
 
-    const onChangeHandler2 = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        setError(null)
-        setAddValue2(e.currentTarget.value)
-    }
+    const handleChange = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+        setError(null);
+        setAddValues({...addValues, [e.currentTarget.name]: e.currentTarget.value});
+    };
 
     return (
-        <BasicModal button={"changeNamePack"} open={open} setOpen={setOpen}>
+        <BasicModal button="changeNamePack" open={open} setOpen={setOpen}>
             <div className={s.container}>
                 <div className={s.buttonDelete}>
-                    <Button onClick={cancelHandler} variant="text">X</Button>
+                    <Button onClick={cancelHandler} variant="text">
+                        X
+                    </Button>
                 </div>
                 <div>
                     <p className={s.title}>Change name of your cards</p>
@@ -61,12 +55,13 @@ export const ModalChangeCards = ({_id, answer, question}: ModalAddPackPropsType)
                         <TextField
                             id="standard-textarea"
                             label="Question"
-                            placeholder="change Question"
+                            placeholder="Change Question"
                             multiline
                             variant="standard"
-                            value={addValue}
-                            onChange={onChangeHandler}
-                            onKeyPress={onKeyPressHandler}
+                            name="question"
+                            value={addValues.question}
+                            onChange={handleChange}
+                            onKeyPress={handleKeyPress}
                         />
                     </div>
                     <div className={s.title}>
@@ -76,12 +71,13 @@ export const ModalChangeCards = ({_id, answer, question}: ModalAddPackPropsType)
                         <TextField
                             id="standard-textarea"
                             label="Answer"
-                            placeholder="change Answer"
+                            placeholder="Change Answer"
                             multiline
                             variant="standard"
-                            value={addValue2}
-                            onChange={onChangeHandler2}
-                            onKeyPress={onKeyPressHandler2}
+                            name="answer"
+                            value={addValues.answer}
+                            onChange={handleChange}
+                            onKeyPress={handleKeyPress}
                         />
                     </div>
                     <div className={s.title}>
@@ -92,5 +88,4 @@ export const ModalChangeCards = ({_id, answer, question}: ModalAddPackPropsType)
             </div>
         </BasicModal>
     );
-}
-
+};

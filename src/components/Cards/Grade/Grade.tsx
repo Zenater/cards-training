@@ -1,13 +1,11 @@
-import React, {FC} from 'react';
+import React from 'react';
 import s from './Grade.module.css'
 
 type GradeTypeProps = {
     value: RatingValueType
 }
 
-export const Grade: FC<GradeTypeProps> = ({value}) => {
-
-
+export const Grade = ({value}: GradeTypeProps) => {
     return (
         <div className={s.box}>
             <Star selected={value > 0} value={1}/>
@@ -19,15 +17,13 @@ export const Grade: FC<GradeTypeProps> = ({value}) => {
     )
 }
 
-
 export type RatingValueType = 0 | 1 | 2 | 3 | 4 | 5 | number
-
 
 type StarPropsType = {
     selected: boolean
     value: RatingValueType
 }
 
-const Star: FC<StarPropsType> = ({selected, value}) => {
+const Star = ({selected, value}: StarPropsType) => {
     return <div className={`${selected ? s.starFull : ''} ${s.star}`}>&#9733;</div>
 }

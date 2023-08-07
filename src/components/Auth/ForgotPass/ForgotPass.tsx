@@ -12,13 +12,13 @@ import {NavLink} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from "../../../store/store";
 import {sendEmailTC, setEmail} from "../../../store/reducers/forgotPassReducer";
 import {PATH} from "../../Routes/Navigates";
+import {selectIsLoggedIn} from "../../../store/selectors";
 
 export const ForgotPass = React.memo(() => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
-
     const [disable, setDisable] = useState<boolean>(false)
-    const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+    const isLoggedIn = useAppSelector(selectIsLoggedIn )
     const formik = useFormik({
         initialValues: {
             email: '',

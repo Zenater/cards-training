@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import s from "./ButtonsForPacks.module.css";
-import {getPacksTC, showPyPacksAC} from "../../../../store/reducers/packsReducer";
+import {getPacksTC, showPyPacks} from "../../../../store/reducers/packsReducer";
 import {useAppDispatch, useAppSelector} from "../../../../store/store";
 
 export const ButtonsForPack = () => {
@@ -10,13 +10,13 @@ export const ButtonsForPack = () => {
 
     const onClickForAllHandler = () => {
         setActiveComponent(true)
-        dispatch(showPyPacksAC(null))
+        dispatch(showPyPacks(null))
         dispatch(getPacksTC())
     }
 
     const onClickForMyPacksHandler = () => {
         setActiveComponent(false)
-        dispatch(showPyPacksAC(user_id))
+        dispatch(showPyPacks(user_id))
         dispatch(getPacksTC())
     }
 

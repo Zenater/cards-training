@@ -3,11 +3,11 @@ import s from "./Checkbox.module.css";
 import Checkbox from "@mui/material/Checkbox";
 import {useAppDispatch, useAppSelector} from "../../store/store";
 import {setPrivatePacks} from "../../store/reducers/packsReducer";
+import {selectPrivatePacks} from "../../store/selectors";
 
 export const CheckBox = () => {
     const dispatch = useAppDispatch()
-
-    const privatePacks = useAppSelector(state => state.packs.filterForPacks.private);
+    const privatePacks = useAppSelector(selectPrivatePacks);
 
     const onChangeHandlerStatus = (e: ChangeEvent<HTMLInputElement>) => {
         dispatch(setPrivatePacks(e.currentTarget.checked))

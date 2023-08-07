@@ -1,13 +1,8 @@
 import React from 'react';
 import s from "../../components/Profile/PacksTable/modal/madalChangeNamePack/ModalChangeNamePack.module.css";
+import {ModalAddPackPropsType} from "../../types/ModalTypes";
 
-type ModalAddPackPropsType = {
-    changeCards:()=>void
-    cancelHandler:()=>void
-}
-
-export const ButtonGroup: React.FC<ModalAddPackPropsType> = ({changeCards, cancelHandler,}) => {
-
+export const ButtonGroup = ({changeCards, cancelHandler,}: ModalAddPackPropsType) => {
     return (
         <div className={s.buttons}>
             <button onClick={cancelHandler} className={s.buttonCancel}>Cancel</button>

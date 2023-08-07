@@ -5,11 +5,10 @@ import checkEmailAvatar from "../../../../assests/images/Web app/Group 281.png"
 import {useAppSelector} from "../../../../store/store";
 import {NavLink} from "react-router-dom";
 import {PATH} from "../../../Routes/Navigates";
+import {selectEmail} from "../../../../store/selectors";
 
 export const CheckEmail = React.memo(() => {
-
-    const email = useAppSelector(state => state.forgotPas.email);
-
+    const email = useAppSelector(selectEmail);
     return (
         <div className={styleContainer.container}>
             <div className={s.container}>

@@ -10,13 +10,14 @@ import {Pagination} from "../../../common/Pagination/Pagination";
 import {changePackTC, deletePackTC, getPacksTC, sortPacks} from "../../../store/reducers/packsReducer";
 import {useAppDispatch, useAppSelector} from "../../../store/store";
 import {PATH} from "../../Routes/Navigates";
+import {selectPacks, selectUserId} from "../../../store/selectors";
 
 type filtersNamesType = "name" | "updated" | "cardsCount"
 
 export const PacksTable = React.memo(() => {
 
-    const packs = useAppSelector(state => state.packs.cardPacks);
-    const userID = useAppSelector(state => state.profile.profile._id);
+    const packs = useAppSelector(selectPacks);
+    const userID = useAppSelector(selectUserId);
     const dispatch = useAppDispatch();
 
     const [filter, setFilter] = useState<Record<filtersNamesType, boolean>>({

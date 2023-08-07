@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, MouseEvent} from 'react'
 import Checkbox from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -19,12 +19,13 @@ import {useAppDispatch, useAppSelector} from "../../../store/store";
 import {loginTC} from "../../../store/reducers/authReducer";
 import s from './Login.module.css'
 import {PATH} from "../../Routes/Navigates";
+import {selectIsLoggedIn} from "../../../store/selectors";
 
 export const Login = React.memo(() => {
     const dispatch = useAppDispatch()
     const [disable, setDisable] = useState<boolean>(false)
 
-    const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+    const isLoggedIn = useAppSelector(selectIsLoggedIn)
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -54,7 +55,7 @@ export const Login = React.memo(() => {
             setDisable(false)
         },
     })
-        const [value, setValue] = React.useState({
+        const [value, setValue] = useState({
             password: '',
             showPassword: false,
         });
@@ -63,7 +64,7 @@ export const Login = React.memo(() => {
             setValue({...value, showPassword: !value.showPassword,
             });
         };
-        const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+        const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
             event.preventDefault();
         };
 
